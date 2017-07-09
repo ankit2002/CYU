@@ -7,29 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		135392FC1F112FC9004A79BE /* SignInOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135392FB1F112FC9004A79BE /* SignInOptionViewController.swift */; };
-		135393001F11326B004A79BE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135392FF1F11326B004A79BE /* LoginViewController.swift */; };
-		135393021F113B05004A79BE /* SearchUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135393011F113B05004A79BE /* SearchUniversityViewController.swift */; };
-		135393061F113B27004A79BE /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135393051F113B27004A79BE /* WishlistViewController.swift */; };
-		135393081F113B37004A79BE /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135393071F113B37004A79BE /* UpdateProfileViewController.swift */; };
-		1353930A1F113B49004A79BE /* OfferedUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135393091F113B49004A79BE /* OfferedUniversityViewController.swift */; };
-		13E3519B1F0E7CA300D85FFC /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E3519A1F0E7CA300D85FFC /* SlideMenuController.swift */; };
-		13E3519D1F0E850D00D85FFC /* StudentHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E3519C1F0E850D00D85FFC /* StudentHomeViewController.swift */; };
-		13E3519F1F0E86B500D85FFC /* SlideMenuLeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E3519E1F0E86B500D85FFC /* SlideMenuLeftViewController.swift */; };
-		13E351A11F0EA9B900D85FFC /* AddCertificateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E351A01F0EA9B900D85FFC /* AddCertificateVC.swift */; };
-		13E351A71F0FEAF900D85FFC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E351A61F0FEAF900D85FFC /* UIViewController.swift */; };
-		13E351A91F0FEC4300D85FFC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E351A81F0FEC4300D85FFC /* UIColor.swift */; };
-		13E351AB1F0FEC9900D85FFC /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E351AA1F0FEC9900D85FFC /* String.swift */; };
+		1300C50F1F1233A600FE8C3E /* OfferedUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5051F1233A600FE8C3E /* OfferedUniversityViewController.swift */; };
+		1300C5101F1233A600FE8C3E /* SearchUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5061F1233A600FE8C3E /* SearchUniversityViewController.swift */; };
+		1300C5111F1233A600FE8C3E /* ShowDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5071F1233A600FE8C3E /* ShowDocumentViewController.swift */; };
+		1300C5121F1233A600FE8C3E /* SignInOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5081F1233A600FE8C3E /* SignInOptionViewController.swift */; };
+		1300C5131F1233A600FE8C3E /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5091F1233A600FE8C3E /* SlideMenuController.swift */; };
+		1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C50A1F1233A600FE8C3E /* SlideMenuLeftViewController.swift */; };
+		1300C5151F1233A600FE8C3E /* StudentHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C50B1F1233A600FE8C3E /* StudentHomeViewController.swift */; };
+		1300C5161F1233A600FE8C3E /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C50C1F1233A600FE8C3E /* UpdateProfileViewController.swift */; };
+		1300C5171F1233A600FE8C3E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C50D1F1233A600FE8C3E /* WelcomeViewController.swift */; };
+		1300C5181F1233A600FE8C3E /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C50E1F1233A600FE8C3E /* WishlistViewController.swift */; };
+		1300C51C1F1233C100FE8C3E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5191F1233C100FE8C3E /* String.swift */; };
+		1300C51D1F1233C100FE8C3E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C51A1F1233C100FE8C3E /* UIColor.swift */; };
+		1300C51E1F1233C100FE8C3E /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C51B1F1233C100FE8C3E /* UIViewController.swift */; };
+		1300C5211F1233E000FE8C3E /* AddCertificateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C51F1F1233E000FE8C3E /* AddCertificateVC.swift */; };
+		1300C5221F1233E000FE8C3E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5201F1233E000FE8C3E /* LoginViewController.swift */; };
+		1300C5251F1233FE00FE8C3E /* UploadDocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */; };
+		1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5271F12341800FE8C3E /* CustomRoundButton.swift */; };
+		1300C52A1F12369000FE8C3E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1300C5291F12369000FE8C3E /* .gitignore */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
-		13F675F31F0BF4E900646EFE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F21F0BF4E900646EFE /* WelcomeViewController.swift */; };
 		13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F41F0BF4E900646EFE /* Main.storyboard */; };
 		13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F71F0BF4E900646EFE /* Assets.xcassets */; };
 		13F675FB1F0BF4E900646EFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F91F0BF4E900646EFE /* LaunchScreen.storyboard */; };
 		13F676061F0BF4E900646EFE /* CYUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F676051F0BF4E900646EFE /* CYUTests.swift */; };
 		13F676111F0BF4E900646EFE /* CYUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F676101F0BF4E900646EFE /* CYUUITests.swift */; };
-		13F6761F1F0BFAC200646EFE /* CustomRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6761E1F0BFAC200646EFE /* CustomRoundButton.swift */; };
-		13F94F8A1F0D476D0040A210 /* UploadDocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F94F891F0D476D0040A210 /* UploadDocTableViewCell.swift */; };
-		13F94F8C1F0D48B50040A210 /* ShowDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F94F8B1F0D48B50040A210 /* ShowDocumentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,22 +51,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		135392FB1F112FC9004A79BE /* SignInOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInOptionViewController.swift; sourceTree = "<group>"; };
-		135392FF1F11326B004A79BE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		135393011F113B05004A79BE /* SearchUniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewController.swift; sourceTree = "<group>"; };
-		135393051F113B27004A79BE /* WishlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
-		135393071F113B37004A79BE /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
-		135393091F113B49004A79BE /* OfferedUniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferedUniversityViewController.swift; sourceTree = "<group>"; };
-		13E3519A1F0E7CA300D85FFC /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
-		13E3519C1F0E850D00D85FFC /* StudentHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomeViewController.swift; sourceTree = "<group>"; };
-		13E3519E1F0E86B500D85FFC /* SlideMenuLeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuLeftViewController.swift; sourceTree = "<group>"; };
-		13E351A01F0EA9B900D85FFC /* AddCertificateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCertificateVC.swift; sourceTree = "<group>"; };
-		13E351A61F0FEAF900D85FFC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		13E351A81F0FEC4300D85FFC /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		13E351AA1F0FEC9900D85FFC /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		1300C5051F1233A600FE8C3E /* OfferedUniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferedUniversityViewController.swift; sourceTree = "<group>"; };
+		1300C5061F1233A600FE8C3E /* SearchUniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewController.swift; sourceTree = "<group>"; };
+		1300C5071F1233A600FE8C3E /* ShowDocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDocumentViewController.swift; sourceTree = "<group>"; };
+		1300C5081F1233A600FE8C3E /* SignInOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInOptionViewController.swift; sourceTree = "<group>"; };
+		1300C5091F1233A600FE8C3E /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		1300C50A1F1233A600FE8C3E /* SlideMenuLeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuLeftViewController.swift; sourceTree = "<group>"; };
+		1300C50B1F1233A600FE8C3E /* StudentHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHomeViewController.swift; sourceTree = "<group>"; };
+		1300C50C1F1233A600FE8C3E /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
+		1300C50D1F1233A600FE8C3E /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		1300C50E1F1233A600FE8C3E /* WishlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
+		1300C5191F1233C100FE8C3E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = CYU/String.swift; sourceTree = "<group>"; };
+		1300C51A1F1233C100FE8C3E /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = CYU/UIColor.swift; sourceTree = "<group>"; };
+		1300C51B1F1233C100FE8C3E /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewController.swift; path = CYU/UIViewController.swift; sourceTree = "<group>"; };
+		1300C51F1F1233E000FE8C3E /* AddCertificateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCertificateVC.swift; sourceTree = "<group>"; };
+		1300C5201F1233E000FE8C3E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDocTableViewCell.swift; sourceTree = "<group>"; };
+		1300C5271F12341800FE8C3E /* CustomRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoundButton.swift; sourceTree = "<group>"; };
+		1300C5291F12369000FE8C3E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F675F01F0BF4E900646EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		13F675F21F0BF4E900646EFE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		13F675F51F0BF4E900646EFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13F675F71F0BF4E900646EFE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13F675FA1F0BF4E900646EFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -76,9 +81,6 @@
 		13F6760C1F0BF4E900646EFE /* CYUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CYUUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F676101F0BF4E900646EFE /* CYUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CYUUITests.swift; sourceTree = "<group>"; };
 		13F676121F0BF4E900646EFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13F6761E1F0BFAC200646EFE /* CustomRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomRoundButton.swift; path = CYU/CustomRoundButton.swift; sourceTree = "<group>"; };
-		13F94F891F0D476D0040A210 /* UploadDocTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDocTableViewCell.swift; sourceTree = "<group>"; };
-		13F94F8B1F0D48B50040A210 /* ShowDocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDocumentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,40 +108,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		135392FD1F113225004A79BE /* ViewControllers */ = {
+		1300C5041F12338C00FE8C3E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				13E3519A1F0E7CA300D85FFC /* SlideMenuController.swift */,
-				13F675F21F0BF4E900646EFE /* WelcomeViewController.swift */,
-				13E3519C1F0E850D00D85FFC /* StudentHomeViewController.swift */,
-				13E3519E1F0E86B500D85FFC /* SlideMenuLeftViewController.swift */,
-				13E351A01F0EA9B900D85FFC /* AddCertificateVC.swift */,
-				135392FB1F112FC9004A79BE /* SignInOptionViewController.swift */,
-				135392FF1F11326B004A79BE /* LoginViewController.swift */,
-				135393011F113B05004A79BE /* SearchUniversityViewController.swift */,
-				13F94F8B1F0D48B50040A210 /* ShowDocumentViewController.swift */,
-				135393051F113B27004A79BE /* WishlistViewController.swift */,
-				135393071F113B37004A79BE /* UpdateProfileViewController.swift */,
-				135393091F113B49004A79BE /* OfferedUniversityViewController.swift */,
+				1300C51F1F1233E000FE8C3E /* AddCertificateVC.swift */,
+				1300C5201F1233E000FE8C3E /* LoginViewController.swift */,
+				1300C5051F1233A600FE8C3E /* OfferedUniversityViewController.swift */,
+				1300C5061F1233A600FE8C3E /* SearchUniversityViewController.swift */,
+				1300C5071F1233A600FE8C3E /* ShowDocumentViewController.swift */,
+				1300C5081F1233A600FE8C3E /* SignInOptionViewController.swift */,
+				1300C5091F1233A600FE8C3E /* SlideMenuController.swift */,
+				1300C50A1F1233A600FE8C3E /* SlideMenuLeftViewController.swift */,
+				1300C50B1F1233A600FE8C3E /* StudentHomeViewController.swift */,
+				1300C50C1F1233A600FE8C3E /* UpdateProfileViewController.swift */,
+				1300C50D1F1233A600FE8C3E /* WelcomeViewController.swift */,
+				1300C50E1F1233A600FE8C3E /* WishlistViewController.swift */,
 			);
-			name = ViewControllers;
+			name = ViewController;
 			sourceTree = "<group>";
 		};
-		135392FE1F113250004A79BE /* CustomCells */ = {
+		1300C5231F1233F400FE8C3E /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				13F94F891F0D476D0040A210 /* UploadDocTableViewCell.swift */,
+				1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */,
 			);
-			name = CustomCells;
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		1300C5261F12340B00FE8C3E /* Custom Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				1300C5271F12341800FE8C3E /* CustomRoundButton.swift */,
+			);
+			name = "Custom Buttons";
 			sourceTree = "<group>";
 		};
 		13E351A31F0FEA8B00D85FFC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				13E351AA1F0FEC9900D85FFC /* String.swift */,
-				13E351A81F0FEC4300D85FFC /* UIColor.swift */,
-				13E351A61F0FEAF900D85FFC /* UIViewController.swift */,
-				13F6761E1F0BFAC200646EFE /* CustomRoundButton.swift */,
+				1300C5191F1233C100FE8C3E /* String.swift */,
+				1300C51A1F1233C100FE8C3E /* UIColor.swift */,
+				1300C51B1F1233C100FE8C3E /* UIViewController.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 		13F675E41F0BF4E900646EFE = {
 			isa = PBXGroup;
 			children = (
+				1300C5291F12369000FE8C3E /* .gitignore */,
 				13E351A31F0FEA8B00D85FFC /* Extension */,
 				13F675EF1F0BF4E900646EFE /* CYU */,
 				13F676041F0BF4E900646EFE /* CYUTests */,
@@ -168,8 +178,9 @@
 		13F675EF1F0BF4E900646EFE /* CYU */ = {
 			isa = PBXGroup;
 			children = (
-				135392FE1F113250004A79BE /* CustomCells */,
-				135392FD1F113225004A79BE /* ViewControllers */,
+				1300C5261F12340B00FE8C3E /* Custom Buttons */,
+				1300C5231F1233F400FE8C3E /* Custom Cells */,
+				1300C5041F12338C00FE8C3E /* ViewController */,
 				13F675F01F0BF4E900646EFE /* AppDelegate.swift */,
 				13F675F41F0BF4E900646EFE /* Main.storyboard */,
 				13F675F71F0BF4E900646EFE /* Assets.xcassets */,
@@ -304,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1300C52A1F12369000FE8C3E /* .gitignore in Resources */,
 				13F675FB1F0BF4E900646EFE /* LaunchScreen.storyboard in Resources */,
 				13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */,
 				13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */,
@@ -331,24 +343,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				135393001F11326B004A79BE /* LoginViewController.swift in Sources */,
-				13F6761F1F0BFAC200646EFE /* CustomRoundButton.swift in Sources */,
-				13F94F8A1F0D476D0040A210 /* UploadDocTableViewCell.swift in Sources */,
-				135393081F113B37004A79BE /* UpdateProfileViewController.swift in Sources */,
-				13F675F31F0BF4E900646EFE /* WelcomeViewController.swift in Sources */,
-				135393061F113B27004A79BE /* WishlistViewController.swift in Sources */,
-				13E3519D1F0E850D00D85FFC /* StudentHomeViewController.swift in Sources */,
-				13E351A11F0EA9B900D85FFC /* AddCertificateVC.swift in Sources */,
-				1353930A1F113B49004A79BE /* OfferedUniversityViewController.swift in Sources */,
-				13F94F8C1F0D48B50040A210 /* ShowDocumentViewController.swift in Sources */,
-				135392FC1F112FC9004A79BE /* SignInOptionViewController.swift in Sources */,
-				13E351AB1F0FEC9900D85FFC /* String.swift in Sources */,
-				13E3519F1F0E86B500D85FFC /* SlideMenuLeftViewController.swift in Sources */,
-				13E351A91F0FEC4300D85FFC /* UIColor.swift in Sources */,
-				135393021F113B05004A79BE /* SearchUniversityViewController.swift in Sources */,
-				13E3519B1F0E7CA300D85FFC /* SlideMenuController.swift in Sources */,
+				1300C51E1F1233C100FE8C3E /* UIViewController.swift in Sources */,
+				1300C5111F1233A600FE8C3E /* ShowDocumentViewController.swift in Sources */,
+				1300C5171F1233A600FE8C3E /* WelcomeViewController.swift in Sources */,
+				1300C5181F1233A600FE8C3E /* WishlistViewController.swift in Sources */,
+				1300C5151F1233A600FE8C3E /* StudentHomeViewController.swift in Sources */,
+				1300C50F1F1233A600FE8C3E /* OfferedUniversityViewController.swift in Sources */,
+				1300C5161F1233A600FE8C3E /* UpdateProfileViewController.swift in Sources */,
+				1300C51C1F1233C100FE8C3E /* String.swift in Sources */,
 				13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */,
-				13E351A71F0FEAF900D85FFC /* UIViewController.swift in Sources */,
+				1300C5101F1233A600FE8C3E /* SearchUniversityViewController.swift in Sources */,
+				1300C51D1F1233C100FE8C3E /* UIColor.swift in Sources */,
+				1300C5131F1233A600FE8C3E /* SlideMenuController.swift in Sources */,
+				1300C5221F1233E000FE8C3E /* LoginViewController.swift in Sources */,
+				1300C5121F1233A600FE8C3E /* SignInOptionViewController.swift in Sources */,
+				1300C5211F1233E000FE8C3E /* AddCertificateVC.swift in Sources */,
+				1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */,
+				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
+				1300C5251F1233FE00FE8C3E /* UploadDocTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
