@@ -25,6 +25,7 @@
 		1300C5251F1233FE00FE8C3E /* UploadDocTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */; };
 		1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5271F12341800FE8C3E /* CustomRoundButton.swift */; };
 		1300C52A1F12369000FE8C3E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1300C5291F12369000FE8C3E /* .gitignore */; };
+		1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
 		13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F41F0BF4E900646EFE /* Main.storyboard */; };
 		13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F71F0BF4E900646EFE /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDocTableViewCell.swift; sourceTree = "<group>"; };
 		1300C5271F12341800FE8C3E /* CustomRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoundButton.swift; sourceTree = "<group>"; };
 		1300C5291F12369000FE8C3E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterStudentViewController.swift; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F675F01F0BF4E900646EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F675F51F0BF4E900646EFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				1300C50C1F1233A600FE8C3E /* UpdateProfileViewController.swift */,
 				1300C50D1F1233A600FE8C3E /* WelcomeViewController.swift */,
 				1300C50E1F1233A600FE8C3E /* WishlistViewController.swift */,
+				1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				1300C5211F1233E000FE8C3E /* AddCertificateVC.swift in Sources */,
 				1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */,
 				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
+				1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */,
 				1300C5251F1233FE00FE8C3E /* UploadDocTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
