@@ -382,7 +382,7 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="JOO-Jd-FqD" kind="show" id="V96-rx-MIs"/>
+                                                    <action selector="registerPressed:" destination="1CF-9a-qmV" eventType="touchUpInside" id="ZK9-94-QbZ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -417,6 +417,7 @@
                         <outlet property="birthdate" destination="00r-51-Oks" id="RfC-aJ-ovT"/>
                         <outlet property="emailAddress" destination="ODe-gY-2ec" id="qRg-Fu-PeM"/>
                         <outlet property="firstName" destination="4BM-qQ-31C" id="4h3-Xm-SIR"/>
+                        <outlet property="genderSegment" destination="R8E-jw-ehm" id="ef5-TF-uOv"/>
                         <outlet property="lastName" destination="bgL-0F-kmx" id="ssS-no-j4D"/>
                         <outlet property="password" destination="KRo-rz-gg0" id="yH0-oj-L5u"/>
                         <outlet property="re_password" destination="mTb-iE-8nT" id="Hkp-qt-oL9"/>
@@ -788,7 +789,7 @@
         <!--Add Certificates-->
         <scene sceneID="o8w-St-xcW">
             <objects>
-                <viewController id="JOO-Jd-FqD" customClass="AddCertificateVC" customModule="CYU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddCertificateVC" id="JOO-Jd-FqD" customClass="AddCertificateVC" customModule="CYU" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qRW-p6-Ogt"/>
                         <viewControllerLayoutGuide type="bottom" id="fOV-W4-Zfe"/>
@@ -798,7 +799,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0K7-Wg-SR2">
-                                <rect key="frame" x="26" y="126" width="323" height="30"/>
+                                <rect key="frame" x="26" y="82" width="323" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completion Year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5b-um-C7G">
                                         <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
@@ -815,14 +816,14 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="degreeimage" translatesAutoresizingMaskIntoConstraints="NO" id="8dO-yx-kc8">
-                                <rect key="frame" x="50" y="223" width="275" height="183"/>
+                                <rect key="frame" x="50" y="179" width="275" height="183"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdX-zu-oGb">
-                                <rect key="frame" x="123.5" y="185" width="128" height="30"/>
+                                <rect key="frame" x="123.5" y="141" width="128" height="30"/>
                                 <state key="normal" title="Add Degree Image"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="LpG-WY-cCp">
-                                <rect key="frame" x="26" y="84" width="323" height="30"/>
+                                <rect key="frame" x="26" y="40" width="323" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0x-SH-IZK">
                                         <rect key="frame" x="0.0" y="0.0" width="104.5" height="30"/>
@@ -839,7 +840,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AP-jp-fbc">
-                                <rect key="frame" x="146.5" y="424" width="82" height="30"/>
+                                <rect key="frame" x="146.5" y="380" width="82" height="30"/>
                                 <state key="normal" title="Add Degree"/>
                             </button>
                         </subviews>

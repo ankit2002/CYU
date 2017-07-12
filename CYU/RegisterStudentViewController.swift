@@ -12,6 +12,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
 
     // MARK: Defining Variables
     let datePicker :UIDatePicker = UIDatePicker()
+    var currentTextField : UITextField!
     
     // MARK: Defining Outlet Variables
     @IBOutlet weak var firstName: UITextField!
@@ -20,23 +21,21 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailAddress: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var re_password: UITextField!
-    
+    @IBOutlet weak var genderSegment: UISegmentedControl!
     @IBOutlet weak var scrollview: UIScrollView!
-    var currentTextField : UITextField!
-    
-    
-    // This constraint ties an element at zero points from the bottom layout guide
-    @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setupViewResizerOnKeyboardShown();
-    }
     
     
     
     
     // MARK: - System Methods
+    override func viewWillAppear(_ animated: Bool) {
+        setupViewResizerOnKeyboardShown();
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +43,6 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: .valueChanged)
         birthdate.inputView = datePicker
-        
         
         // hide keyboard when tap arround
         self.hideKeyboardWhenTappedArround()
@@ -58,7 +56,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     }
     
     
-    // removing Notification Centre
+    // removing Notification Centre when call release resources
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -72,20 +70,14 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     // MARK: - UItextFiled Delegates and Datasource
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         // when start typing on text field
-        
         currentTextField = textField;
-        
-        if textField == birthdate{
-            
-        }
         return true
     }
+    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         currentTextField = nil;
     }
-    
-    
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -110,7 +102,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         }
         else if textField == birthdate{
             if (textField.text?.isEmpty)!{
-                alert(message: "Please Enter your birthdate Name")
+                alert(message: "Please Enter your birthdate")
                 return false;
             }
             let nextTextField:UITextField = self.view.viewWithTag(textField.tag+1) as! UITextField
@@ -160,6 +152,92 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         birthdate.text = dateFormatter.string(from: sender.date)
     }
     
+    
+    // MARK: - Register Button Pressed check validation
+    @IBAction func registerPressed(_ sender: Any) {
+        if (self.checkValidation()){
+            
+            // call method for saving data in Server
+            // TODO:
+            // call Add document
+            self.callAddViewController()
+        }
+        else{
+            // do login
+            print("Error with Validation occured")
+        }
+    }
+    
+    // check validaton of textfield
+    func checkValidation() -> Bool {
+        
+        if (firstName.text?.isEmpty)!{
+            firstName.becomeFirstResponder()
+            alert(message: "Please Enter your First Name")
+            return false
+        }
+        
+        
+        if (lastName.text?.isEmpty)!{
+            lastName.becomeFirstResponder()
+            alert(message: "Please Enter your Last Name")
+            return false
+        }
+        
+        if (birthdate.text?.isEmpty)!{
+            birthdate.becomeFirstResponder()
+            alert(message: "Please Enter your birthdate")
+            return false
+        }
+        
+        if genderSegment.selectedSegmentIndex == -1{
+            alert(message: "OOps, Please determine your gender")
+            return false
+        }
+        
+        if (emailAddress.text?.isEmpty)!{
+            emailAddress.becomeFirstResponder()
+            alert(message: "Please Enter your Email Address")
+            return false
+        }
+            
+        
+        if (!self.checkEmailAddress(str: emailAddress.text!)){
+            emailAddress.becomeFirstResponder()
+            alert(message: "OOPs, Seems like your email Address is not Correct")
+            return false
+        }
+        
+        if (password.text?.isEmpty)!{
+            password.becomeFirstResponder()
+            alert(message: "Please Enter your Password")
+            return false
+        }
+        
+        
+        if (re_password.text?.isEmpty)!{
+            re_password.becomeFirstResponder()
+            alert(message: "Please Enter your Password Again")
+            return false
+        }
+        
+        if password.text != re_password.text {
+            re_password.becomeFirstResponder()
+            alert(message: "OOPs, Seems like Passwords are not equals")
+            return false
+        }
+        
+        return true
+    }
+    
+    
+    func checkEmailAddress(str:String) -> Bool {
+        let regExForEmail = "[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\\.[A-Za-z]{2,}"
+        let checkPredicate = NSPredicate (format: "SELF MATCHES %@", regExForEmail)
+        return checkPredicate.evaluate(with:str)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
@@ -169,6 +247,14 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+    func callAddViewController(){
+        
+        let addViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddCertificateVC") as! AddCertificateVC
+        self.navigationController?.pushViewController(addViewController, animated: true)
+    }
+    
+    
+    
     
     // MARK: Keyboard Notifications
 
@@ -201,44 +287,8 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         self.view.endEditing(true)
         self.scrollview.isScrollEnabled = false
     }
+    
 }
-
-
-
-
-extension UIViewController{
-    func alert(message:String, title:String = ""){
-
-        let alertController = UIAlertController (title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction (title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
