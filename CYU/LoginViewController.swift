@@ -64,14 +64,18 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     //MARK: Login button Pressed
     @IBAction func loginBtnPressed(_ sender: Any) {
 
+        
+        self.openHomeView()
+        /* // Original code
         if self.checkValidation(){
             // open Home Menu
             self.openHomeView()
         }
         else{
             // TODO: Business logic to check from DB
-            alert(message: "Username and password are incorrect")
+            //alert(message: "Username and password are incorrect")
         }
+         */
     }
     
     // MARK: Check Validation

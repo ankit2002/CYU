@@ -26,6 +26,9 @@
 		1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5271F12341800FE8C3E /* CustomRoundButton.swift */; };
 		1300C52A1F12369000FE8C3E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1300C5291F12369000FE8C3E /* .gitignore */; };
 		1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */; };
+		1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */; };
+		1373F3711F17ED050037D928 /* SearchExpansionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */; };
+		1373F3741F17EE480037D928 /* FilterList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1373F3731F17EE480037D928 /* FilterList.plist */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
 		13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F41F0BF4E900646EFE /* Main.storyboard */; };
 		13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F71F0BF4E900646EFE /* Assets.xcassets */; };
@@ -71,6 +74,9 @@
 		1300C5271F12341800FE8C3E /* CustomRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoundButton.swift; sourceTree = "<group>"; };
 		1300C5291F12369000FE8C3E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterStudentViewController.swift; sourceTree = "<group>"; };
+		1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchExpansionTableViewCell.swift; sourceTree = "<group>"; };
+		1373F3731F17EE480037D928 /* FilterList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterList.plist; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F675F01F0BF4E900646EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F675F51F0BF4E900646EFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,6 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */,
+				1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */,
+				1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -144,6 +152,14 @@
 				1300C5271F12341800FE8C3E /* CustomRoundButton.swift */,
 			);
 			name = "Custom Buttons";
+			sourceTree = "<group>";
+		};
+		1373F3721F17EE250037D928 /* Data Files */ = {
+			isa = PBXGroup;
+			children = (
+				1373F3731F17EE480037D928 /* FilterList.plist */,
+			);
+			name = "Data Files";
 			sourceTree = "<group>";
 		};
 		13E351A31F0FEA8B00D85FFC /* Extension */ = {
@@ -181,6 +197,7 @@
 		13F675EF1F0BF4E900646EFE /* CYU */ = {
 			isa = PBXGroup;
 			children = (
+				1373F3721F17EE250037D928 /* Data Files */,
 				1300C5261F12340B00FE8C3E /* Custom Buttons */,
 				1300C5231F1233F400FE8C3E /* Custom Cells */,
 				1300C5041F12338C00FE8C3E /* ViewController */,
@@ -320,6 +337,7 @@
 			files = (
 				1300C52A1F12369000FE8C3E /* .gitignore in Resources */,
 				13F675FB1F0BF4E900646EFE /* LaunchScreen.storyboard in Resources */,
+				1373F3741F17EE480037D928 /* FilterList.plist in Resources */,
 				13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */,
 				13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */,
 			);
@@ -355,6 +373,8 @@
 				1300C5161F1233A600FE8C3E /* UpdateProfileViewController.swift in Sources */,
 				1300C51C1F1233C100FE8C3E /* String.swift in Sources */,
 				13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */,
+				1373F3711F17ED050037D928 /* SearchExpansionTableViewCell.swift in Sources */,
+				1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */,
 				1300C5101F1233A600FE8C3E /* SearchUniversityViewController.swift in Sources */,
 				1300C51D1F1233C100FE8C3E /* UIColor.swift in Sources */,
 				1300C5131F1233A600FE8C3E /* SlideMenuController.swift in Sources */,
