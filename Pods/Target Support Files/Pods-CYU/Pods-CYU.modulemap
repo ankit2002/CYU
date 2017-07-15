@@ -1,0 +1,6 @@
+framework module Pods_CYU {
+  umbrella header "Pods-CYU-umbrella.h"
+
+  export *
+  module * { export * }
+}
