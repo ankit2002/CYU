@@ -155,6 +155,8 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     
     // MARK: - Register Button Pressed check validation
     @IBAction func registerPressed(_ sender: Any) {
+        self.callAddViewController()
+        /*
         if (self.checkValidation()){
             
             // call method for saving data in Server
@@ -166,6 +168,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
             // do login
             print("Error with Validation occured")
         }
+ */
     }
     
     // check validaton of textfield

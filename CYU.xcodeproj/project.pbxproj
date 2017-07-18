@@ -26,6 +26,10 @@
 		1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5271F12341800FE8C3E /* CustomRoundButton.swift */; };
 		1300C52A1F12369000FE8C3E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1300C5291F12369000FE8C3E /* .gitignore */; };
 		1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */; };
+		134AA8D71F1E641200242301 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AA8D61F1E641200242301 /* FilterTableViewCell.swift */; };
+		134AA8D91F1E672F00242301 /* CountryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 134AA8D81F1E672F00242301 /* CountryList.plist */; };
+		134AA8DB1F1E6A3D00242301 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AA8DA1F1E6A3D00242301 /* CountryViewController.swift */; };
+		13569CA71F1A84F600DC059C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13569CA61F1A84F600DC059C /* FilterViewController.swift */; };
 		1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */; };
 		1373F3711F17ED050037D928 /* SearchExpansionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */; };
 		1373F3741F17EE480037D928 /* FilterList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1373F3731F17EE480037D928 /* FilterList.plist */; };
@@ -78,6 +82,10 @@
 		1300C5271F12341800FE8C3E /* CustomRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoundButton.swift; sourceTree = "<group>"; };
 		1300C5291F12369000FE8C3E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterStudentViewController.swift; sourceTree = "<group>"; };
+		134AA8D61F1E641200242301 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		134AA8D81F1E672F00242301 /* CountryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountryList.plist; sourceTree = "<group>"; };
+		134AA8DA1F1E6A3D00242301 /* CountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
+		13569CA61F1A84F600DC059C /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchExpansionTableViewCell.swift; sourceTree = "<group>"; };
 		1373F3731F17EE480037D928 /* FilterList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterList.plist; sourceTree = "<group>"; };
@@ -149,6 +157,8 @@
 				1300C50D1F1233A600FE8C3E /* WelcomeViewController.swift */,
 				1300C50E1F1233A600FE8C3E /* WishlistViewController.swift */,
 				1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */,
+				13569CA61F1A84F600DC059C /* FilterViewController.swift */,
+				134AA8DA1F1E6A3D00242301 /* CountryViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -159,6 +169,7 @@
 				1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */,
 				1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */,
 				1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */,
+				134AA8D61F1E641200242301 /* FilterTableViewCell.swift */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -175,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				1373F3731F17EE480037D928 /* FilterList.plist */,
+				134AA8D81F1E672F00242301 /* CountryList.plist */,
 			);
 			name = "Data Files";
 			sourceTree = "<group>";
@@ -392,6 +404,7 @@
 				1373F3741F17EE480037D928 /* FilterList.plist in Resources */,
 				13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */,
 				13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */,
+				134AA8D91F1E672F00242301 /* CountryList.plist in Resources */,
 				13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,6 +568,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134AA8D71F1E641200242301 /* FilterTableViewCell.swift in Sources */,
 				1300C51E1F1233C100FE8C3E /* UIViewController.swift in Sources */,
 				1300C5111F1233A600FE8C3E /* ShowDocumentViewController.swift in Sources */,
 				1300C5171F1233A600FE8C3E /* WelcomeViewController.swift in Sources */,
@@ -563,6 +577,7 @@
 				1300C50F1F1233A600FE8C3E /* OfferedUniversityViewController.swift in Sources */,
 				1300C5161F1233A600FE8C3E /* UpdateProfileViewController.swift in Sources */,
 				1300C51C1F1233C100FE8C3E /* String.swift in Sources */,
+				134AA8DB1F1E6A3D00242301 /* CountryViewController.swift in Sources */,
 				13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */,
 				1373F3711F17ED050037D928 /* SearchExpansionTableViewCell.swift in Sources */,
 				1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */,
@@ -571,6 +586,7 @@
 				1300C5131F1233A600FE8C3E /* SlideMenuController.swift in Sources */,
 				1300C5221F1233E000FE8C3E /* LoginViewController.swift in Sources */,
 				1300C5121F1233A600FE8C3E /* SignInOptionViewController.swift in Sources */,
+				13569CA71F1A84F600DC059C /* FilterViewController.swift in Sources */,
 				1300C5211F1233E000FE8C3E /* AddCertificateVC.swift in Sources */,
 				1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */,
 				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
