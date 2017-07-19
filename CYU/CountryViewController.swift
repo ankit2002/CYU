@@ -13,14 +13,18 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var countriesArray : Array<Dictionary<String, String>>!
     var searchActive :Bool = false
     var filterArray : Array<Dictionary<String, String>>!
+    var selectedCountires = [String]()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableFooterView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         // load data from plist
+        filterArray = []
         self.loadCountries()
+        tableView.tableFooterView = tableFooterView
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,30 +62,38 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
+        searchBar.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
+        searchBar.resignFirstResponder()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filterArray = countriesArray.filter({ (dictionary: [String:String]) -> Bool in
-            for (_, name) in dictionary {
-                if (name.range(of: searchText) != nil){
-                    return true
-                }
-            }
-            return false
+        // old ways
+//        filterArray = countriesArray.filter({ (dictionary: [String:String]) -> Bool in
+//            for  (_,name) in dictionary {
+//                if (name.range(of: searchText) != nil){
+//                    return true
+//                }
+//            }
+//            return false
+//        })
+        
+        
+        
+        // according to swift 4 
+        // wasted 4 hours for this shit but learned some thing new
+        filterArray = countriesArray.filter({ (dict:[String:String]) -> Bool in
+            let data = dict.values.filter({ (name) -> Bool in
+               return (name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil)
+            })
+            return data.count>0
         })
         
-        
-        if(filterArray .count == 0){
-            searchActive = false;
-        } else {
-            searchActive = true;
-        }
-        
+        searchActive = !filterArray.isEmpty
         tableView.reloadData()
     }
     
@@ -90,16 +102,34 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountryName")!
         
-        if searchActive {
-                cell.textLabel?.text = filterArray[indexPath.row]["name"]
+        var compareString:String
+        
+        if searchActive && filterArray.count>0 {
+                compareString = filterArray[indexPath.row]["name"]!
         }
         else{
-                cell.textLabel?.text = countriesArray[indexPath.row]["name"]
+                compareString = countriesArray[indexPath.row]["name"]!
         }
+        
+        cell.textLabel?.text = compareString
+        
+        
+        if selectedCountires.contains(where: {$0 == compareString}){
+            // chnage accessory type
+            cell.accessoryType = .checkmark
+            
+        }else{
+            // chnage accessory type
+            cell.accessoryType = .none
+        }
+        
+        
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if searchActive {
            return filterArray.count
         }
@@ -110,18 +140,53 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     // MARK: - Table View Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .checkmark
+        
+        var compareString:String
+        
+        // add data to selected array
+        if searchActive && filterArray.count>0{
+            compareString = filterArray[indexPath.row]["name"]!
         }
+        else{
+            compareString = countriesArray[indexPath.row]["name"]!
+        }
+        
+        
+        
+        if selectedCountires.contains(where: {$0 == compareString}){
+            
+            // remove element from Array
+            if let getIndex = selectedCountires.index(of: compareString){
+                selectedCountires.remove(at: getIndex)
+            }
+            
+            // chnage accessory type
+            if let cell = tableView.cellForRow(at: indexPath){
+                cell.accessoryType = .none
+            }
+            
+        }else{
+            
+            // chnage accessory type
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.accessoryType = .checkmark
+            }
+            
+            
+            // add data to selected array
+            if searchActive && filterArray.count>0{
+                selectedCountires.append(filterArray[indexPath.row]["name"]!)
+            }
+            else{
+                selectedCountires.append(countriesArray[indexPath.row]["name"]!)
+            }
+        }
+        
+        
+        print(selectedCountires)
+        
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .none
-        }
-    }
-    
-
     /*
     // MARK: - Navigation
 
