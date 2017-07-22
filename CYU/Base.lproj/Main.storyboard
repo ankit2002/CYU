@@ -726,7 +726,7 @@
                                     <outlet property="delegate" destination="KeH-zG-2YS" id="66V-L4-LNR"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xoR-73-iMx">
+                            <searchBar contentMode="redraw" fixedFrame="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xoR-73-iMx">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
