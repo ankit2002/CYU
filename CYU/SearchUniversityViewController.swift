@@ -7,20 +7,45 @@
 //
 
 import UIKit
+import Firebase
 
 class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     //MARK: Define Variables
     var cellDescriptores : Array<Any>!
+    var listofUniversities = Array<Dictionary <String,String>>()
+    @IBOutlet weak var tableView: UITableView!
+    
     
     //MARK: System Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         self.loadDataFromPlist()
+        fetchDataFromFirebaseDatabase()
     }
+    
+    
+    func fetchDataFromFirebaseDatabase(){
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        ref.observeSingleEvent(of: .value, with: { snapshots in
+            
+            if  snapshots.exists() {
+                guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {return}
+                for s in snap{
+                    
+                    guard let eachEntry = s.value as? Dictionary<String,String> else {return}
+                    self.listofUniversities.append(eachEntry)
+                }
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavigationBarItem()
@@ -60,6 +85,8 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell") as? SearchTableViewCell else {
             fatalError("Could not dequeue a cell")
         }
+        cell.textLabel?.text = self.listofUniversities[indexPath.row]["name"]
+        cell.textLabel?.numberOfLines = 0
         return cell
     }
     
@@ -68,7 +95,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return listofUniversities.count
     }
     
     

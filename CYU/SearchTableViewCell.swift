@@ -11,6 +11,8 @@ import UIKit
 class SearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var rowName: UILabel!
+    @IBOutlet weak var wishlistImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
