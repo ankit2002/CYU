@@ -15,6 +15,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     var cellDescriptores : Array<Any>!
     var listofUniversities = Array<Dictionary <String,String>>()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     //MARK: System Methods
@@ -28,6 +29,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     
     
     func fetchDataFromFirebaseDatabase(){
+        activityIndicator.startAnimating()
         
         var ref: DatabaseReference!
         ref = Database.database().reference()
@@ -41,7 +43,10 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
                     guard let eachEntry = s.value as? Dictionary<String,String> else {return}
                     self.listofUniversities.append(eachEntry)
                 }
+                
+                print(self.listofUniversities.count)
                 self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
         })
     }
@@ -85,8 +90,11 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell") as? SearchTableViewCell else {
             fatalError("Could not dequeue a cell")
         }
-        cell.textLabel?.text = self.listofUniversities[indexPath.row]["name"]
-        cell.textLabel?.numberOfLines = 0
+        cell.rowName.text = self.listofUniversities[indexPath.row]["name"]
+        cell.rowName.numberOfLines = 0
+        cell.wishlistbutton.tag = indexPath.row
+        cell.wishlistbutton.addTarget(self, action: #selector(self.wishlistBtnPressed(sender:)), for: .touchUpInside)
+        
         return cell
     }
     
@@ -111,5 +119,11 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    // MARK: 
+    func wishlistBtnPressed(sender:UIButton)  {
+        print(sender.tag)
+    }
 
 }

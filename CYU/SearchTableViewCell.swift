@@ -11,7 +11,7 @@ import UIKit
 class SearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var rowName: UILabel!
-    @IBOutlet weak var wishlistImage: UIImageView!
+    @IBOutlet weak var wishlistbutton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +23,5 @@ class SearchTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

@@ -706,33 +706,38 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="103.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r0t-eu-ISH">
-                                                            <rect key="frame" x="8" y="8" width="0.0" height="86"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="dV9-Cy-zTo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="287" height="104"/>
                                                             <color key="backgroundColor" red="0.32156862749999998" green="0.61176470589999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="279" id="1L5-Lt-7WG"/>
+                                                                <constraint firstAttribute="height" constant="104" id="YpQ-qF-EhR"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9f0-dh-uja">
-                                                            <rect key="frame" x="16" y="31" width="319" height="40"/>
-                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mFR-4b-aMR">
+                                                            <rect key="frame" x="295" y="31" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="MYe-MM-Uoy"/>
+                                                                <constraint firstAttribute="height" constant="40" id="mMX-ir-RJf"/>
+                                                            </constraints>
+                                                            <state key="normal" image="wishlist_icon"/>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="leadingMargin" secondItem="r0t-eu-ISH" secondAttribute="leading" id="Dp9-xL-Axc"/>
-                                                        <constraint firstItem="9f0-dh-uja" firstAttribute="top" secondItem="0ne-dK-ZhJ" secondAttribute="topMargin" constant="23" id="Rsr-Np-xXL"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="r0t-eu-ISH" secondAttribute="bottom" constant="1.5" id="brz-Xj-TCn"/>
-                                                        <constraint firstAttribute="topMargin" secondItem="r0t-eu-ISH" secondAttribute="top" id="dNk-Nb-xw4"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="9f0-dh-uja" secondAttribute="trailing" id="dUg-ew-b1R"/>
-                                                        <constraint firstItem="9f0-dh-uja" firstAttribute="leading" secondItem="r0t-eu-ISH" secondAttribute="trailing" constant="8" id="h7i-2v-8JN"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="9f0-dh-uja" secondAttribute="bottom" constant="24.5" id="uWJ-UF-UA1"/>
+                                                        <constraint firstItem="dV9-Cy-zTo" firstAttribute="top" secondItem="0ne-dK-ZhJ" secondAttribute="topMargin" constant="-8" id="48D-SO-7Sx"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="dV9-Cy-zTo" secondAttribute="bottom" constant="-8.5" id="6HI-Lx-rTu"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="mFR-4b-aMR" secondAttribute="trailing" id="Ip6-F1-DQc"/>
+                                                        <constraint firstItem="dV9-Cy-zTo" firstAttribute="leading" secondItem="0ne-dK-ZhJ" secondAttribute="leadingMargin" constant="-8" id="JbT-SF-jVE"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="mFR-4b-aMR" secondAttribute="bottom" constant="24.5" id="Ybr-lA-gGX"/>
+                                                        <constraint firstItem="mFR-4b-aMR" firstAttribute="leading" secondItem="dV9-Cy-zTo" secondAttribute="trailing" constant="8" id="bhI-vV-uIW"/>
+                                                        <constraint firstItem="mFR-4b-aMR" firstAttribute="top" secondItem="0ne-dK-ZhJ" secondAttribute="topMargin" constant="23" id="rX6-uR-EXm"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="rowName" destination="r0t-eu-ISH" id="pTm-CP-RJr"/>
-                                                    <outlet property="wishlistImage" destination="9f0-dh-uja" id="tXE-f7-wve"/>
+                                                    <outlet property="rowName" destination="dV9-Cy-zTo" id="aNJ-2K-pkC"/>
+                                                    <outlet property="wishlistbutton" destination="mFR-4b-aMR" id="c2h-lL-mgZ"/>
                                                     <segue destination="KHi-pt-JgD" kind="show" id="N3K-kB-LUh"/>
                                                 </connections>
                                             </tableViewCell>
@@ -744,6 +749,11 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-b1-0QD">
+                                <rect key="frame" x="170" y="316" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Du3-cY-lky" firstAttribute="top" secondItem="Ubt-ug-WGd" secondAttribute="bottom" constant="10" id="5fM-O1-hBf"/>
@@ -763,6 +773,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="hZu-b1-0QD" id="TV8-VB-ybk"/>
                         <outlet property="tableView" destination="dfz-My-NNv" id="6k1-3S-czn"/>
                     </connections>
                 </viewController>
@@ -1188,5 +1199,6 @@
         <image name="courseImage" width="320" height="480"/>
         <image name="degreeimage" width="275" height="183"/>
         <image name="user" width="112" height="112"/>
+        <image name="wishlist_icon" width="40" height="40"/>
     </resources>
 </document>
