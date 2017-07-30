@@ -32,19 +32,20 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         activityIndicator.startAnimating()
         
         var ref: DatabaseReference!
-        ref = Database.database().reference()
-        
+        ref = Database.database().reference().child("universities/0")
         ref.observeSingleEvent(of: .value, with: { snapshots in
             
             if  snapshots.exists() {
                 guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {return}
                 for s in snap{
                     
-                    guard let eachEntry = s.value as? Dictionary<String,String> else {return}
-                    self.listofUniversities.append(eachEntry)
+                    guard let eachEntry = s.value as? Dictionary<String,Dictionary<String,String>> else {
+                        print( " no data")
+                        return
+                    }
+                    self.listofUniversities.append(eachEntry[(eachEntry.first?.key)!]!)
                 }
                 
-                print(self.listofUniversities.count)
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
             }
