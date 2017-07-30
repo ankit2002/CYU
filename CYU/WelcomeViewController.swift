@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // check for the user Loged in if so do show user info 
+
+        
+        //Need to Complete
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            if user != nil {
+//                //TODO: StateChange Work
+//            }
+//        }
+        
+        
         
     }
     

@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
 
     // MARK: Defining Variables
     let datePicker :UIDatePicker = UIDatePicker()
     var currentTextField : UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Defining Outlet Variables
     @IBOutlet weak var firstName: UITextField!
@@ -39,7 +41,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // datePicker Works
+        // create datePicker
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(self.datePickerValueChanged), for: .valueChanged)
         birthdate.inputView = datePicker
@@ -155,48 +157,56 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     
     // MARK: - Register Button Pressed check validation
     @IBAction func registerPressed(_ sender: Any) {
-        self.callAddViewController()
-        /*
+        activityIndicator.startAnimating()
+        
+        //self.callAddViewController()
         if (self.checkValidation()){
             
-            // call method for saving data in Server
-            // TODO:
-            // call Add document
-            self.callAddViewController()
+            // TODO: Save data in Server
+            Auth.auth().createUser(withEmail: emailAddress.text! , password: password.text!) { (user, error) in
+                self.activityIndicator.stopAnimating()
+                if let error = error{
+                    self.alert(message: error.localizedDescription)
+                    return
+                }
+                
+                // open next view controller
+                self.callAddViewController()
+            }
         }
         else{
             // do login
             print("Error with Validation occured")
         }
- */
+ 
     }
     
     // check validaton of textfield
     func checkValidation() -> Bool {
         
-        if (firstName.text?.isEmpty)!{
-            firstName.becomeFirstResponder()
-            alert(message: "Please Enter your First Name")
-            return false
-        }
-        
-        
-        if (lastName.text?.isEmpty)!{
-            lastName.becomeFirstResponder()
-            alert(message: "Please Enter your Last Name")
-            return false
-        }
-        
-        if (birthdate.text?.isEmpty)!{
-            birthdate.becomeFirstResponder()
-            alert(message: "Please Enter your birthdate")
-            return false
-        }
-        
-        if genderSegment.selectedSegmentIndex == -1{
-            alert(message: "OOps, Please determine your gender")
-            return false
-        }
+//        if (firstName.text?.isEmpty)!{
+//            firstName.becomeFirstResponder()
+//            alert(message: "Please Enter your First Name")
+//            return false
+//        }
+//        
+//        
+//        if (lastName.text?.isEmpty)!{
+//            lastName.becomeFirstResponder()
+//            alert(message: "Please Enter your Last Name")
+//            return false
+//        }
+//        
+//        if (birthdate.text?.isEmpty)!{
+//            birthdate.becomeFirstResponder()
+//            alert(message: "Please Enter your birthdate")
+//            return false
+//        }
+//        
+//        if genderSegment.selectedSegmentIndex == -1{
+//            alert(message: "OOps, Please determine your gender")
+//            return false
+//        }
         
         if (emailAddress.text?.isEmpty)!{
             emailAddress.becomeFirstResponder()
@@ -218,17 +228,17 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         }
         
         
-        if (re_password.text?.isEmpty)!{
-            re_password.becomeFirstResponder()
-            alert(message: "Please Enter your Password Again")
-            return false
-        }
-        
-        if password.text != re_password.text {
-            re_password.becomeFirstResponder()
-            alert(message: "OOPs, Seems like Passwords are not equals")
-            return false
-        }
+//        if (re_password.text?.isEmpty)!{
+//            re_password.becomeFirstResponder()
+//            alert(message: "Please Enter your Password Again")
+//            return false
+//        }
+//        
+//        if password.text != re_password.text {
+//            re_password.becomeFirstResponder()
+//            alert(message: "OOPs, Seems like Passwords are not equals")
+//            return false
+//        }
         
         return true
     }

@@ -37,9 +37,6 @@ class AddCertificateVC: UIViewController {
         
         UINavigationBar.appearance().tintColor = UIColor.blue
         
-        
-        UINavigationBar.appearance().tintColor = UIColor (hex: "689F38")
-        
         leftViewController.mainViewController = nvc
         
         let slideMenuController = SlideMenuController (mainViewController: nvc, leftMenuViewController: leftViewController)

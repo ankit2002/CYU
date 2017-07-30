@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
 
@@ -14,6 +15,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     // MARK: Outlet Variables
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     // MARK: System Methods
@@ -64,18 +66,24 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     //MARK: Login button Pressed
     @IBAction func loginBtnPressed(_ sender: Any) {
 
+//        self.openHomeView()
         
-        self.openHomeView()
-        /* // Original code
+         // Original code
         if self.checkValidation(){
+            activityIndicator.startAnimating()
+            
             // open Home Menu
-            self.openHomeView()
+            Auth.auth().signIn(withEmail: username.text!, password: password.text!, completion: { (user, error) in
+                
+                self.activityIndicator.stopAnimating()
+                if let error = error{
+                    self.alert(message: error.localizedDescription)
+                    return
+                }
+                
+                self.openHomeView()
+            })
         }
-        else{
-            // TODO: Business logic to check from DB
-            //alert(message: "Username and password are incorrect")
-        }
-         */
     }
     
     // MARK: Check Validation
@@ -121,8 +129,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         
         let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
         
-        //        UINavigationBar.appearance().tintColor = UIColor (hex: "689F38")
-        
         leftViewController.mainViewController = nvc
         
         let slideMenuController = SlideMenuController (mainViewController: nvc, leftMenuViewController: leftViewController)
@@ -133,7 +139,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         appDelegate.window?.rootViewController = slideMenuController
         appDelegate.window?.makeKeyAndVisible()
     }
-    
+
     /*
     // MARK: - Navigation
 

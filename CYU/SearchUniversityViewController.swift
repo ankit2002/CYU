@@ -122,7 +122,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     */
     
     
-    // MARK: 
+    // MARK: Wishlist button click
     func wishlistBtnPressed(sender:UIButton)  {
         print(sender.tag)
     }

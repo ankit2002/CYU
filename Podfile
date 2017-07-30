@@ -8,6 +8,8 @@ target 'CYU' do
 
   # Pods for CYU
 	pod 'Firebase/Core'
+	pod 'Firebase/Auth'
+	pod 'GoogleSignIn'
 	pod 'Firebase/Database'
 
   target 'CYUTests' do

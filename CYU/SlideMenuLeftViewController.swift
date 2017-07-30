@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 
 enum LeftMenu : Int{
@@ -99,11 +100,28 @@ class SlideMenuLeftViewController: UIViewController,UITableViewDelegate,UITableV
         case .offered_universities:
             self.slideMenuController()?.changeMainViewController(self.offeredUniversityViewController, close: true)
         case .logout:
-                let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "staringVC") as! UINavigationController
-                let appdelegate :AppDelegate = UIApplication.shared.delegate as! AppDelegate
-                appdelegate.window?.rootViewController = welcomeVC
+            self.logoutMethod()
+            
         }
     }
+    
+    
+    func logoutMethod(){
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            
+            let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "staringVC") as! UINavigationController
+            let appdelegate :AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.window?.rootViewController = welcomeVC
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: \(signOutError.localizedDescription)")
+        }
+        
+    }
+    
 
     /*
     // MARK: - Navigation
