@@ -14,15 +14,43 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    var activityIndicatorView: UIActivityIndicatorView?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        //configuring Firebase 
+        
+        // creating window for the screen
+//        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        //configuring Firebase
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        
+        self.activityIndicatorView  = UIActivityIndicatorView()
+        self.activityIndicatorView?.frame = CGRect(x:0.0,y: 0.0,width: 40.0, height: 40.0)
+        self.activityIndicatorView?.activityIndicatorViewStyle = .gray
+        self.activityIndicatorView?.hidesWhenStopped = true
+        self.activityIndicatorView?.center = (self.window?.rootViewController?.view.center)!
+            
+        
+        // Check if the user is logged in
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                // open HomeViewController Storyboard
+                if (self.activityIndicatorView?.isAnimating)!{
+                    self.activityIndicatorView?.stopAnimating()
+                }
+                
+                self.openHomeView()
+            }
+            else{
+                // open WelcomeView Controller Storyboard
+                self.openWelcomeVC()
+            }
+        }
         
         // TODO: Check for the logged in User and fetch Data from Server no need to login Every time
         
@@ -74,20 +102,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     //MARK: Google Delegate Methods
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
+        
+        self.activityIndicatorView?.startAnimating()
+        self.window?.rootViewController?.view.addSubview(self.activityIndicatorView!)
+        
         if let error = error {
             print(error.localizedDescription)
             return
         }
         
         guard let authentication = user.authentication else { return }
-        let _ = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
-        // ...
+        
+        // fetching user data from Google
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            // User is signed in
+            
+            // save data of user
+            var ref: DatabaseReference!
+            ref = Database.database().reference()
+            
+            let dict = ["Name":user!.displayName,
+                        "birthdate":nil,
+                        "emailAddress":user!.email,
+                        "password":nil,
+                        "gender": nil
+            ]
+            
+            ref.child("users").child(user!.uid).setValue(dict)
+        }
     }
+    
+    
+    
+    
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
         // ...
+    }
+    
+    //MARK: Open Home View Controller
+    private func openHomeView(){
+        
+        // TODO: Code Need to be check thorougly and corrected accordingly
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "StudentHomeViewController") as! StudentHomeViewController
+        let leftViewController = storyboard.instantiateViewController(withIdentifier: "SlideMenuLeftViewController") as! SlideMenuLeftViewController
+        
+        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        
+        leftViewController.mainViewController = nvc
+        
+        let slideMenuController = SlideMenuController (mainViewController: nvc, leftMenuViewController: leftViewController)
+        slideMenuController.automaticallyAdjustsScrollViewInsets = true
+        slideMenuController.delegate = mainViewController
+        
+        self.window?.backgroundColor = UIColor.white
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    //MARK: Open Welcome Controller
+    private func openWelcomeVC(){
+        
+        let storyboard = UIStoryboard (name: "Main", bundle: nil)
+        let initialVC = storyboard.instantiateViewController(withIdentifier: "staringNavigationVC")
+        self.window?.rootViewController = initialVC
+        self.window?.makeKeyAndVisible()
     }
 
 }

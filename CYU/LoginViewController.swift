@@ -68,11 +68,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 
 //        self.openHomeView()
         
-         // Original code
+         // Check for data validation
         if self.checkValidation(){
             activityIndicator.startAnimating()
             
-            // open Home Menu
+            // Check Firebase
             Auth.auth().signIn(withEmail: username.text!, password: password.text!, completion: { (user, error) in
                 
                 self.activityIndicator.stopAnimating()
@@ -81,6 +81,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     return
                 }
                 
+                // open Home Menu
                 self.openHomeView()
             })
         }
@@ -88,6 +89,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     // MARK: Check Validation
     func checkValidation() -> Bool {
+        
         if (username.text?.isEmpty)!{
             username.becomeFirstResponder()
             alert(message: "Please Enter your EMail")
@@ -118,8 +120,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     
     func openHomeView(){
-    // create viewController code...
-    
+        
+        // TODO: Code Need to be check thorougly and corrected accordingly
+        // create viewController code...
         let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

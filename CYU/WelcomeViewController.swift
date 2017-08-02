@@ -16,22 +16,14 @@ class WelcomeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // check for the user Loged in if so do show user info 
-
-        
-        //Need to Complete
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if user != nil {
-//                //TODO: StateChange Work
-//            }
-//        }
-        
-        
+        // IF THE USER IS ALREADY SIGNED IN SWITCH TO MAIN LAB ROOM
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,7 +35,6 @@ class WelcomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 

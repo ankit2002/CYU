@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 
 enum LeftMenu : Int{
@@ -111,8 +112,12 @@ class SlideMenuLeftViewController: UIViewController,UITableViewDelegate,UITableV
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            // signout from google
+                GIDSignIn.sharedInstance().signOut()
             
-            let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "staringVC") as! UINavigationController
+            print("Signout works")
+            
+            let welcomeVC = self.storyboard?.instantiateViewController(withIdentifier: "staringNavigationVC") as! UINavigationController
             let appdelegate :AppDelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.window?.rootViewController = welcomeVC
             

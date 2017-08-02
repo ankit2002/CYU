@@ -13,14 +13,14 @@ import GoogleSignIn
 class SignInOptionViewController: UIViewController,GIDSignInUIDelegate {
 
     
-    @IBOutlet weak var googleSignInButton:GIDSignInButton!
+    // can't connect do later on
+    //@IBOutlet weak var googleSignInButton:GIDSignInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         GIDSignIn.sharedInstance().uiDelegate = self
-//        GIDSignIn.sharedInstance().signIn()
     }
 
     override func didReceiveMemoryWarning() {

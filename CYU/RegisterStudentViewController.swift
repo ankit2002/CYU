@@ -170,6 +170,22 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
                     return
                 }
                 
+                // save data of user
+                var ref: DatabaseReference!
+                ref = Database.database().reference()
+                
+                let gendertitle = self.genderSegment.titleForSegment(at: self.genderSegment.selectedSegmentIndex)
+                
+                let dict = ["firstName":self.firstName.text!,
+                            "lastName":self.lastName.text!,
+                            "birthdate":self.birthdate.text!,
+                            "emailAddress":self.emailAddress.text!,
+                            "password":self.password.text!,
+                            "gender": gendertitle
+                            ]
+                
+                ref.child("users").child(user!.uid).setValue(dict)
+                
                 // open next view controller
                 self.callAddViewController()
             }
@@ -183,30 +199,31 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     
     // check validaton of textfield
     func checkValidation() -> Bool {
+        return true
         
-//        if (firstName.text?.isEmpty)!{
-//            firstName.becomeFirstResponder()
-//            alert(message: "Please Enter your First Name")
-//            return false
-//        }
-//        
-//        
-//        if (lastName.text?.isEmpty)!{
-//            lastName.becomeFirstResponder()
-//            alert(message: "Please Enter your Last Name")
-//            return false
-//        }
-//        
-//        if (birthdate.text?.isEmpty)!{
-//            birthdate.becomeFirstResponder()
-//            alert(message: "Please Enter your birthdate")
-//            return false
-//        }
-//        
-//        if genderSegment.selectedSegmentIndex == -1{
-//            alert(message: "OOps, Please determine your gender")
-//            return false
-//        }
+        if (firstName.text?.isEmpty)!{
+            firstName.becomeFirstResponder()
+            alert(message: "Please Enter your First Name")
+            return false
+        }
+        
+        
+        if (lastName.text?.isEmpty)!{
+            lastName.becomeFirstResponder()
+            alert(message: "Please Enter your Last Name")
+            return false
+        }
+        
+        if (birthdate.text?.isEmpty)!{
+            birthdate.becomeFirstResponder()
+            alert(message: "Please Enter your birthdate")
+            return false
+        }
+        
+        if genderSegment.selectedSegmentIndex == -1{
+            alert(message: "OOps, Please determine your gender")
+            return false
+        }
         
         if (emailAddress.text?.isEmpty)!{
             emailAddress.becomeFirstResponder()
@@ -228,19 +245,19 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         }
         
         
-//        if (re_password.text?.isEmpty)!{
-//            re_password.becomeFirstResponder()
-//            alert(message: "Please Enter your Password Again")
-//            return false
-//        }
-//        
-//        if password.text != re_password.text {
-//            re_password.becomeFirstResponder()
-//            alert(message: "OOPs, Seems like Passwords are not equals")
-//            return false
-//        }
+        if (re_password.text?.isEmpty)!{
+            re_password.becomeFirstResponder()
+            alert(message: "Please Enter your Password Again")
+            return false
+        }
         
-        return true
+        if password.text != re_password.text {
+            re_password.becomeFirstResponder()
+            alert(message: "OOPs, Seems like Passwords are not equals")
+            return false
+        }
+        
+        
     }
     
     
