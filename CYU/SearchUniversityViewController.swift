@@ -9,11 +9,21 @@
 import UIKit
 import Firebase
 
+// Structure for Universities
+struct Universities{
+    var uni_Name : String?
+    var uni_Country : String?
+    var uni_Webpage : String?
+    var uni_Country_Code : String?
+    var is_uni_verified : Bool?
+}
+
 class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     //MARK: Define Variables
     var cellDescriptores : Array<Any>!
-    var listofUniversities = Array<Dictionary <String,String>>()
+//    var listofUniversities = Array<Dictionary <String,Any>>()
+    var listofUniversities = Array<Universities>()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -28,22 +38,35 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.setNavigationBarItem()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // Need to update the flow of the database
     func fetchDataFromFirebaseDatabase(){
         activityIndicator.startAnimating()
         
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("universities/0")
+        ref = Database.database().reference().child("universities")
         ref.observeSingleEvent(of: .value, with: { snapshots in
             
             if  snapshots.exists() {
                 guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {return}
                 for s in snap{
                     
-                    guard let eachEntry = s.value as? Dictionary<String,Dictionary<String,String>> else {
+                    guard let eachEntry = s.value as? Dictionary<String,Any> else {
                         print( " no data")
                         return
                     }
-                    self.listofUniversities.append(eachEntry[(eachEntry.first?.key)!]!)
+                    
+                    // Parse Data and save universities
+                    self.listofUniversities.append(self.parseDataToStruct(eachEntry: eachEntry))
                 }
                 
                 self.tableView.reloadData()
@@ -52,15 +75,14 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         })
     }
     
+    //MARK: Parse data as Struct
+    func parseDataToStruct(eachEntry : Dictionary<String,Any>) -> Universities {
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.setNavigationBarItem()
+        let data = Universities(uni_Name: eachEntry[keyPath: "basic_info.name"] as? String, uni_Country: eachEntry[keyPath: "basic_info.country"]  as? String, uni_Webpage: eachEntry[keyPath: "basic_info.webpage"]  as? String, uni_Country_Code: eachEntry[keyPath: "basic_info.country_code"]  as? String, is_uni_verified: eachEntry[keyPath: "is_uni_verified"]  as? Bool)
+        
+        return data
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     
     //MARK: Read Data from plist
@@ -91,7 +113,14 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell") as? SearchTableViewCell else {
             fatalError("Could not dequeue a cell")
         }
-        cell.rowName.text = self.listofUniversities[indexPath.row]["name"]
+
+//        cell.rowName.text = (self.listofUniversities[indexPath.row]["basic_info"] as? [String:Any])?["name"] as? String
+        // will optime it
+        // another Solution
+//        var dict = self.listofUniversities[indexPath.row]
+//        cell.rowName.text = dict[keyPath: "basic_info.name"] as? String
+        
+        cell.rowName.text = self.listofUniversities[indexPath.row].uni_Name
         cell.rowName.numberOfLines = 0
         cell.wishlistbutton.tag = indexPath.row
         cell.wishlistbutton.addTarget(self, action: #selector(self.wishlistBtnPressed(sender:)), for: .touchUpInside)
@@ -128,3 +157,8 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     }
 
 }
+
+
+
+
+

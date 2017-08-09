@@ -11,10 +11,23 @@ import Firebase
 
 class StudentHomeViewController: UIViewController {
 
+    @IBOutlet weak var testlbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getUserInfo()
         // Do any additional setup after loading the view.
+        
+        //
     }
+    
+    func getUserInfo() {
+        
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            testlbl.text = user?.email
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavigationBarItem()

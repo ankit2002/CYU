@@ -26,6 +26,7 @@
 		1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5271F12341800FE8C3E /* CustomRoundButton.swift */; };
 		1300C52A1F12369000FE8C3E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1300C5291F12369000FE8C3E /* .gitignore */; };
 		1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */; };
+		1312A2ED1F3B2BF3005320AC /* DictionaryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */; };
 		134AA8D71F1E641200242301 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AA8D61F1E641200242301 /* FilterTableViewCell.swift */; };
 		134AA8D91F1E672F00242301 /* CountryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 134AA8D81F1E672F00242301 /* CountryList.plist */; };
 		134AA8DB1F1E6A3D00242301 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AA8DA1F1E6A3D00242301 /* CountryViewController.swift */; };
@@ -82,6 +83,7 @@
 		1300C5271F12341800FE8C3E /* CustomRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoundButton.swift; sourceTree = "<group>"; };
 		1300C5291F12369000FE8C3E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterStudentViewController.swift; sourceTree = "<group>"; };
+		1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryUtil.swift; sourceTree = "<group>"; };
 		134AA8D61F1E641200242301 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		134AA8D81F1E672F00242301 /* CountryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountryList.plist; sourceTree = "<group>"; };
 		134AA8DA1F1E6A3D00242301 /* CountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 			name = "Custom Buttons";
 			sourceTree = "<group>";
 		};
+		1312A2EB1F3B2BCC005320AC /* Util Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */,
+			);
+			name = "Util Classes";
+			sourceTree = "<group>";
+		};
 		1373F3721F17EE250037D928 /* Data Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +238,7 @@
 		13F675EF1F0BF4E900646EFE /* CYU */ = {
 			isa = PBXGroup;
 			children = (
+				1312A2EB1F3B2BCC005320AC /* Util Classes */,
 				1373F3721F17EE250037D928 /* Data Files */,
 				1300C5261F12340B00FE8C3E /* Custom Buttons */,
 				1300C5231F1233F400FE8C3E /* Custom Cells */,
@@ -583,6 +594,7 @@
 				1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */,
 				1300C5101F1233A600FE8C3E /* SearchUniversityViewController.swift in Sources */,
 				1300C51D1F1233C100FE8C3E /* UIColor.swift in Sources */,
+				1312A2ED1F3B2BF3005320AC /* DictionaryUtil.swift in Sources */,
 				1300C5131F1233A600FE8C3E /* SlideMenuController.swift in Sources */,
 				1300C5221F1233E000FE8C3E /* LoginViewController.swift in Sources */,
 				1300C5121F1233A600FE8C3E /* SignInOptionViewController.swift in Sources */,
