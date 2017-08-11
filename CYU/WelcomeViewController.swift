@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
         
         // Creating dummy database 
 //        createFirebaseData()
-       // removeFirebaseData()   
+       // removeFirebaseData()
     }
     
     
@@ -33,7 +33,7 @@ class WelcomeViewController: UIViewController {
         ]
         
         // update Root child name
-        ref.child("universities_department").child("South_Arkansas_Community_College").setValue(dict)
+        ref.child("universities_department_programs").child("South_Arkansas_Community_College").setValue(dict)
         
     }
     
@@ -41,7 +41,7 @@ class WelcomeViewController: UIViewController {
     func removeFirebaseData(){
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        ref.child("uni_list").setValue(nil);
+        ref.child("universities_department_Programs").setValue(nil);
     }
     
     

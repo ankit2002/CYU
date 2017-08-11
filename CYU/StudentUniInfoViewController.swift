@@ -20,6 +20,7 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
     //MARK: Variables
     var uniName : String!
     var listofUniDepartment = Array<Department>()
+    var departmentName : String!
     
     //MARK: IB variables
     @IBOutlet weak var uniNameLbl: UILabel!
@@ -30,7 +31,6 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // need to change later on
         setUniName()
         fetchDataFromFirebaseDatabase()
     }
@@ -48,6 +48,7 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
 
     //MARK: Fetch data from Firebase
     func fetchDataFromFirebaseDatabase(){
+        
         activityIndicator.startAnimating()
         
         
@@ -55,6 +56,8 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
             
             let charsToRemove: Set<Character> = Set(".$#[]/".characters)
              uniName = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+        }else{
+            print("Path is not correct")
         }
         
         var ref: DatabaseReference!
@@ -76,9 +79,11 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
                 
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
+                
             }
             else{
                 // No data in Firebase
+                print("No Data Found in Firebase")
                 self.activityIndicator.stopAnimating()
             }
         })
@@ -109,8 +114,9 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // fetching class name and performing segue
+        // SHow options provided by Department
+        departmentName = self.listofUniDepartment[indexPath.row].departmentName
+        performSegue(withIdentifier: "FacultyProgramInfo", sender: self)
         
     }
     
@@ -119,15 +125,21 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
     }
     
 
-    /*
+    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "FacultyProgramInfo" {
+            
+            let viewController = segue.destination as! StudentProgramViewController
+            viewController.uniName = uniName
+            viewController.departmentName = departmentName
+        }
     }
-    */
+    
 
 }
 
