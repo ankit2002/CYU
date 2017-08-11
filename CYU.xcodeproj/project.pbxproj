@@ -35,6 +35,7 @@
 		1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */; };
 		1373F3711F17ED050037D928 /* SearchExpansionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */; };
 		1373F3741F17EE480037D928 /* FilterList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1373F3731F17EE480037D928 /* FilterList.plist */; };
+		138CF57F1F3DF17700B07315 /* DepartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */; };
 		13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
 		13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F41F0BF4E900646EFE /* Main.storyboard */; };
@@ -93,6 +94,7 @@
 		1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchExpansionTableViewCell.swift; sourceTree = "<group>"; };
 		1373F3731F17EE480037D928 /* FilterList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterList.plist; sourceTree = "<group>"; };
+		138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentTableViewCell.swift; sourceTree = "<group>"; };
 		13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F675F01F0BF4E900646EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */,
 				1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */,
 				134AA8D61F1E641200242301 /* FilterTableViewCell.swift */,
+				138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */,
 				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
 				1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */,
+				138CF57F1F3DF17700B07315 /* DepartmentTableViewCell.swift in Sources */,
 				1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */,
 				1300C5251F1233FE00FE8C3E /* UploadDocTableViewCell.swift in Sources */,
 			);

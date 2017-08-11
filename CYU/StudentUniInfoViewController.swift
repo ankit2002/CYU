@@ -9,15 +9,22 @@
 import UIKit
 import Firebase
 
-class StudentUniInfoViewController: UIViewController {
+
+struct Department {
+    var departmentName:String?
+    var departmentHead :String?
+}
+
+class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     //MARK: Variables
     var uniName : String!
+    var listofUniDepartment = Array<Department>()
     
     //MARK: IB variables
     @IBOutlet weak var uniNameLbl: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var tableView: UITableView!
     //MARK: System Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +50,15 @@ class StudentUniInfoViewController: UIViewController {
     func fetchDataFromFirebaseDatabase(){
         activityIndicator.startAnimating()
         
-        var filterString: String!
         
         if !uniName.isEmpty {
             
             let charsToRemove: Set<Character> = Set(".$#[]/".characters)
-             filterString = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+             uniName = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
         }
         
-        //data/uni_department/8637/South_Arkansas_Community_College
-        
-        filterString = "South_Arkansas_Community_College"
-        
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("uni_department").child("\(filterString!)")
+        ref = Database.database().reference().child("universities_department").child("\(uniName!)")
         ref.observeSingleEvent(of: .value, with: { snapshots in
             
             if  snapshots.exists() {
@@ -67,12 +69,13 @@ class StudentUniInfoViewController: UIViewController {
                         print( " no data")
                         return
                     }
-                    
-                    // Parse Data and save universities
-                 print(eachEntry)
+
+                    // Parse Data and save Department
+                    self.listofUniDepartment.append(self.parseDataToStruct(eachEntry: eachEntry))
                 }
+                
+                self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
-                self.updateDataInFirebase(filterStr:filterString)
             }
             else{
                 // No data in Firebase
@@ -82,30 +85,37 @@ class StudentUniInfoViewController: UIViewController {
     }
     
     
-    func updateDataInFirebase(filterStr:String){
-        activityIndicator.startAnimating()
+    //MARK: Parse data as Struct
+    func parseDataToStruct(eachEntry : Dictionary<String,String>) -> Department {
         
-        var ref: DatabaseReference!
-        ref = Database.database().reference().child("uni_department").child("\(filterStr)").child("Faculty_of_Arts_and_Humanities")
+        let data = Department(departmentName: eachEntry[keyPath: "department_name"] as? String, departmentHead: eachEntry[keyPath: "department_head"]  as? String)
         
-        let dict1 = ["department_head":"B C BC",
-                     "department_name":"Faculty of Law"
-        ]
-        ref.updateChildValues(dict1)
-        
-        activityIndicator.stopAnimating()
+        return data
     }
     
     
-    func deleteDataInFirebase(filterStr:String) {
-        activityIndicator.startAnimating()
+    //MARK: Table View Datasource and Delegate
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var ref: DatabaseReference!
-        ref = Database.database().reference().child("uni_department").child("\(filterStr)").child("Faculty_of_Arts_and_Humanities")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DepartmentTableViewCell") as? DepartmentTableViewCell else {
+            fatalError("Could not dequeue a cell")
+        }
         
-        ref.removeValue()
         
-        activityIndicator.stopAnimating()
+        cell.departmentName.text = self.listofUniDepartment[indexPath.row].departmentName
+        cell.departmentHeadName.text = self.listofUniDepartment[indexPath.row].departmentHead
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // fetching class name and performing segue
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listofUniDepartment.count
     }
     
 
@@ -120,3 +130,35 @@ class StudentUniInfoViewController: UIViewController {
     */
 
 }
+
+
+
+
+/* Testing Methods
+ 
+ func updateDataInFirebase(filterStr:String){
+ activityIndicator.startAnimating()
+ 
+ var ref: DatabaseReference!
+ ref = Database.database().reference().child("uni_department").child("\(filterStr)").child("Faculty_of_Arts_and_Humanities")
+ 
+ let dict1 = ["department_head":"B C BC",
+ "department_name":"Faculty of Law"
+ ]
+ ref.updateChildValues(dict1)
+ 
+ activityIndicator.stopAnimating()
+ }
+ 
+ 
+ func deleteDataInFirebase(filterStr:String) {
+ activityIndicator.startAnimating()
+ 
+ var ref: DatabaseReference!
+ ref = Database.database().reference().child("uni_department").child("\(filterStr)").child("Faculty_of_Arts_and_Humanities")
+ 
+ ref.removeValue()
+ 
+ activityIndicator.stopAnimating()
+ }
+ */

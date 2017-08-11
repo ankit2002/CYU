@@ -10,6 +10,9 @@ import UIKit
 
 class DepartmentTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var departmentName: UILabel!
+    @IBOutlet weak var departmentHeadName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

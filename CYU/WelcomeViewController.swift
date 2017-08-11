@@ -16,13 +16,34 @@ class WelcomeViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // Creating dummy database 
-        
+//        createFirebaseData()
+       // removeFirebaseData()   
+    }
     
+    
+    //MARK: Create root node
+    func createFirebaseData(){
+        // And upload data
+        // save data of user
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
         
+        let dict = ["department_head":"A M",
+                    "department_name":"Faculty of Computer Science"
+        ]
         
-        
+        // update Root child name
+        ref.child("universities_department").child("South_Arkansas_Community_College").setValue(dict)
         
     }
+    
+    //MARK: Remove root node
+    func removeFirebaseData(){
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("uni_list").setValue(nil);
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
