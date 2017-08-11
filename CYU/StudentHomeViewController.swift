@@ -16,8 +16,31 @@ class StudentHomeViewController: UIViewController {
         super.viewDidLoad()
         self.getUserInfo()
         // Do any additional setup after loading the view.
+        // save data in DB
+    
+       // dummyMethodToSaveData()
+    
+    }
+    
+    func dummyMethodToSaveData(){
+    
+    // save data of user
+    var ref: DatabaseReference!
+    ref = Database.database().reference()
+    
+    let dict = ["department_head":"A M",
+    "department_name":"Faculty of Computer Science"
+    ]
+    ref.child("uni_department").child("South_Arkansas_Community_College").child("Faculty_of_Arts_and_Humanities").setValue(dict)
         
-        //
+        
+    let dict1 = ["department_head":"S C B",
+                "department_name":"Faculty of Law"
+    ]
+    ref.child("uni_department").child("South_Arkansas_Community_College").child("Faculty_of_Business,_Economics,_and_Social_Sciences").setValue(dict1)
+        
+        // updating firebse fields
+        print("data saved")
     }
     
     func getUserInfo() {

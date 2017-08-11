@@ -15,8 +15,12 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // check for the user Loged in if so do show user info 
-        // IF THE USER IS ALREADY SIGNED IN SWITCH TO MAIN LAB ROOM
+        // Creating dummy database 
+        
+    
+        
+        
+        
         
     }
     

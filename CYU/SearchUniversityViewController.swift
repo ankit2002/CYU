@@ -22,8 +22,10 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     
     //MARK: Define Variables
     var cellDescriptores : Array<Any>!
-//    var listofUniversities = Array<Dictionary <String,Any>>()
     var listofUniversities = Array<Universities>()
+    var uniNameToPass : String!
+    
+    //MARK: Define IB Variables
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -32,6 +34,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        uniNameToPass = nil
         // Do any additional setup after loading the view.
         self.loadDataFromPlist()
         fetchDataFromFirebaseDatabase()
@@ -48,7 +51,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     
-    // Need to update the flow of the database
+    //MARK: Fetch data from Firebase
     func fetchDataFromFirebaseDatabase(){
         activityIndicator.startAnimating()
         
@@ -130,6 +133,9 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        // fetching class name and performing segue
+        uniNameToPass = self.listofUniversities[indexPath.row].uni_Name
+        performSegue(withIdentifier: "StudentUniInfoSegue", sender: self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,17 +146,22 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     
     
     
-    /*
+    // Using to pass Uni_Name
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "StudentUniInfoSegue" {
+            
+            let viewController = segue.destination as! StudentUniInfoViewController
+            viewController.uniName = uniNameToPass
+        }
     }
-    */
+ 
     
     
+    // TODO:
     // MARK: Wishlist button click
     func wishlistBtnPressed(sender:UIButton)  {
         print(sender.tag)

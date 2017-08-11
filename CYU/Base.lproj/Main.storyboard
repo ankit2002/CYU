@@ -768,7 +768,6 @@
                                                 <connections>
                                                     <outlet property="rowName" destination="dV9-Cy-zTo" id="aNJ-2K-pkC"/>
                                                     <outlet property="wishlistbutton" destination="mFR-4b-aMR" id="c2h-lL-mgZ"/>
-                                                    <segue destination="KHi-pt-JgD" kind="show" id="N3K-kB-LUh"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -805,16 +804,17 @@
                     <connections>
                         <outlet property="activityIndicator" destination="hZu-b1-0QD" id="TV8-VB-ybk"/>
                         <outlet property="tableView" destination="dfz-My-NNv" id="6k1-3S-czn"/>
+                        <segue destination="KHi-pt-JgD" kind="show" identifier="StudentUniInfoSegue" id="512-On-B8y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="by1-e0-y7I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2724" y="618.44077961019491"/>
         </scene>
-        <!--View Controller-->
+        <!--Student Uni Info View Controller-->
         <scene sceneID="0E8-ml-haX">
             <objects>
-                <viewController id="KHi-pt-JgD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentUniInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KHi-pt-JgD" customClass="StudentUniInfoViewController" customModule="CYU" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ROc-Nl-HnM"/>
                         <viewControllerLayoutGuide type="bottom" id="uNs-jv-RjH"/>
@@ -823,6 +823,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ma2-n6-YO4">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Rm-Uq-YgQ">
                                 <rect key="frame" x="16" y="72" width="343" height="194"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -837,6 +841,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Ma2-n6-YO4" id="C6P-5p-0ad"/>
+                        <outlet property="uniNameLbl" destination="W9m-j3-W2H" id="xxo-Ga-Y8X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCv-Sb-rKn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1198,7 +1206,7 @@
             <objects>
                 <navigationController storyboardIdentifier="staringNavigationVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="34x-F8-adB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2L2-Yz-P9K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2L2-Yz-P9K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1234,7 +1242,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Tv-BX-0VC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Dx-jn-uvf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1Dx-jn-uvf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
