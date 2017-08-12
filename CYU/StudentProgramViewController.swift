@@ -22,6 +22,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     var listofPrograms = Array<ProgramStruct>()
     var uniName : String!
     var departmentName : String!
+    var programNameForNextView : String!
     
     
     //MARK: IB variables
@@ -111,6 +112,8 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // SHow options provided by Department
+        programNameForNextView = self.listofPrograms[indexPath.row].programName
+        performSegue(withIdentifier: "StudentSubjectList", sender: self)
         
     }
     
@@ -119,14 +122,22 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     
-    /*
+    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "StudentSubjectList" {
+            
+            let viewController = segue.destination as! StudentSubjectListViewController
+            viewController.uniName = uniName
+            viewController.departmentName = departmentName
+            viewController.programName = programNameForNextView
+        }
+        
     }
-    */
+    
 
 }

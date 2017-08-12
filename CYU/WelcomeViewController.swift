@@ -15,9 +15,11 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
+        //MARK: DO NOT OPEN OR DELETE
         // Creating dummy database 
-//        createFirebaseData()
-       // removeFirebaseData()
+//  //      createFirebaseData()
+//     // removeFirebaseData()
     }
     
     
@@ -33,7 +35,7 @@ class WelcomeViewController: UIViewController {
         ]
         
         // update Root child name
-        ref.child("universities_department_programs").child("South_Arkansas_Community_College").setValue(dict)
+        ref.child("universities_department_programs_subjects").child("South_Arkansas_Community_College").setValue(dict)
         
     }
     

@@ -55,6 +55,12 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     func fetchDataFromFirebaseDatabase(){
         activityIndicator.startAnimating()
         
+        // to disable interactions
+        DispatchQueue.main.async {
+            UIApplication.shared.beginIgnoringInteractionEvents()
+        }
+        
+        
         var ref: DatabaseReference!
         ref = Database.database().reference().child("universities")
         ref.observeSingleEvent(of: .value, with: { snapshots in
@@ -72,8 +78,21 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
                     self.listofUniversities.append(self.parseDataToStruct(eachEntry: eachEntry))
                 }
                 
-                self.tableView.reloadData()
-                self.activityIndicator.stopAnimating()
+                // to disable interactions
+                DispatchQueue.main.async {
+                    // enable interactions
+                    self.tableView.reloadData()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+            else{
+                
+                
+                DispatchQueue.main.async {
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    self.activityIndicator.stopAnimating()
+                }
             }
         })
     }
@@ -132,6 +151,9 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        print("ankit")
         
         // fetching class name and performing segue
         uniNameToPass = self.listofUniversities[indexPath.row].uni_Name
