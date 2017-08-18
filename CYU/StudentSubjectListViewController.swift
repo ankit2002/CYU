@@ -51,34 +51,49 @@ class StudentSubjectListViewController: UIViewController,UITableViewDelegate,UIT
     }
     
     
-    //MARK: Fetch data from Firebase
-    func fetchDataFromFirebaseDatabase(){
-        
-        activityIndicator.startAnimating()
-        
-        var mergename : String!
+    // Create QueryString For Firebase
+    func getQueryString() -> (uni:String?, mergeString:String?) {
         
         if !uniName.isEmpty && !departmentName.isEmpty && !programName.isEmpty {
             
             let charsToRemove: Set<Character> = Set(".$#[]/".characters)
             
-            uniName = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+            let uni_Name = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
             
-            departmentName = String(departmentName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+            let department_Name = String(departmentName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
             
-            programName = String(programName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+            let program_Name = String(programName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
             
-            mergename = String("\(departmentName!)_\(programName!)")!
+            let mergename = String("\(department_Name)_\(program_Name)")!
+            
+            return (uni_Name,mergename)
         }
         else{
             print("Path is not correct")
         }
+        return (nil,nil)
+    }
+    
+    
+    // STart Spinner
+    func startSpinner(){
+        
+        // to disable interactions
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+        }
+    }
+    
+    //MARK: Fetch data from Firebase
+    private func fetchDataFromFirebaseDatabase(){
         
         //universities_department_programs_subjects/University_of_Kabianga/Faculty_of_Mathematics_and_Natural_Sciences_Sprachen
+        let queryString = getQueryString()
         
-        // universities_department_Programs/University_of_Karachi
+        // query
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("universities_department_programs_subjects").child(uniName!).child(mergename!)
+        ref = Database.database().reference().child("universities_department_programs_subjects").child(queryString.uni!).child(queryString.mergeString!)
         ref.observeSingleEvent(of: .value, with: { snapshots in
             
             if  snapshots.exists() {
@@ -94,16 +109,27 @@ class StudentSubjectListViewController: UIViewController,UITableViewDelegate,UIT
                     self.listofSubjects.append(self.parseDataToStruct(eachEntry: eachEntry))
                 }
                 
-                self.tableView.reloadData()
-                self.activityIndicator.stopAnimating()
-                
+                self.stopSpinnerAndResumeInteraction(check: true)
             }
             else{
                 // No data in Firebase
                 print("No Data Found in Firebase")
-                self.activityIndicator.stopAnimating()
+                self.stopSpinnerAndResumeInteraction(check: false)
             }
         })
+    }
+    
+    // stopSpinnerAndResumeInteraction
+    func stopSpinnerAndResumeInteraction(check:Bool){
+        
+        DispatchQueue.main.async {
+            if check{
+                self.tableView.reloadData()
+            }
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
+            self.activityIndicator.stopAnimating()
+        }
     }
     
     

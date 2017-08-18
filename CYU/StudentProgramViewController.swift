@@ -41,28 +41,46 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     
-    //MARK: Fetch data from Firebase
-    func fetchDataFromFirebaseDatabase(){
+    func checkStringValue(){
         
-        activityIndicator.startAnimating()
-        
+    }
+    
+    
+    // String Cleansing
+    func getStringForQuery() -> (uniName : String?, deptName : String?) {
+    
         if !uniName.isEmpty && !departmentName.isEmpty {
             
             let charsToRemove: Set<Character> = Set(".$#[]/".characters)
             
-            uniName = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+            let uni_Name = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
             
-            departmentName = String(departmentName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
-        }
-        else{
+            let department_Name = String(departmentName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+            
+            return (uni_Name, department_Name)
+        }else{
             print("Path is not correct")
         }
         
-        // universities_department_Programs/University_of_Karachi
+        return (nil, nil)
+    }
+    
+    
+    
+    //MARK: Fetch data from Firebase
+    private func fetchDataFromFirebaseDatabase(){
+        
+        // Get String
+        let queryString = getStringForQuery()
+        
+        // start the spinner
+        startSpinner()
+        
+        // Data Query
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("universities_department_programs").child(uniName!).child(departmentName!)
+        ref = Database.database().reference().child("universities_department_programs").child(queryString.uniName!).child(queryString.deptName!)
         ref.observeSingleEvent(of: .value, with: { snapshots in
-            
+
             if  snapshots.exists() {
                 guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {return}
                 for s in snap{
@@ -76,17 +94,42 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
                     self.listofPrograms.append(self.parseDataToStruct(eachEntry: eachEntry))
                 }
                 
-                self.tableView.reloadData()
-                self.activityIndicator.stopAnimating()
-                
+                self.stopSpinnerAndResumeInteraction(check: true)
             }
             else{
                 // No data in Firebase
                 print("No Data Found in Firebase")
-                self.activityIndicator.stopAnimating()
+                
+                self.stopSpinnerAndResumeInteraction(check: false)
             }
         })
     }
+    
+    
+    
+    // to disable interactions
+    func startSpinner(){
+        
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+        }
+    }
+    
+    
+    // stopSpinnerAndResumeInteraction
+    func stopSpinnerAndResumeInteraction(check:Bool){
+        
+        DispatchQueue.main.async {
+            if check{
+                self.tableView.reloadData()
+            }
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
     
     
     //MARK: Parse data as Struct

@@ -45,23 +45,38 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
         uniNameLbl.text = uniName
     }
     
-
-    //MARK: Fetch data from Firebase
-    func fetchDataFromFirebaseDatabase(){
-        
-        activityIndicator.startAnimating()
-        
+    
+    func startSpinner(){
+        // to disable interactions
+        DispatchQueue.main.async {
+            self.activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+        }
+    }
+    
+    func getQueryString() -> String? {
         
         if !uniName.isEmpty {
             
             let charsToRemove: Set<Character> = Set(".$#[]/".characters)
-             uniName = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+            let uni_Name = String(uniName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
+            return uni_Name
         }else{
             print("Path is not correct")
         }
         
+        return nil
+    }
+
+    //MARK: Fetch data from Firebase
+    private func fetchDataFromFirebaseDatabase(){
+        
+        let queryString = getQueryString()
+        
+        startSpinner()
+        
         var ref: DatabaseReference!
-        ref = Database.database().reference().child("universities_department").child("\(uniName!)")
+        ref = Database.database().reference().child("universities_department").child("\(queryString!)")
         ref.observeSingleEvent(of: .value, with: { snapshots in
             
             if  snapshots.exists() {
@@ -72,22 +87,36 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
                         print( " no data")
                         return
                     }
-
                     // Parse Data and save Department
                     self.listofUniDepartment.append(self.parseDataToStruct(eachEntry: eachEntry))
                 }
                 
-                self.tableView.reloadData()
-                self.activityIndicator.stopAnimating()
-                
+                self.stopSpinnerAndResumeInteraction(check: true)
             }
             else{
-                // No data in Firebase
+                
                 print("No Data Found in Firebase")
-                self.activityIndicator.stopAnimating()
+                self.stopSpinnerAndResumeInteraction(check: false)
             }
         })
     }
+    
+    
+    // stopSpinnerAndResumeInteraction
+    func stopSpinnerAndResumeInteraction(check:Bool){
+        
+        DispatchQueue.main.async {
+            if check{
+                self.tableView.reloadData()
+            }
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    
+    
     
     
     //MARK: Parse data as Struct

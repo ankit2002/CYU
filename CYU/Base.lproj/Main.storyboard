@@ -1671,7 +1671,7 @@
             <objects>
                 <navigationController storyboardIdentifier="staringNavigationVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="34x-F8-adB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="2L2-Yz-P9K">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2L2-Yz-P9K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1707,7 +1707,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Tv-BX-0VC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1Dx-jn-uvf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Dx-jn-uvf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

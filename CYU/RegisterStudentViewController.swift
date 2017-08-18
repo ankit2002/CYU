@@ -184,7 +184,22 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
                             "gender": gendertitle
                             ]
                 
-                ref.child("users").child(user!.uid).setValue(dict)
+                
+                // Saving With Completion 
+                // Havn't Tested but need to check in the end
+                ref.child("users").child(user!.uid).setValue(dict, withCompletionBlock: { (error, ref) in
+                    if (error != nil){
+                        print("Data Saved")
+                    }
+                    else{
+                        print("Error Occured")
+                    }
+                })
+                
+                // old code
+//                ref.child("users").child(user!.uid).setValue(dict)
+                
+                
                 
                 // open next view controller
                 self.callAddViewController()

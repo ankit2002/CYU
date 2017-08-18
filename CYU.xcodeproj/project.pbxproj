@@ -42,6 +42,7 @@
 		1373F3711F17ED050037D928 /* SearchExpansionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */; };
 		1373F3741F17EE480037D928 /* FilterList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1373F3731F17EE480037D928 /* FilterList.plist */; };
 		138CF57F1F3DF17700B07315 /* DepartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */; };
+		13BE8A7A1F433B220079B3F8 /* Universities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8A791F433B220079B3F8 /* Universities.swift */; };
 		13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
 		13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F41F0BF4E900646EFE /* Main.storyboard */; };
@@ -107,6 +108,7 @@
 		1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchExpansionTableViewCell.swift; sourceTree = "<group>"; };
 		1373F3731F17EE480037D928 /* FilterList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterList.plist; sourceTree = "<group>"; };
 		138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentTableViewCell.swift; sourceTree = "<group>"; };
+		13BE8A791F433B220079B3F8 /* Universities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Universities.swift; sourceTree = "<group>"; };
 		13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F675F01F0BF4E900646EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +227,14 @@
 			name = "Data Files";
 			sourceTree = "<group>";
 		};
+		13BE8A781F433B0F0079B3F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13BE8A791F433B220079B3F8 /* Universities.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		13E351A31F0FEA8B00D85FFC /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +272,7 @@
 		13F675EF1F0BF4E900646EFE /* CYU */ = {
 			isa = PBXGroup;
 			children = (
+				13BE8A781F433B0F0079B3F8 /* Models */,
 				1312A2EB1F3B2BCC005320AC /* Util Classes */,
 				1373F3721F17EE250037D928 /* Data Files */,
 				1300C5261F12340B00FE8C3E /* Custom Buttons */,
@@ -630,6 +641,7 @@
 				1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */,
 				1324C8211F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift in Sources */,
 				1324C8291F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift in Sources */,
+				13BE8A7A1F433B220079B3F8 /* Universities.swift in Sources */,
 				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
 				1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */,
 				138CF57F1F3DF17700B07315 /* DepartmentTableViewCell.swift in Sources */,
