@@ -97,7 +97,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         
         if keyOfLastElementOfTheSnap == nil {
             
-            ref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { snapshots in
+            ref.queryOrdered(byChild: "basic_info/name").queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { snapshots in
                 
                 if snapshots.exists(){
                     
@@ -123,7 +123,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
             }) // end of query
         }
         else{ // to fetch further Data
-            ref.queryOrderedByKey().queryStarting(atValue: self.valueOfLastElementOfTheSnap).queryLimited(toFirst: 101).observeSingleEvent(of: .value, with: { snapshots in
+            ref.queryOrdered(byChild: "basic_info/name").queryStarting(atValue: self.valueOfLastElementOfTheSnap).queryLimited(toFirst: 101).observeSingleEvent(of: .value, with: { snapshots in
                 
                 if snapshots.exists(){
                     
