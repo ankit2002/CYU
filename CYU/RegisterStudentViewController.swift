@@ -214,7 +214,6 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     
     // check validaton of textfield
     func checkValidation() -> Bool {
-        return true
         
         if (firstName.text?.isEmpty)!{
             firstName.becomeFirstResponder()
@@ -271,7 +270,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
             alert(message: "OOPs, Seems like Passwords are not equals")
             return false
         }
-        
+        return true
         
     }
     
