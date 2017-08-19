@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 // open HomeViewController Storyboard
                 if (self.activityIndicatorView?.isAnimating)!{
                     self.activityIndicatorView?.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
                 }
                 
                 self.openHomeView()
@@ -105,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         self.activityIndicatorView?.startAnimating()
         self.window?.rootViewController?.view.addSubview(self.activityIndicatorView!)
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         if let error = error {
             print(error.localizedDescription)

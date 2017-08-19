@@ -97,7 +97,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         
         if keyOfLastElementOfTheSnap == nil {
             
-            ref.queryOrderedByKey().queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { snapshots in
+            ref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { snapshots in
                 
                 if snapshots.exists(){
                     
