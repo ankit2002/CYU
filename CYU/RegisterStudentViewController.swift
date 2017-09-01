@@ -157,12 +157,11 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     
     // MARK: - Register Button Pressed check validation
     @IBAction func registerPressed(_ sender: Any) {
-        activityIndicator.startAnimating()
         
-        //self.callAddViewController()
-        if (self.checkValidation()){
+        if self.checkValidation() {
             
-            // TODO: Save data in Server
+            activityIndicator.startAnimating()
+            
             Auth.auth().createUser(withEmail: emailAddress.text! , password: password.text!) { (user, error) in
                 self.activityIndicator.stopAnimating()
                 if let error = error{
@@ -185,21 +184,12 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
                             ]
                 
                 
-                // Saving With Completion 
-                // Havn't Tested but need to check in the end
+                // Saving With Completion
                 ref.child("users").child(user!.uid).setValue(dict, withCompletionBlock: { (error, ref) in
-                    if (error != nil){
-                        print("Data Saved")
-                    }
-                    else{
-                        print("Error Occured")
+                    if error != nil {
+                        print(error!.localizedDescription)
                     }
                 })
-                
-                // old code
-//                ref.child("users").child(user!.uid).setValue(dict)
-                
-                
                 
                 // open next view controller
                 self.callAddViewController()

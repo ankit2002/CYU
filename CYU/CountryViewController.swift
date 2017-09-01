@@ -7,29 +7,100 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
 
-    var countriesArray : Array<Dictionary<String, String>>!
+    var countriesArray = [CountriesList]()
     var searchActive :Bool = false
-    var filterArray : Array<Dictionary<String, String>>!
+    var filterArray = [CountriesList]()
     var selectedCountires = [String]()
     
+    @IBOutlet weak var doneBtn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableFooterView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
+        // load data from DB
+        self.fetchSelectedCountriesFromDB()
+        
         // load data from plist
-        filterArray = []
         self.loadCountries()
+        
+        // Need to review
         tableView.tableFooterView = tableFooterView
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // Load Data from DB
+    func fetchSelectedCountriesFromDB(){
+        
+        startSpinnerAndResumeInteraction()
+        
+        selectedCountires.removeAll()
+        
+        let userID = Auth.auth().currentUser!.uid
+        var ref : DatabaseReference!
+        ref = Database.database().reference().child("users").child(userID).child("filters/country")
+        
+        ref.observeSingleEvent(of: .value, with: {snaps in
+        
+            if snaps.exists(){
+                
+                guard let snapValue = snaps.value as? String else {return}
+                
+                // Work done for array
+//                guard let snaplist = snaps.children.allObjects as? [DataSnapshot] else {return}
+//                
+//                for s in snaplist {
+//                    
+//                    let entry = s.value
+//                    self.selectedCountires.append(entry as! String)
+//                }
+                self.selectedCountires.append(snapValue)
+                
+                // to enable interactions
+                self.stopSpinnerAndResumeInteraction(check: true)
+            }else{
+                print("no data found")
+                // to enable interactions
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        })
+    }
+    
+    
+    // startSpinnerAndResumeInteraction
+    func startSpinnerAndResumeInteraction(){
+        DispatchQueue.main.async {
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            self.activityIndicator.startAnimating()
+        }
+    }
+    
+    
+    // stopSpinnerAndResumeInteraction
+    func stopSpinnerAndResumeInteraction(check:Bool){
+        DispatchQueue.main.async {
+            if check{
+                self.tableView.reloadData()
+            }
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
+            self.activityIndicator.stopAnimating()
+        }
     }
     
     
@@ -40,14 +111,15 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             do{
                 let data = try Data (contentsOf: fileUrl)
                 let dataArray = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! [Dictionary<String, String>]
-                countriesArray = dataArray
+                
+                for d in dataArray{
+                    countriesArray.append(CountriesList (countryCode: d["code"]!, countryName: d["name"]!))
+                }
+                
             }catch{
                 print("Error on Reading Files",error)
             }
         }
-        
-        
-        print( countriesArray.count)
     }
     
     
@@ -72,25 +144,9 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        // old ways
-//        filterArray = countriesArray.filter({ (dictionary: [String:String]) -> Bool in
-//            for  (_,name) in dictionary {
-//                if (name.range(of: searchText) != nil){
-//                    return true
-//                }
-//            }
-//            return false
-//        })
-        
-        
-        
-        // according to swift 4 
-        // wasted 4 hours for this shit but learned some thing new
-        filterArray = countriesArray.filter({ (dict:[String:String]) -> Bool in
-            let data = dict.values.filter({ (name) -> Bool in
-               return (name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil)
-            })
-            return data.count>0
+        // according to swift 4
+        filterArray = countriesArray.filter({ (dict:CountriesList) -> Bool in
+            return (dict.countryName!.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil)
         })
         
         searchActive = !filterArray.isEmpty
@@ -105,21 +161,20 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         var compareString:String
         
         if searchActive && filterArray.count>0 {
-                compareString = filterArray[indexPath.row]["name"]!
+            compareString = filterArray[indexPath.row].countryName!
         }
         else{
-                compareString = countriesArray[indexPath.row]["name"]!
+            compareString = countriesArray[indexPath.row].countryName!
         }
         
         cell.textLabel?.text = compareString
         
         
+        // chnage accessory type
         if selectedCountires.contains(where: {$0 == compareString}){
-            // chnage accessory type
             cell.accessoryType = .checkmark
             
         }else{
-            // chnage accessory type
             cell.accessoryType = .none
         }
         
@@ -145,12 +200,11 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         // add data to selected array
         if searchActive && filterArray.count>0{
-            compareString = filterArray[indexPath.row]["name"]!
+            compareString = filterArray[indexPath.row].countryName!
         }
         else{
-            compareString = countriesArray[indexPath.row]["name"]!
+            compareString = countriesArray[indexPath.row].countryName!
         }
-        
         
         
         if selectedCountires.contains(where: {$0 == compareString}){
@@ -167,24 +221,71 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         }else{
             
-            // chnage accessory type
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.accessoryType = .checkmark
-            }
-            
-            
-            // add data to selected array
-            if searchActive && filterArray.count>0{
-                selectedCountires.append(filterArray[indexPath.row]["name"]!)
+            if selectedCountires.count < 1 {
+                // chnage accessory type
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    cell.accessoryType = .checkmark
+                }
+                
+                
+                // add data to selected array
+                if searchActive && filterArray.count>0{
+                    compareString = filterArray[indexPath.row].countryName!
+                    selectedCountires.append(filterArray[indexPath.row].countryName!)
+                }
+                else{
+                    selectedCountires.append(countriesArray[indexPath.row].countryName!)
+                }
             }
             else{
-                selectedCountires.append(countriesArray[indexPath.row]["name"]!)
+                alert(message: "You can only select a maximum of 1 countries")
             }
+            
         }
         
         
-        print(selectedCountires)
+        // Enable and disable done btn
+        if selectedCountires.count > 0 {
+            doneBtn.isEnabled = true
+        }
+        else{
+            doneBtn.isEnabled = false
+        }
+    }
+    
+    // Save Data when done is pressed
+    @IBAction func donePressed(_ sender: Any) {
         
+        // Saving Data in Firebase
+        if selectedCountires.count>0 {
+            saveSelectedCountriesInFirebase()
+        }
+        
+        
+        if let navigator = self.navigationController{
+            navigator.popViewController(animated: true)
+        }
+    }
+    
+    
+    // Mark: saveSelectedCountriesInFirebase
+    func saveSelectedCountriesInFirebase(){
+        // save data of user
+        
+        startSpinnerAndResumeInteraction()
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        var dict = Dictionary<String, Any>()
+        dict["country"] = selectedCountires.first
+        
+        // test
+        let userID = Auth.auth().currentUser!.uid
+        
+        let childUpdates = ["/users/\(userID)/filters": dict]
+        ref.updateChildValues(childUpdates)
+        
+        stopSpinnerAndResumeInteraction(check: false)
     }
     
     /*

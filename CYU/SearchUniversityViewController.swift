@@ -8,15 +8,15 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
-class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, ApplyFilterProtocol {
     
     //MARK: Define Variables
     var cellDescriptores : Array<Any>!
-//    var listofUniversities = Array<Universities>()
     var listofUniversities = [Universities]()
     var uniNameToPass : String!
-    var initialRow = 10
+    var isFilterOn = false
     var loadingData = false
     var keyOfLastElementOfTheSnap : String!
     var valueOfLastElementOfTheSnap : String!
@@ -34,7 +34,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         uniNameToPass = nil
         // Do any additional setup after loading the view.
         self.loadDataFromPlist()
-        fetchDataFromFirebaseDatabase()
+        fetchInitialDataFromFirebaseDatabase()
     }
     
     
@@ -48,56 +48,28 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     
-    //MARK: Fetch data from Firebase
-    private func fetchDataFromFirebaseDatabase(){
-        
-        // to disable interactions
+    // to disable interactions
+    func startSpinner() {
+
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
             UIApplication.shared.beginIgnoringInteractionEvents()
         }
+    }
+    
+    
+    //MARK: Fetch data from Firebase
+    private func fetchInitialDataFromFirebaseDatabase(){
         
+        startSpinner()
         
         var ref: DatabaseReference!
         ref = Database.database().reference().child("universities")
         
-//        ref.observeSingleEvent(of: .value, with: { snapshots in
-//            
-//            if  snapshots.exists() {
-//                guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {return}
-//                
-//                var newUniDict = [Universities]()
-//                for s in snap{
-//                     let entry = Universities (snapshot: s as DataSnapshot)
-//                    newUniDict.append(entry)
-//                }
-//                
-//                self.listofUniversities = newUniDict
-//                print(self.listofUniversities.count)
-//                // to enable interactions
-//                DispatchQueue.main.async {
-//                    
-//                    self.tableView.reloadData()
-//                    UIApplication.shared.endIgnoringInteractionEvents()
-//                    self.activityIndicator.stopAnimating()
-//                }
-//            }
-//            else{
-//                
-//                
-//                DispatchQueue.main.async {
-//                    UIApplication.shared.endIgnoringInteractionEvents()
-//                    self.activityIndicator.stopAnimating()
-//                }
-//            }
-//        })
-        
         // SOmething New Bound to Happen
-        
-        
         if keyOfLastElementOfTheSnap == nil {
             
-            ref.queryOrderedByKey().queryLimited(toFirst: 100).observeSingleEvent(of: .value, with: { snapshots in
+            ref.queryOrderedByKey().queryLimited(toFirst: 10).observeSingleEvent(of: .value, with: { snapshots in
                 
                 if snapshots.exists(){
                     
@@ -178,12 +150,6 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
                 print("Error on reading Files ",error);
             }
         }
-        self.showData()
-    }
-    
-    
-    // Do work with Data
-    func showData(){
     }
     
     
@@ -218,7 +184,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     // Fetch More Data from Server
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
         
-        if !loadingData && indexPath.row == listofUniversities.count-1 {
+        if !isFilterOn && !loadingData && indexPath.row == listofUniversities.count-1 {
             loadingData = true
             setupForFurtherDBCall()
         }
@@ -229,9 +195,129 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     func setupForFurtherDBCall() {
 
         self.loadingData = false
-        self.initialRow = self.initialRow + 10
-        self.fetchDataFromFirebaseDatabase()
+        self.fetchInitialDataFromFirebaseDatabase()
     }
+    
+    
+    //MARK: Confirm Filter Protocol
+    // fetch filtered Data from Server
+    func checkAndApplyFilter(check : Bool) {
+        
+        isFilterOn = true
+        fetchAllFilter()
+    }
+    
+    // Fetch all filter from Server
+    func fetchAllFilter() {
+        
+        startSpinner()
+        
+        var ref : DatabaseReference!
+        let userID = Auth.auth().currentUser!.uid
+        ref = Database.database().reference().child("users").child(userID).child("filters")
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot  in
+
+            if snapshot.exists(){
+                guard let snap = snapshot.children.allObjects as? [DataSnapshot] else {return}
+                
+                for s in snap{
+                    
+                    let filkey = s.key
+                    let filvalue = s.value as! String
+                    self.separateFilter(filterKey : filkey , filterValue: filvalue)
+                }
+            }
+            else{
+                print("No Data")
+            }
+        })
+    }
+    
+    
+    //MARK: Separate Filter
+    func separateFilter(filterKey : String, filterValue: String){
+        
+        switch filterKey {
+            
+        case "country":
+            print("countries filter work")
+            
+        case "program_language":
+            print("Language")
+            
+        case "program_duration":
+            print("program_duration")
+            fetchFilterdDataFromDB(rootName:"universities_department_programs", keyName:filterKey, valueData: filterValue)
+            
+        default:
+            print("didn't work")
+        }
+        
+    }
+    
+    
+    //MARK: Confirm Filter Protocol
+    func fetchCountryFilterdDataFromDB(rootName:String, keyName:String, valueData: String) {
+        
+        var ref : DatabaseReference!
+        ref = Database.database().reference().child(rootName)
+        
+        ref.queryOrdered(byChild: "basic_info/\(keyName)").queryEqual(toValue: valueData).observeSingleEvent(of: .value, with: { snapshot in
+            
+            if snapshot.exists(){
+                
+                guard let snap = snapshot.children.allObjects as? [DataSnapshot] else {return}
+                
+                var newUniDict = [Universities]()
+                for s in snap{
+                    let entry = Universities (snapshot: s as DataSnapshot)
+                    newUniDict.append(entry)
+                }
+                
+                self.listofUniversities.removeAll()
+                self.listofUniversities.append(contentsOf: newUniDict)
+                
+                // to enable interactions
+                self.stopSpinnerAndResumeInteraction(check: true)
+            }
+            else{
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        })
+    }
+    
+    
+    //MARK: Confirm Filter Protocol
+    func fetchFilterdDataFromDB(rootName:String, keyName:String, valueData: String) {
+        
+        var ref : DatabaseReference!
+        ref = Database.database().reference().child(rootName)
+        
+        ref.queryOrdered(byChild: "program_duration").queryEqual(toValue: "2 Semester").observeSingleEvent(of: .value, with: { snapshot in
+            
+            if snapshot.exists(){
+                
+                guard let snap = snapshot.children.allObjects as? [DataSnapshot] else {return}
+                
+                var newUniDict = [Universities]()
+                for s in snap{
+                    let entry = Universities (snapshot: s as DataSnapshot)
+                    newUniDict.append(entry)
+                }
+                
+                self.listofUniversities.removeAll()
+                self.listofUniversities.append(contentsOf: newUniDict)
+                
+                // to enable interactions
+                self.stopSpinnerAndResumeInteraction(check: true)
+            }
+            else{
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        })
+    }
+    
     
     
     
@@ -242,11 +328,24 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "StudentUniInfoSegue" {
-            
+        
+        switch segue.identifier! {
+        
+        case "StudentUniInfoSegue":
             let viewController = segue.destination as! StudentUniInfoViewController
             viewController.uniName = uniNameToPass
+            
+        case "ApplyFilterSegue":
+            if let navController = segue.destination as? UINavigationController,
+                let viewController = navController.viewControllers.first as? FilterViewController{
+                    viewController.filterDelegate = self
+            }
+            
+        default:
+            print("Default Data")
         }
+        
+        
     }
  
     

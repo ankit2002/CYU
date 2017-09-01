@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+
+
+protocol ApplyFilterProtocol {
+    func checkAndApplyFilter(check:Bool)
+}
+
 
 class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     
-    let tableData : [String] = ["Country", "Degree Type", "Time Bound", "Field Selection", "Specialized"]
+    let tableData = ["Country", "Courses", "Years", "Language", "Discipline", "Education Level"]
+    
+    var filterDelegate : ApplyFilterProtocol?
     
     
     override func viewDidLoad() {
@@ -26,16 +36,21 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
 
-    // MARK: Method for Cancel And Done
+    // MARK: Method for Cancel
     @IBAction func dismissVC(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.dismiss(animated: true, completion: nil)
+        
     }
     
     
-    @IBAction func donePressed(_ sender: Any) {
-        self.dismiss(animated: true) { 
-            //send data later on
-        }
+    // Clear all filters
+    @IBAction func clearFilterPressed(_ sender: Any) {
+        
+        let userID = Auth.auth().currentUser!.uid
+        var ref: DatabaseReference!
+        ref = Database.database().reference().child("users").child(userID).child("filters")
+        ref.setValue(nil)
     }
     
     
@@ -54,12 +69,24 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            // open country VC
+        
+        switch indexPath.row {
+        case 0:
             self.openCountryVC()
+        default:
+            print("Default is called")
         }
+        
+        
     }
     
+    //MARK: Apply Filter
+    @IBAction func applyFilter(_ sender: Any) {
+        
+        
+        self.filterDelegate?.checkAndApplyFilter(check: true)
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation
@@ -73,10 +100,9 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
     //MARK: Open country VC
     func openCountryVC(){
         
-        if let countryViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CountryViewController") as?  CountryViewController {
-            if let navigator = navigationController {
-                navigator.pushViewController(countryViewController, animated: true)
-            }
+        let countryViewController = self.storyboard?.instantiateViewController(withIdentifier: "CountryViewController") as! CountryViewController
+        if let navigator = navigationController{
+            navigator.pushViewController(countryViewController, animated: true)
         }
     }
 

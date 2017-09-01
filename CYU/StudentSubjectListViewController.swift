@@ -91,6 +91,8 @@ class StudentSubjectListViewController: UIViewController,UITableViewDelegate,UIT
         //universities_department_programs_subjects/University_of_Kabianga/Faculty_of_Mathematics_and_Natural_Sciences_Sprachen
         let queryString = getQueryString()
         
+        startSpinner()
+        
         // query
         var ref: DatabaseReference!
         ref = Database.database().reference().child("universities_department_programs_subjects").child(queryString.uni!).child(queryString.mergeString!)
