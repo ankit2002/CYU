@@ -286,6 +286,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
             }
             else{
                 print("No Data")
+                self.alert(message: "No Uni found with applied Filter")
                 self.stopSpinnerAndResumeInteraction(check: false)
             }
         })

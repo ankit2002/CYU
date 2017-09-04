@@ -10,12 +10,19 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+protocol ShowSelectedCountry {
+    func showSelectedCountry(country:String)
+}
+
+
 class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
 
     var countriesArray = [CountriesList]()
     var searchActive :Bool = false
     var filterArray = [CountriesList]()
     var selectedCountires = [String]()
+    
+    var delegate : ShowSelectedCountry?
     
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
@@ -60,21 +67,12 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             if snaps.exists(){
                 
                 guard let snapValue = snaps.value as? String else {return}
-                
-                // Work done for array
-//                guard let snaplist = snaps.children.allObjects as? [DataSnapshot] else {return}
-//                
-//                for s in snaplist {
-//                    
-//                    let entry = s.value
-//                    self.selectedCountires.append(entry as! String)
-//                }
+
                 self.selectedCountires.append(snapValue)
                 
                 // to enable interactions
                 self.stopSpinnerAndResumeInteraction(check: true)
             }else{
-                print("no data found")
                 // to enable interactions
                 self.stopSpinnerAndResumeInteraction(check: false)
             }
