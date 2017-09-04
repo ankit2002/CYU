@@ -43,6 +43,7 @@
 		1373F3741F17EE480037D928 /* FilterList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1373F3731F17EE480037D928 /* FilterList.plist */; };
 		138CF57F1F3DF17700B07315 /* DepartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */; };
 		13A112D91F4865DB00F584C3 /* CountriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A112D81F4865DB00F584C3 /* CountriesModel.swift */; };
+		13B5FA8D1F5DB1BF00069425 /* CommonFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B5FA8C1F5DB1BF00069425 /* CommonFilterViewController.swift */; };
 		13BE8A7A1F433B220079B3F8 /* UniversitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8A791F433B220079B3F8 /* UniversitiesModel.swift */; };
 		13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
@@ -110,6 +111,7 @@
 		1373F3731F17EE480037D928 /* FilterList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterList.plist; sourceTree = "<group>"; };
 		138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentTableViewCell.swift; sourceTree = "<group>"; };
 		13A112D81F4865DB00F584C3 /* CountriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesModel.swift; sourceTree = "<group>"; };
+		13B5FA8C1F5DB1BF00069425 /* CommonFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFilterViewController.swift; sourceTree = "<group>"; };
 		13BE8A791F433B220079B3F8 /* UniversitiesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesModel.swift; sourceTree = "<group>"; };
 		13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 				1324C8221F3E188E004DC9E6 /* StudentProgramViewController.swift */,
 				1324C8261F3E37D1004DC9E6 /* StudentSubjectListViewController.swift */,
 				1324C8281F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift */,
+				13B5FA8C1F5DB1BF00069425 /* CommonFilterViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				1324C8271F3E37D1004DC9E6 /* StudentSubjectListViewController.swift in Sources */,
 				1300C5121F1233A600FE8C3E /* SignInOptionViewController.swift in Sources */,
 				13569CA71F1A84F600DC059C /* FilterViewController.swift in Sources */,
+				13B5FA8D1F5DB1BF00069425 /* CommonFilterViewController.swift in Sources */,
 				1324C82B1F3E38C6004DC9E6 /* StudentSubjectListTableViewCell.swift in Sources */,
 				13A112D91F4865DB00F584C3 /* CountriesModel.swift in Sources */,
 				1300C5211F1233E000FE8C3E /* AddCertificateVC.swift in Sources */,

@@ -182,6 +182,8 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
         switch indexPath.row {
         case 0:
             self.openCountryVC()
+        case 1:
+            s
         default:
             print("Default is called")
         }
@@ -207,18 +209,11 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
  */
     
     
-    //MARK: Confirm Protocol
-    func showSelectedCountry(country:String){
-        
-    }
-    
-    
     //MARK: Open country VC
     func openCountryVC(){
         
         let countryViewController = self.storyboard?.instantiateViewController(withIdentifier: "CountryViewController") as! CountryViewController
         if let navigator = navigationController{
-            countryViewController.delegate = self as? ShowSelectedCountry
             navigator.pushViewController(countryViewController, animated: true)
         }
     }

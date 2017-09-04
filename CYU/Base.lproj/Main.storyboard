@@ -757,10 +757,10 @@
             </objects>
             <point key="canvasLocation" x="5332" y="-97"/>
         </scene>
-        <!--View Controller-->
+        <!--Common Filter View Controller-->
         <scene sceneID="m9d-yn-InC">
             <objects>
-                <viewController id="4DT-kz-0pm" sceneMemberID="viewController">
+                <viewController id="4DT-kz-0pm" customClass="CommonFilterViewController" customModule="CYU" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IUe-SU-zLf"/>
                         <viewControllerLayoutGuide type="bottom" id="swS-xJ-yZZ"/>

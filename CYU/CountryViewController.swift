@@ -10,10 +10,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-protocol ShowSelectedCountry {
-    func showSelectedCountry(country:String)
-}
-
 
 class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
 
@@ -22,7 +18,6 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var filterArray = [CountriesList]()
     var selectedCountires = [String]()
     
-    var delegate : ShowSelectedCountry?
     
     @IBOutlet weak var doneBtn: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
