@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Professional Certificates</string>
+	<string>Undergraduate Degrees</string>
+	<string>Transfer Degrees</string>
+	<string>Associate Degrees</string>
+	<string>Bachelor Degrees</string>
+	<string>Graduate Degrees</string>
+	<string>Master Degrees</string>
+	<string>Doctoral Degrees</string>
+	<string>Professional Degrees</string>
+	<string>Specialist Degrees</string>
+</array>
+</plist>

@@ -44,6 +44,10 @@
 		138CF57F1F3DF17700B07315 /* DepartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */; };
 		13A112D91F4865DB00F584C3 /* CountriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A112D81F4865DB00F584C3 /* CountriesModel.swift */; };
 		13B5FA8D1F5DB1BF00069425 /* CommonFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B5FA8C1F5DB1BF00069425 /* CommonFilterViewController.swift */; };
+		13B5FA8F1F5DB7C300069425 /* Education Level.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B5FA8E1F5DB7C300069425 /* Education Level.plist */; };
+		13B5FA931F5DBE5400069425 /* Semester List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B5FA921F5DBE5400069425 /* Semester List.plist */; };
+		13B5FA951F5DC7EE00069425 /* Language List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B5FA941F5DC7EE00069425 /* Language List.plist */; };
+		13B5FA971F5DCF1B00069425 /* Courses List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B5FA961F5DCF1B00069425 /* Courses List.plist */; };
 		13BE8A7A1F433B220079B3F8 /* UniversitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8A791F433B220079B3F8 /* UniversitiesModel.swift */; };
 		13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
@@ -112,6 +116,10 @@
 		138CF57E1F3DF17700B07315 /* DepartmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentTableViewCell.swift; sourceTree = "<group>"; };
 		13A112D81F4865DB00F584C3 /* CountriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesModel.swift; sourceTree = "<group>"; };
 		13B5FA8C1F5DB1BF00069425 /* CommonFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonFilterViewController.swift; sourceTree = "<group>"; };
+		13B5FA8E1F5DB7C300069425 /* Education Level.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Education Level.plist"; sourceTree = "<group>"; };
+		13B5FA921F5DBE5400069425 /* Semester List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Semester List.plist"; sourceTree = "<group>"; };
+		13B5FA941F5DC7EE00069425 /* Language List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Language List.plist"; sourceTree = "<group>"; };
+		13B5FA961F5DCF1B00069425 /* Courses List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Courses List.plist"; sourceTree = "<group>"; };
 		13BE8A791F433B220079B3F8 /* UniversitiesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesModel.swift; sourceTree = "<group>"; };
 		13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +236,10 @@
 			children = (
 				1373F3731F17EE480037D928 /* FilterList.plist */,
 				134AA8D81F1E672F00242301 /* CountryList.plist */,
+				13B5FA8E1F5DB7C300069425 /* Education Level.plist */,
+				13B5FA921F5DBE5400069425 /* Semester List.plist */,
+				13B5FA941F5DC7EE00069425 /* Language List.plist */,
+				13B5FA961F5DCF1B00069425 /* Courses List.plist */,
 			);
 			name = "Data Files";
 			sourceTree = "<group>";
@@ -454,10 +466,14 @@
 				1300C52A1F12369000FE8C3E /* .gitignore in Resources */,
 				13F675FB1F0BF4E900646EFE /* LaunchScreen.storyboard in Resources */,
 				1373F3741F17EE480037D928 /* FilterList.plist in Resources */,
+				13B5FA931F5DBE5400069425 /* Semester List.plist in Resources */,
+				13B5FA971F5DCF1B00069425 /* Courses List.plist in Resources */,
+				13B5FA8F1F5DB7C300069425 /* Education Level.plist in Resources */,
 				13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */,
 				13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */,
 				134AA8D91F1E672F00242301 /* CountryList.plist in Resources */,
 				13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */,
+				13B5FA951F5DC7EE00069425 /* Language List.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,8 +19,8 @@ protocol ApplyFilterProtocol {
 class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
 
-    var filterSelectedParameter = ["Country":"", "Courses":"", "Semester":"", "Language":"", "Discipline":"", "Education Level":""]
-    let filterParameter = ["Country", "Courses", "Semester", "Language", "Discipline", "Education Level"]
+    var filterSelectedParameter = ["Country":"", "Courses":"", "Semester":"", "Language":"", "Education Level":"","Discipline":""]
+    let filterParameter = ["Country", "Courses", "Semester", "Language", "Education Level", "Discipline"]
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -36,7 +36,9 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
 
     
-    override func viewDidAppear(_ animated: Bool) {
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchFiltersFromDB()
     }
     
@@ -182,8 +184,9 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
         switch indexPath.row {
         case 0:
             self.openCountryVC()
-        case 1:
-            s
+        case 1,2,3,4,5:
+            self.openCommonVC(vcName:filterParameter[indexPath.row])
+            
         default:
             print("Default is called")
         }
@@ -207,6 +210,17 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
         // Pass the selected object to the new view controller.
     }
  */
+    
+    //MARK: Open Common VC
+    func openCommonVC(vcName: String){
+        
+        let commonFilterViewController = self.storyboard?.instantiateViewController(withIdentifier: "CommonFilterViewController") as! CommonFilterViewController
+        if let navigator = navigationController{
+            commonFilterViewController.vcTitle = vcName
+            navigator.pushViewController(commonFilterViewController, animated: true)
+        }
+    }
+    
     
     
     //MARK: Open country VC

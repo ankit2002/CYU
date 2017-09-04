@@ -1,0 +1,289 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC '-//Apple//DTD PLIST 1.0//EN' 'http://www.apple.com/DTDs/PropertyList-1.0.dtd'>
+<plist version='1.0'>
+<array>
+    <string>Accordion</string>
+    <string>Administration</string>
+    <string>Aerospace Engineering</string>
+    <string>African studies</string>
+    <string>Agricultural economics</string>
+    <string>Agricultural engineering</string>
+    <string>Agriculture</string>
+    <string>Agriculture sciences</string>
+    <string>Agrobiology</string>
+    <string>American studies</string>
+    <string>Ancient languages and cultures</string>
+    <string>Animal sciences</string>
+    <string>Anthropology</string>
+    <string>Arabic studies</string>
+    <string>Archaeology</string>
+    <string>Archaeometry</string>
+    <string>Architectural Engineering</string>
+    <string>Architecture</string>
+    <string>Art</string>
+    <string>Art management</string>
+    <string>Asian studies</string>
+    <string>Astronomy</string>
+    <string>Audiology</string>
+    <string>Auditing</string>
+    <string>Automation Engineering</string>
+    <string>Automotive Engineering</string>
+    <string>Automotive Management</string>
+    <string>Aviation Management</string>
+    <string>Bassoon</string>
+    <string>Beverage Technology</string>
+    <string>Biochemistry</string>
+    <string>Bioinformatics</string>
+    <string>Biology</string>
+    <string>Bionics</string>
+    <string>Bioscience</string>
+    <string>Biotechnology</string>
+    <string>Brand Management</string>
+    <string>Business and Employment Studies</string>
+    <string>Business Economics</string>
+    <string>Business education and management training</string>
+    <string>Business Informatics</string>
+    <string>Business Law</string>
+    <string>Business management</string>
+    <string>Business mathematics</string>
+    <string>Caritas science</string>
+    <string>Catholic Theology / Religious Education</string>
+    <string>Cello</string>
+    <string>Celtic studies</string>
+    <string>Chamber music</string>
+    <string>Chemical Technology</string>
+    <string>Chemistry</string>
+    <string>Chinese studies</string>
+    <string>Choreography</string>
+    <string>Church music</string>
+    <string>Civil Engineering</string>
+    <string>Communication Engineering</string>
+    <string>Communication Science</string>
+    <string>Communication Technology</string>
+    <string>Composing</string>
+    <string>Computer Science</string>
+    <string>Conducting</string>
+    <string>Cultural anthropology</string>
+    <string>Cultural management</string>
+    <string>Cultural Sciences</string>
+    <string>Cybersecurity</string>
+    <string>Czech studies</string>
+    <string>Dance</string>
+    <string>Dentistry</string>
+    <string>Design</string>
+    <string>Design Engineering</string>
+    <string>Developmental Science</string>
+    <string>Digital Media</string>
+    <string>Disposal engineering</string>
+    <string>Document sciences</string>
+    <string>Double bass</string>
+    <string>Dutch Studies</string>
+    <string>Economic Sciences</string>
+    <string>Economics</string>
+    <string>Editorial Studies</string>
+    <string>Education</string>
+    <string>Educational Science</string>
+    <string>Egyptology</string>
+    <string>Electrical Engineering</string>
+    <string>Electronics</string>
+    <string>Elementary school education</string>
+    <string>Energy Economics</string>
+    <string>Energy Technology</string>
+    <string>Engineering</string>
+    <string>English Language and Literature / English</string>
+    <string>English studies</string>
+    <string>Environmental engineering</string>
+    <string>Environmental Management</string>
+    <string>Environmental protection</string>
+    <string>Environmental sciences</string>
+    <string>Environmental Technology</string>
+    <string>Ergonomics</string>
+    <string>Ethics</string>
+    <string>Ethnology</string>
+    <string>European ethnology</string>
+    <string>European Studies</string>
+    <string>Event management</string>
+    <string>Experiential education</string>
+    <string>Facilities Engineering</string>
+    <string>Facility Management</string>
+    <string>Finance</string>
+    <string>Fine Arts</string>
+    <string>Flute</string>
+    <string>Food economics</string>
+    <string>Food Management</string>
+    <string>Food packaging technology</string>
+    <string>Food Technology</string>
+    <string>French</string>
+    <string>Gender Studies</string>
+    <string>General Studies</string>
+    <string>Geodesy</string>
+    <string>Geographical information science</string>
+    <string>Geography</string>
+    <string>Geology</string>
+    <string>Geophysics</string>
+    <string>German as a Foreign Language</string>
+    <string>German language course for refugees</string>
+    <string>German Studies / German</string>
+    <string>Greek</string>
+    <string>Guitar</string>
+    <string>Harp</string>
+    <string>Harpsichord</string>
+    <string>Health economics</string>
+    <string>Health Science</string>
+    <string>History</string>
+    <string>History of art</string>
+    <string>Home Economics</string>
+    <string>Horn</string>
+    <string>Horticulture</string>
+    <string>Human geography</string>
+    <string>Indian studies</string>
+    <string>Industrial Engineering with Business Studies</string>
+    <string>Industrial technology</string>
+    <string>Information and Documentation</string>
+    <string>Information law</string>
+    <string>Information Management</string>
+    <string>Information Science</string>
+    <string>Information Technology</string>
+    <string>Innovation management</string>
+    <string>Insurance</string>
+    <string>Interior design</string>
+    <string>International economic sciences</string>
+    <string>International Management</string>
+    <string>Iranology</string>
+    <string>Islamic studies</string>
+    <string>Italian Studies / Italian</string>
+    <string>Japanese studies</string>
+    <string>Jazz</string>
+    <string>Jewish Studies</string>
+    <string>Journalism</string>
+    <string>Knowledge management</string>
+    <string>Landscape architecture</string>
+    <string>Landscape ecology</string>
+    <string>Latin</string>
+    <string>Latin American studies</string>
+    <string>Latin studies</string>
+    <string>Law</string>
+    <string>Librarianship</string>
+    <string>Linguistics</string>
+    <string>Literary Studies</string>
+    <string>Logistics</string>
+    <string>Logopedics</string>
+    <string>Management</string>
+    <string>Manufacturing Engineering</string>
+    <string>Marine Science</string>
+    <string>Maritime Technology</string>
+    <string>Marketing</string>
+    <string>Materials Science</string>
+    <string>Mathematics</string>
+    <string>Mechanical Engineering</string>
+    <string>Mechatronics</string>
+    <string>Media culture</string>
+    <string>Media design</string>
+    <string>Media information technology</string>
+    <string>Media management</string>
+    <string>Media Production</string>
+    <string>Media Science</string>
+    <string>Media System Design</string>
+    <string>Media Technology</string>
+    <string>Medical Engineering</string>
+    <string>Medical Science</string>
+    <string>Medicine</string>
+    <string>Metal Technology</string>
+    <string>Mineralogy</string>
+    <string>Modern languages</string>
+    <string>Molecular biology</string>
+    <string>Motology</string>
+    <string>Museology</string>
+    <string>Music production</string>
+    <string>Musical studies</string>
+    <string>Musicology</string>
+    <string>Nanotechnology</string>
+    <string>Natural sciences</string>
+    <string>Naturopathy</string>
+    <string>Neuroscience</string>
+    <string>North American studies</string>
+    <string>Nursing Science</string>
+    <string>Nutritional Science</string>
+    <string>Oboe</string>
+    <string>Obstetrics</string>
+    <string>Occupational therapy</string>
+    <string>Oenology</string>
+    <string>Operations management</string>
+    <string>Ophthamic Optics / Optometry</string>
+    <string>Optical Engineering and Image Processing</string>
+    <string>Oriental studies</string>
+    <string>Orthopaedagogy</string>
+    <string>Palaeontology</string>
+    <string>Peace and conflict research</string>
+    <string>Pedagogy</string>
+    <string>Pharmaceutics</string>
+    <string>Philology</string>
+    <string>Philosophy</string>
+    <string>Phonetics</string>
+    <string>Physical Science</string>
+    <string>Physics</string>
+    <string>Physiology</string>
+    <string>Physiotherapy</string>
+    <string>Piano</string>
+    <string>Plastics engineering</string>
+    <string>Polish Studies / Polish</string>
+    <string>Political Science</string>
+    <string>Polymer science</string>
+    <string>Portuguese</string>
+    <string>Print production</string>
+    <string>Process Engineering</string>
+    <string>Process management</string>
+    <string>Product Engineering</string>
+    <string>Production Engineering</string>
+    <string>Property management</string>
+    <string>Protestant Theology / Religious Education</string>
+    <string>Psychology</string>
+    <string>Public Finance</string>
+    <string>Public Relations</string>
+    <string>Refugees programme</string>
+    <string>Religious education</string>
+    <string>Religious Studies</string>
+    <string>Renewable energy</string>
+    <string>Resource management</string>
+    <string>Romance Studies</string>
+    <string>Russian Studies / Russian</string>
+    <string>Safety engineering</string>
+    <string>Service management</string>
+    <string>Ship Operation Technology</string>
+    <string>Shipping</string>
+    <string>Sign language interpreting</string>
+    <string>Singing</string>
+    <string>Slavic Studies</string>
+    <string>Social Sciences</string>
+    <string>Social Studies</string>
+    <string>Social Work</string>
+    <string>Sociology</string>
+    <string>Solar energy</string>
+    <string>Spanish Studies / Spanish</string>
+    <string>Sport</string>
+    <string>Sport Science</string>
+    <string>Sports medicine</string>
+    <string>System Development</string>
+    <string>Systems Analysis</string>
+    <string>Systems Technology</string>
+    <string>Teaching Sciences</string>
+    <string>Technology</string>
+    <string>Television Technology</string>
+    <string>Theatre arts</string>
+    <string>Theology / Science of Religion</string>
+    <string>Tourism management</string>
+    <string>Transition Studies</string>
+    <string>Transport logistics</string>
+    <string>Transportation / Logistics</string>
+    <string>Trombone</string>
+    <string>Trumpet</string>
+    <string>Turkish studies</string>
+    <string>Urban Development</string>
+    <string>Urban planning</string>
+    <string>Veterinary Medicine</string>
+    <string>Violin</string>
+    <string>Water management</string>
+    <string>Western concert flute</string>
+    <string>Wine Business</string>
+</array>
+</plist>

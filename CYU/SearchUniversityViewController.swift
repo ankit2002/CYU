@@ -41,7 +41,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
 
         uniNameToPass = nil
         // Do any additional setup after loading the view.
-        self.loadDataFromPlist()
+       // self.loadDataFromPlist()
         fetchInitialDataFromFirebaseDatabase()
         
     }
