@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import CYU
+
 
 class CYUTests: XCTestCase {
     
