@@ -214,10 +214,17 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     // fetch filtered Data from Server
     func checkAndApplyFilter(check : Bool) {
         
-        isFilterOn = true
         self.uniFromSearchFilter.removeAll()
-        fetchAllFilter()
-        
+        if check {
+            isFilterOn = true
+            fetchAllFilter()
+        }
+        else{
+         
+            // Filters are not applied
+            isFilterOn = false
+            fetchInitialDataFromFirebaseDatabase()
+        }
     }
     
     // Fetch all filter from Server
@@ -304,6 +311,12 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
             fetchFilterdUniNameFromDB(rootName:"filter&search", keyName:filterKey, valueData: filterValue)
             
         case "program_duration":
+            fetchFilterdUniNameFromDB(rootName:"filter&search", keyName:filterKey, valueData: filterValue)
+            
+        case "course":
+            fetchFilterdUniNameFromDB(rootName:"filter&search", keyName:filterKey, valueData: filterValue)
+            
+        case "education_level":
             fetchFilterdUniNameFromDB(rootName:"filter&search", keyName:filterKey, valueData: filterValue)
             
         default:

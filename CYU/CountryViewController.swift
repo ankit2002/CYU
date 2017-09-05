@@ -89,6 +89,7 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         DispatchQueue.main.async {
             if check{
                 self.tableView.reloadData()
+                self.doneBtn.isEnabled = true
             }
             
             UIApplication.shared.endIgnoringInteractionEvents()
@@ -251,7 +252,7 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         // Saving Data in Firebase
         if selectedCountires.count>0 {
-            saveSelectedCountriesInFirebase()
+            saveSelectedCountriesInFirebase(checkField: true)
         }
         
         
@@ -261,26 +262,43 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     
-    // Mark: saveSelectedCountriesInFirebase
-    func saveSelectedCountriesInFirebase(){
-        // save data of user
+    // Mark: Save selected Filter in Firebase under user
+    func saveSelectedCountriesInFirebase(checkField:Bool){
         
         startSpinnerAndResumeInteraction()
         
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        var dict = Dictionary<String, Any>()
-        dict["country"] = selectedCountires.first
         
-        // test
+        // get user ID
         let userID = Auth.auth().currentUser!.uid
         
-        let childUpdates = ["/users/\(userID)/filters": dict]
-        ref.updateChildValues(childUpdates)
+        if checkField {
+            
+            let childUpdates = ["/users/\(userID)/filters/country": selectedCountires.first!]
+            ref.updateChildValues(childUpdates)
+        }else{
+            
+            ref.child("/users/\(userID)/filters/country").setValue(nil)
+            self.tableView.reloadData()
+        }
+        
         
         stopSpinnerAndResumeInteraction(check: false)
     }
     
+    
+    //MARK: Clear Btn Pressed
+    @IBAction func clearBtnPressed(_ sender: Any) {
+        
+        // remove all data
+        selectedCountires.removeAll()
+        
+        doneBtn.isEnabled = false
+        
+        // save all data
+        self.saveSelectedCountriesInFirebase(checkField:false)
+    }
     /*
     // MARK: - Navigation
 

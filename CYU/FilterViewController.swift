@@ -73,7 +73,7 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
                         case "country":
                             self.filterSelectedParameter["Country"] = filvalue
                             
-                        case "Courses":
+                        case "course":
                             self.filterSelectedParameter["Courses"] = filvalue
                             
                         case "program_duration":
@@ -135,7 +135,7 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     
     
-    // Clear all filters
+    //MARK: Clear all filters
     @IBAction func clearFilterPressed(_ sender: Any) {
         
         let userID = Auth.auth().currentUser!.uid
@@ -147,13 +147,9 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
         if removeAllValuesOfFilter(){
             self.tableView.reloadData()
         }
-        
-        // refressing the view
-        
-        
     }
     
-    
+    // remove all filters
     func removeAllValuesOfFilter()->Bool{
         
         for i in filterSelectedParameter{
@@ -198,7 +194,14 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
     @IBAction func applyFilter(_ sender: Any) {
         
         
-        self.filterDelegate?.checkAndApplyFilter(check: true)
+        if filterSelectedParameter.values.count == 0{
+            self.filterDelegate?.checkAndApplyFilter(check: false)
+        }
+        else{
+            self.filterDelegate?.checkAndApplyFilter(check: true)
+        }
+        
+        
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
