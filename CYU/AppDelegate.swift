@@ -118,7 +118,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                         "gender": nil
             ]
             
-            ref.child("users").child(user!.uid).setValue(dict)
+            // Saving With Completion
+            ref.child("users").child(user!.uid).setValue(dict, withCompletionBlock: { (error, ref) in
+                if error == nil {
+                    // open Home
+                    self.activityIndicatorView?.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    self.activityIndicatorView?.removeFromSuperview()
+                    self.openHomeView()
+                }else{
+                    print(error!.localizedDescription)
+                }
+            })
         }
     }
     
