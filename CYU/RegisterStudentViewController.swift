@@ -8,15 +8,18 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
 
     // MARK: Defining Variables
     let datePicker :UIDatePicker = UIDatePicker()
     var currentTextField : UITextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var handle: AuthStateDidChangeListenerHandle?
+    
     
     // MARK: Defining Outlet Variables
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var birthdate: UITextField!
@@ -32,6 +35,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
     // MARK: - System Methods
     override func viewWillAppear(_ animated: Bool) {
         setupViewResizerOnKeyboardShown();
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -162,7 +166,11 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
             
             activityIndicator.startAnimating()
             
+//            emailAddress.text = "abc@g.co"
+//            password.text = "abcabc"
+            
             Auth.auth().createUser(withEmail: emailAddress.text! , password: password.text!) { (user, error) in
+                
                 self.activityIndicator.stopAnimating()
                 if let error = error{
                     self.alert(message: error.localizedDescription)
@@ -173,7 +181,8 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
                 var ref: DatabaseReference!
                 ref = Database.database().reference()
                 
-                let gendertitle = self.genderSegment.titleForSegment(at: self.genderSegment.selectedSegmentIndex)
+//                let gendertitle = self.genderSegment.titleForSegment(at: self.genderSegment.selectedSegmentIndex)
+                let gendertitle = self.genderSegment.titleForSegment(at: 1)
                 
                 let dict = ["firstName":self.firstName.text!,
                             "lastName":self.lastName.text!,
@@ -186,13 +195,13 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
                 
                 // Saving With Completion
                 ref.child("users").child(user!.uid).setValue(dict, withCompletionBlock: { (error, ref) in
-                    if error != nil {
+                    if error == nil {
+                        // open next view controller
+                        self.callAddViewController()
+                    }else{
                         print(error!.localizedDescription)
                     }
                 })
-                
-                // open next view controller
-                self.callAddViewController()
             }
         }
         else{
@@ -260,8 +269,8 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
             alert(message: "OOPs, Seems like Passwords are not equals")
             return false
         }
-        return true
         
+        return true
     }
     
     
@@ -322,7 +331,5 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
         self.scrollview.isScrollEnabled = false
     }
     
+    
 }
-
-
-

@@ -36,25 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         self.activityIndicatorView?.center = (self.window?.rootViewController?.view.center)!
             
         
-        // Check if the user is logged in
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                // open HomeViewController Storyboard
-                if (self.activityIndicatorView?.isAnimating)!{
-                    self.activityIndicatorView?.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                }
-                
-                self.openHomeView()
-            }
-            else{
-                // open WelcomeView Controller Storyboard
-                self.openWelcomeVC()
-            }
-        }
-        
         // TODO: Check for the logged in User and fetch Data from Server no need to login Every time
-        
         return true
     }
 

@@ -28,6 +28,7 @@
 		1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */; };
 		1312A2ED1F3B2BF3005320AC /* DictionaryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */; };
 		1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312A2EE1F3B4A44005320AC /* StudentUniInfoViewController.swift */; };
+		1320FAB51F6438B60009A830 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320FAB41F6438B60009A830 /* InitialVC.swift */; };
 		1324C8211F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C8201F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift */; };
 		1324C8231F3E188E004DC9E6 /* StudentProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C8221F3E188E004DC9E6 /* StudentProgramViewController.swift */; };
 		1324C8271F3E37D1004DC9E6 /* StudentSubjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C8261F3E37D1004DC9E6 /* StudentSubjectListViewController.swift */; };
@@ -100,6 +101,7 @@
 		1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterStudentViewController.swift; sourceTree = "<group>"; };
 		1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryUtil.swift; sourceTree = "<group>"; };
 		1312A2EE1F3B4A44005320AC /* StudentUniInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentUniInfoViewController.swift; sourceTree = "<group>"; };
+		1320FAB41F6438B60009A830 /* InitialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
 		1324C8201F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentProgramsTableViewCell.swift; sourceTree = "<group>"; };
 		1324C8221F3E188E004DC9E6 /* StudentProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentProgramViewController.swift; sourceTree = "<group>"; };
 		1324C8261F3E37D1004DC9E6 /* StudentSubjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentSubjectListViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				1324C8261F3E37D1004DC9E6 /* StudentSubjectListViewController.swift */,
 				1324C8281F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift */,
 				13B5FA8C1F5DB1BF00069425 /* CommonFilterViewController.swift */,
+				1320FAB41F6438B60009A830 /* InitialVC.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */,
 				1324C8211F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift in Sources */,
 				1324C8291F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift in Sources */,
+				1320FAB51F6438B60009A830 /* InitialVC.swift in Sources */,
 				13BE8A7A1F433B220079B3F8 /* UniversitiesModel.swift in Sources */,
 				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
 				1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */,

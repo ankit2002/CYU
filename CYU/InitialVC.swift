@@ -1,19 +1,42 @@
 //
-//  AddCertificateVC.swift
+//  InitialVC.swift
 //  CYU
 //
-//  Created by Ankit Mishra on 06/07/17.
+//  Created by Ankit Mishra on 09/09/17.
 //  Copyright © 2017 Ankit Mishra. All rights reserved.
 //
 
 import UIKit
+import FirebaseAuth
 
-class AddCertificateVC: UIViewController {
+class InitialVC: UIViewController {
 
+    var handle: AuthStateDidChangeListenerHandle?
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // Check if the user is logged in
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.openHomeView()
+            }
+            else{
+                // open WelcomeView Controller Storyboard
+                self.openWelcomeVC()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool){
+        
+        if let handle = handle {
+            Auth.auth().removeStateDidChangeListener(handle)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +46,7 @@ class AddCertificateVC: UIViewController {
     
     
     //MARK: Open home View
-    @IBAction func openStudentHomeVC(_ sender: Any) {
+    func openHomeView() {
         
         // create viewController code...
         
@@ -45,6 +68,17 @@ class AddCertificateVC: UIViewController {
         
         appDelegate.window?.backgroundColor = UIColor.white
         appDelegate.window?.rootViewController = slideMenuController
+        appDelegate.window?.makeKeyAndVisible()
+    }
+
+    
+    //MARK: Open Welcome Controller
+    private func openWelcomeVC(){
+        
+        let appDelegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let storyboard = UIStoryboard (name: "Main", bundle: nil)
+        let initialVC = storyboard.instantiateViewController(withIdentifier: "staringNavigationVC")
+        appDelegate.window?.rootViewController = initialVC
         appDelegate.window?.makeKeyAndVisible()
     }
 
