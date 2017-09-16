@@ -85,6 +85,7 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
                     
                     guard let eachEntry = s.value as? Dictionary<String,String> else {
                         print( " no data")
+                        self.stopSpinnerAndResumeInteraction(check: false)
                         return
                     }
                     // Parse Data and save Department

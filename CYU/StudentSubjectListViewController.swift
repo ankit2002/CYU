@@ -104,6 +104,7 @@ class StudentSubjectListViewController: UIViewController,UITableViewDelegate,UIT
                     
                     guard let eachEntry = s.value as? Dictionary<String,String> else {
                         print( " no data")
+                        self.stopSpinnerAndResumeInteraction(check: false)
                         return
                     }
                     

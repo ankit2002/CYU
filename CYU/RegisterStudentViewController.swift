@@ -166,7 +166,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
             
             activityIndicator.startAnimating()
             
-//            emailAddress.text = "abc@g.co"
+//            emailAddress.text = "cab@g.co"
 //            password.text = "abcabc"
             
             Auth.auth().createUser(withEmail: emailAddress.text! , password: password.text!) { (user, error) in
@@ -181,8 +181,9 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
                 var ref: DatabaseReference!
                 ref = Database.database().reference()
                 
-//                let gendertitle = self.genderSegment.titleForSegment(at: self.genderSegment.selectedSegmentIndex)
-                let gendertitle = self.genderSegment.titleForSegment(at: 1)
+                let gendertitle = self.genderSegment.titleForSegment(at: self.genderSegment.selectedSegmentIndex)
+                // dummy data
+//                let gendertitle = self.genderSegment.titleForSegment(at: 1)
                 
                 let dict = ["firstName":self.firstName.text!,
                             "lastName":self.lastName.text!,

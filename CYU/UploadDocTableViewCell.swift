@@ -13,7 +13,8 @@ class UploadDocTableViewCell: UITableViewCell {
     // identifier "UploadDocCell" data for table view cell to be used further
 
     @IBOutlet weak var courseName: UILabel!
-    @IBOutlet weak var courseImagePreview: UIImageView!
+    @IBOutlet weak var completionDate: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

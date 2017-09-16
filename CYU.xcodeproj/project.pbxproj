@@ -26,6 +26,8 @@
 		1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5271F12341800FE8C3E /* CustomRoundButton.swift */; };
 		1300C52A1F12369000FE8C3E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1300C5291F12369000FE8C3E /* .gitignore */; };
 		1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */; };
+		1307BD331F6C76F800F04F7E /* UIColorExten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307BD321F6C76F800F04F7E /* UIColorExten.swift */; };
+		1307BD351F6C7C4100F04F7E /* UIImageSizeExten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307BD341F6C7C4100F04F7E /* UIImageSizeExten.swift */; };
 		1312A2ED1F3B2BF3005320AC /* DictionaryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */; };
 		1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312A2EE1F3B4A44005320AC /* StudentUniInfoViewController.swift */; };
 		1320FAB51F6438B60009A830 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320FAB41F6438B60009A830 /* InitialVC.swift */; };
@@ -99,6 +101,8 @@
 		1300C5271F12341800FE8C3E /* CustomRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoundButton.swift; sourceTree = "<group>"; };
 		1300C5291F12369000FE8C3E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1300C52B1F123B0000FE8C3E /* RegisterStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterStudentViewController.swift; sourceTree = "<group>"; };
+		1307BD321F6C76F800F04F7E /* UIColorExten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExten.swift; sourceTree = "<group>"; };
+		1307BD341F6C7C4100F04F7E /* UIImageSizeExten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageSizeExten.swift; sourceTree = "<group>"; };
 		1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryUtil.swift; sourceTree = "<group>"; };
 		1312A2EE1F3B4A44005320AC /* StudentUniInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentUniInfoViewController.swift; sourceTree = "<group>"; };
 		1320FAB41F6438B60009A830 /* InitialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */,
+				1307BD321F6C76F800F04F7E /* UIColorExten.swift */,
+				1307BD341F6C7C4100F04F7E /* UIImageSizeExten.swift */,
 			);
 			name = "Util Classes";
 			sourceTree = "<group>";
@@ -641,9 +647,11 @@
 			files = (
 				134AA8D71F1E641200242301 /* FilterTableViewCell.swift in Sources */,
 				1324C8231F3E188E004DC9E6 /* StudentProgramViewController.swift in Sources */,
+				1307BD331F6C76F800F04F7E /* UIColorExten.swift in Sources */,
 				1300C51E1F1233C100FE8C3E /* UIViewController.swift in Sources */,
 				1300C5111F1233A600FE8C3E /* ShowDocumentViewController.swift in Sources */,
 				1300C5171F1233A600FE8C3E /* WelcomeViewController.swift in Sources */,
+				1307BD351F6C7C4100F04F7E /* UIImageSizeExten.swift in Sources */,
 				1300C5181F1233A600FE8C3E /* WishlistViewController.swift in Sources */,
 				1300C5151F1233A600FE8C3E /* StudentHomeViewController.swift in Sources */,
 				1300C50F1F1233A600FE8C3E /* OfferedUniversityViewController.swift in Sources */,
