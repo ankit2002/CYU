@@ -41,6 +41,7 @@
 		134AA8D91F1E672F00242301 /* CountryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 134AA8D81F1E672F00242301 /* CountryList.plist */; };
 		134AA8DB1F1E6A3D00242301 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AA8DA1F1E6A3D00242301 /* CountryViewController.swift */; };
 		13569CA71F1A84F600DC059C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13569CA61F1A84F600DC059C /* FilterViewController.swift */; };
+		1361DE4D1F724B52003192F3 /* WishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1361DE4C1F724B52003192F3 /* WishListTableViewCell.swift */; };
 		1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */; };
 		1373F3711F17ED050037D928 /* SearchExpansionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */; };
 		1373F3741F17EE480037D928 /* FilterList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1373F3731F17EE480037D928 /* FilterList.plist */; };
@@ -116,6 +117,7 @@
 		134AA8D81F1E672F00242301 /* CountryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountryList.plist; sourceTree = "<group>"; };
 		134AA8DA1F1E6A3D00242301 /* CountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
 		13569CA61F1A84F600DC059C /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		1361DE4C1F724B52003192F3 /* WishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewCell.swift; sourceTree = "<group>"; };
 		1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchExpansionTableViewCell.swift; sourceTree = "<group>"; };
 		1373F3731F17EE480037D928 /* FilterList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FilterList.plist; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				1324C8201F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift */,
 				1324C82A1F3E38C6004DC9E6 /* StudentSubjectListTableViewCell.swift */,
 				132B2D4E1F3F239900B7312A /* StudentSubjectInfoTableViewCell.swift */,
+				1361DE4C1F724B52003192F3 /* WishListTableViewCell.swift */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				1324C8211F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift in Sources */,
 				1324C8291F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift in Sources */,
 				1320FAB51F6438B60009A830 /* InitialVC.swift in Sources */,
+				1361DE4D1F724B52003192F3 /* WishListTableViewCell.swift in Sources */,
 				13BE8A7A1F433B220079B3F8 /* UniversitiesModel.swift in Sources */,
 				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
 				1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */,

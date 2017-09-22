@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, ApplyFilterProtocol {
+class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,ApplyFilterProtocol {
     
     //MARK: Define Variables
     var cellDescriptores : Array<Any>!
@@ -27,6 +27,11 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     let filteredUniNameListGroup = DispatchGroup()
     var filteredUniList = [Universities]()
     var uniFromSearchFilter = Array<Dictionary<String,String>>()
+    
+    
+    // Wishlist WOrk
+    var wishListArray = [String]()
+    var wishListRef: DatabaseReference!
     
     
     
@@ -49,6 +54,9 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavigationBarItem()
+        
+        // fetch wishlist Data
+        fetchWIshlistDataFromFirebase()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,8 +64,11 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        wishListRef.removeAllObservers()
+    }
     
-    // to disable interactions
+    //MARK: to disable interactions
     func startSpinner() {
 
         DispatchQueue.main.async {
@@ -67,7 +78,41 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     
-    //MARK: Fetch data from Firebase
+    //MARK: Fetch wishlist data from Firebase
+    func fetchWIshlistDataFromFirebase(){
+
+        startSpinner()
+        self.wishListArray.removeAll()
+        
+        let userID = Auth.auth().currentUser!.uid
+        
+        // Data Query
+        wishListRef = Database.database().reference().child("UniWishList").child(userID).child("UniList")
+
+        wishListRef.observeSingleEvent(of: .value, with: { snapshots in
+
+            if  snapshots.exists() {
+                guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {
+                    self.stopSpinnerAndResumeInteraction(check: false)
+                    return
+                }
+                
+                for s in snap{
+                    self.wishListArray.append(s.value as! String)
+                }
+                
+                self.stopSpinnerAndResumeInteraction(check: true)
+            }
+            else{
+                // No data in Firebase
+                print("No Wishlist Data Found in Firebase")
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        })
+    }
+    
+    
+    //MARK: Fetch initial data from Firebase
     private func fetchInitialDataFromFirebaseDatabase(){
         
         startSpinner()
@@ -173,6 +218,15 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         cell.rowName.text = self.listofUniversities[indexPath.row].uni_Name
         cell.rowName.numberOfLines = 0
         cell.wishlistbutton.tag = indexPath.row
+        
+        // wishlist selection work
+        if wishListArray.contains(cell.rowName.text!){
+            cell.wishlistbutton.setImage(UIImage (named: "wishlist_icon_selected"), for: .normal)
+        }
+        else{
+            cell.wishlistbutton.setImage(UIImage (named: "wishlist_icon"), for: .normal)
+        }
+        
         cell.wishlistbutton.addTarget(self, action: #selector(self.wishlistBtnPressed(sender:)), for: .touchUpInside)
         
         return cell
@@ -416,10 +470,72 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         }
     }
  
-    // TODO:
-    // MARK: Wishlist button click
+    
+    // MARK: Wishlist button click -- appending data in wishlist
     func wishlistBtnPressed(sender:UIButton)  {
-        print(sender.tag)
-    }
+        
+        let compareString = listofUniversities[sender.tag].uni_Name!
+        let indexpath = IndexPath (row: sender.tag, section: 0)
 
+//        if wishListArray.contains(where: {$0 == compareString}){
+        if wishListArray.contains(compareString){
+            // Uni is in Array remove it
+            if let getIndex = wishListArray.index(of: compareString){
+                wishListArray.remove(at: getIndex)
+            }
+            
+            // chnage accessory type
+            if let cell = tableView.cellForRow(at: indexpath) as? SearchTableViewCell{
+                cell.wishlistbutton.setImage(UIImage (named: "wishlist_icon"), for: .normal)
+            }
+            
+        }else{
+            // Uni in not in array add it
+            if let cell = tableView.cellForRow(at: indexpath) as? SearchTableViewCell{
+                cell.wishlistbutton.setImage(UIImage (named: "wishlist_icon_selected"), for: .normal)
+            }
+            wishListArray.append(listofUniversities[sender.tag].uni_Name)
+        }
+        
+        // save seleted data in Firebase
+        saveSelectedUNIWishListInFirebase(uniWishList: wishListArray)
+    }
+    
+    
+    // Mark: Save selected Filter in Firebase under user
+    func saveSelectedUNIWishListInFirebase(uniWishList:Array<String>){
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        // get user ID
+        let userID = Auth.auth().currentUser!.uid
+        
+        // To check whether to save or to set nil
+//        let childUpdates = ["/users/\(userID)/UniWishList": uniWishList]
+        let childUpdates = ["/UniWishList/\(userID)/UniList":uniWishList]
+        ref.updateChildValues(childUpdates)
+    }
+    
+
+    
+    // MARK: - Table View Datasource
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    }
+    
+    
 }
