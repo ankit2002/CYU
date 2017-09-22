@@ -145,7 +145,7 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
     
     
     //MARK: Datepicker Date Formetor work
-    func datePickerValueChanged(sender:UIDatePicker) {
+    @objc func datePickerValueChanged(sender:UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none

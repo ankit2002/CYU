@@ -65,7 +65,8 @@ class StudentSubjectListViewController: UIViewController,UITableViewDelegate,UIT
             
             let program_Name = String(programName.characters.filter{!charsToRemove.contains($0)}).replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
             
-            let mergename = String("\(department_Name)_\(program_Name)")!
+            let mergename = department_Name + "_" + program_Name
+//            let mergename = String("\(department_Name)_\(program_Name)")!
             
             return (uni_Name,mergename)
         }

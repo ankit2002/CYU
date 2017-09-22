@@ -17,6 +17,8 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var wishListCourseArray = [String]()
     var wishListUniArray = [String]()
     var wishListSection = [String]()
+    var uniNameToPass : String!
+    var courseName : String!
     var wishListRef: DatabaseReference!
     
     //MARK: IB Properties
@@ -74,16 +76,17 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 }
                 
                 for s in snap{
+                    print(s.key)
                     self.wishListSection.append(s.key)
                     
-                    if s.key == "UniList"{
-                        for innervalue in s.children.allObjects as! [DataSnapshot] {
+                if s.key == "UniList"{
+                    for innervalue in s.children.allObjects as! [DataSnapshot] {
                             self.wishListUniArray.append(innervalue.value as! String )
                         }
                     }
-                    else if s.key == "BranchList"{
+                    else if s.key == "CourseList"{
                         for innervalue in s.children.allObjects as! [DataSnapshot] {
-                            self.wishListUniArray.append(innervalue.value as! String )
+                            self.wishListCourseArray.append(innervalue.value as! String )
                         }
                     }
                 }
@@ -126,7 +129,6 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "wishlistIdentifier") as! WishListTableViewCell
-//        cell.uniName.text = wishListArray[indexPath.row]
         switch indexPath.section {
         case 0:
             cell.uniName.text = self.wishListUniArray[indexPath.row]
@@ -156,23 +158,58 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // nothing for now
         
+        switch indexPath.section {
+        case 0:
+            uniNameToPass = self.wishListUniArray[indexPath.row]
+            performSegue(withIdentifier: "WishListUniDescription", sender: self)
+        case 1:
+            uniNameToPass = self.wishListCourseArray[indexPath.row]
+            courseName = self.wishListCourseArray[indexPath.row]
+            performSegue(withIdentifier: "WishListCourseDescription", sender: self)
+        default:
+            print("nothing")
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.wishListSection[section]
+        
+        switch section {
+        case 0:
+            return "Universities"
+        case 1:
+            return "Branches"
+        default:
+            return "null"
+        }
     }
     
     
-    /*
+    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        switch segue.identifier! {
+            
+        case "WishListUniDescription":
+            let viewController = segue.destination as! StudentUniInfoViewController
+            viewController.uniName = uniNameToPass
+            
+        case "WishListCourseDescription":
+            let viewController = segue.destination as! StudentSubjectListViewController
+            viewController.uniName = uniNameToPass
+            viewController.departmentName = ""
+            viewController.programName = ""
+            
+        default:
+            print("Default Data")
+        }
+        
+        
+        
     }
-    */
+ 
 
 }

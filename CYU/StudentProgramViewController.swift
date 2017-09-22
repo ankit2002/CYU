@@ -18,17 +18,19 @@ struct ProgramStruct {
 
 class StudentProgramViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
-    //MARK: Variables
+    //MARK:- Variables
     var listofPrograms = Array<ProgramStruct>()
     var uniName : String!
     var departmentName : String!
     var programNameForNextView : String!
+    var wishListArray = [String]()
     
     
-    //MARK: IB variables
+    //MARK:- IB variables
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    //MARK:- System Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -42,12 +44,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     
-    func checkStringValue(){
-        
-    }
-    
-    
-    // String Cleansing
+    //MARK:- String Cleansing
     func getStringForQuery() -> (uniName : String?, deptName : String?) {
     
         if !uniName.isEmpty && !departmentName.isEmpty {
@@ -68,7 +65,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     
     
     
-    //MARK: Fetch data from Firebase
+    //MARK:- Fetch data from Firebase
     private func fetchDataFromFirebaseDatabase(){
         
         // Get String
@@ -109,7 +106,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     
     
     
-    // to disable interactions
+    //MARK:- Start & Stop Spinner and disable interactions
     func startSpinner(){
         
         DispatchQueue.main.async {
@@ -143,7 +140,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     
-    //MARK: Table View Datasource and Delegate
+    //MARK:- Table View Datasource and Delegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StudentProgramsTableViewCell") as? StudentProgramsTableViewCell else {
@@ -151,6 +148,19 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         }
         
         cell.programName.text = self.listofPrograms[indexPath.row].programName
+        cell.wishListBtn.tag = indexPath.row
+        
+        // wishlist selection work
+        if wishListArray.contains(cell.programName.text!){
+            cell.wishListBtn.setImage(UIImage (named: "wishlist_icon_selected"), for: .normal)
+        }
+        else{
+            cell.wishListBtn.setImage(UIImage (named: "wishlist_icon"), for: .normal)
+        }
+        
+        cell.wishListBtn.addTarget(self, action: #selector(self.wishlistBtnPressed(sender:)), for: .touchUpInside)
+        
+        
         return cell
     }
     
@@ -167,6 +177,50 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     
+    // MARK: Wishlist button click -- appending data in wishlist
+    @objc func wishlistBtnPressed(sender:UIButton)  {
+        
+        let compareString = listofPrograms[sender.tag].programName!
+        let indexpath = IndexPath (row: sender.tag, section: 0)
+        
+        if wishListArray.contains(compareString){
+            // Uni is in Array remove it
+            if let getIndex = wishListArray.index(of: compareString){
+                wishListArray.remove(at: getIndex)
+            }
+            
+            // chnage accessory type
+            if let cell = tableView.cellForRow(at: indexpath) as? StudentProgramsTableViewCell{
+                cell.wishListBtn.setImage(UIImage (named: "wishlist_icon"), for: .normal)
+            }
+            
+        }else{
+            // Uni in not in array add it
+            if let cell = tableView.cellForRow(at: indexpath) as? StudentProgramsTableViewCell{
+                cell.wishListBtn.setImage(UIImage (named: "wishlist_icon_selected"), for: .normal)
+            }
+            wishListArray.append(listofPrograms[sender.tag].programName!)
+        }
+        
+        // save seleted data in Firebase
+        saveSelectedUNIWishListInFirebase(courseWishList: wishListArray)
+    }
+    
+    
+    // MARK:-  Save selected Filter in Firebase under user
+    func saveSelectedUNIWishListInFirebase(courseWishList:Array<String>){
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        // get user ID
+        let userID = Auth.auth().currentUser!.uid
+        
+        // To check whether to save or to set nil
+        //        let childUpdates = ["/users/\(userID)/UniWishList": uniWishList]
+        let childUpdates = ["/UniWishList/\(userID)/CourseList":courseWishList]
+        ref.updateChildValues(childUpdates)
+    }
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -183,6 +237,4 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         }
         
     }
-    
-
 }

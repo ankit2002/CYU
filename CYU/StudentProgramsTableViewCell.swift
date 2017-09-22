@@ -11,6 +11,8 @@ import UIKit
 class StudentProgramsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var programName: UILabel!
+    @IBOutlet weak var wishListBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

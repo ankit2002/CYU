@@ -472,7 +472,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
  
     
     // MARK: Wishlist button click -- appending data in wishlist
-    func wishlistBtnPressed(sender:UIButton)  {
+    @objc func wishlistBtnPressed(sender:UIButton)  {
         
         let compareString = listofUniversities[sender.tag].uni_Name!
         let indexpath = IndexPath (row: sender.tag, section: 0)

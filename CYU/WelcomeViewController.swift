@@ -58,7 +58,8 @@ class WelcomeViewController: UIViewController {
             
             let uni_Name = uniName[i].replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
             let course_Desp=courseDesp[randomint].replacingOccurrences(of: " ", with: "_", options: .literal, range: nil)
-            let keyName = String("\(uni_Name)+\(course_Desp)")!
+//            let keyName = String("\(uni_Name)+\(course_Desp)")!
+            let keyName = uni_Name + course_Desp
             // update Root child name
             ref.child(keyName).setValue(dict)
         }
