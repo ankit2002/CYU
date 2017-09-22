@@ -20,6 +20,7 @@ class StudentSubjectInfoViewController: UIViewController {//,UITableViewDataSour
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "Subject Details"
         subjectName.text = subjectDetails.subjectName
         subjectProf.text = subjectDetails.subject_workload
     }

@@ -41,6 +41,7 @@ class StudentSubjectListViewController: UIViewController,UITableViewDelegate,UIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Subjects"
         // Do any additional setup after loading the view.
         fetchDataFromFirebaseDatabase()
     }

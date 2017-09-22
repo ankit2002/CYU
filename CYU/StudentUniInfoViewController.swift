@@ -31,6 +31,7 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        self.title = "Departments"
         setUniName()
         fetchDataFromFirebaseDatabase()
     }
