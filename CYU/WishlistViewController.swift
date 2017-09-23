@@ -14,11 +14,12 @@ import FirebaseDatabase
 class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     //MARK: Local Properties
-    var wishListCourseArray = [String]()
+    var wishListCourseArray = [Dictionary<String,String>]()
     var wishListUniArray = [String]()
     var wishListSection = [String]()
     var uniNameToPass : String!
-    var courseName : String!
+    var programName : String!
+    var departmentName : String!
     var wishListRef: DatabaseReference!
     
     //MARK: IB Properties
@@ -76,7 +77,6 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 }
                 
                 for s in snap{
-                    print(s.key)
                     self.wishListSection.append(s.key)
                     
                 if s.key == "UniList"{
@@ -86,7 +86,13 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
                     }
                     else if s.key == "CourseList"{
                         for innervalue in s.children.allObjects as! [DataSnapshot] {
-                            self.wishListCourseArray.append(innervalue.value as! String )
+                            
+                            var dict = Dictionary<String,String>()
+                            for (k,v) in innervalue.value as! Dictionary<String,String>{
+                                dict[k] = v
+                            }
+                            
+                            self.wishListCourseArray.append(dict)
                         }
                     }
                 }
@@ -133,7 +139,7 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
         case 0:
             cell.uniName.text = self.wishListUniArray[indexPath.row]
         case 1:
-            cell.uniName.text = self.wishListCourseArray[indexPath.row]
+            cell.uniName.text = self.wishListCourseArray[indexPath.row]["Program Name"]
         default:
             cell.uniName.text = "something"
         }
@@ -164,8 +170,9 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
             uniNameToPass = self.wishListUniArray[indexPath.row]
             performSegue(withIdentifier: "WishListUniDescription", sender: self)
         case 1:
-            uniNameToPass = self.wishListCourseArray[indexPath.row]
-            courseName = self.wishListCourseArray[indexPath.row]
+            uniNameToPass = self.wishListCourseArray[indexPath.row]["Uni Name"]
+            programName = self.wishListCourseArray[indexPath.row]["Program Name"]
+            departmentName = self.wishListCourseArray[indexPath.row]["Department Name"]
             performSegue(withIdentifier: "WishListCourseDescription", sender: self)
         default:
             print("nothing")
@@ -200,8 +207,8 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
         case "WishListCourseDescription":
             let viewController = segue.destination as! StudentSubjectListViewController
             viewController.uniName = uniNameToPass
-            viewController.departmentName = ""
-            viewController.programName = ""
+            viewController.departmentName = departmentName
+            viewController.programName = programName
             
         default:
             print("Default Data")

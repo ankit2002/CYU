@@ -23,7 +23,8 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     var uniName : String!
     var departmentName : String!
     var programNameForNextView : String!
-    var wishListArray = [String]()
+    var wishListArray = [Dictionary<String,String>]()
+    var wishListRef: DatabaseReference!
     
     
     //MARK:- IB variables
@@ -41,6 +42,14 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchWIshlistDataFromFirebase()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        wishListRef.removeAllObservers()
     }
     
     
@@ -88,7 +97,6 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
                         self.stopSpinnerAndResumeInteraction(check: false)
                         return
                     }
-                    
                     // Parse Data and save Department
                     self.listofPrograms.append(self.parseDataToStruct(eachEntry: eachEntry))
                 }
@@ -99,6 +107,49 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
                 // No data in Firebase
                 print("No Data Found in Firebase")
                 
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        })
+    }
+    
+    
+    //MARK:- Fetch wishlist data from Firebase
+    func fetchWIshlistDataFromFirebase(){
+        
+        self.wishListArray.removeAll()
+        startSpinner()
+
+        let userID = Auth.auth().currentUser!.uid
+        
+        // Data Query
+        wishListRef = Database.database().reference().child("UniWishList").child(userID)
+        
+        wishListRef.observeSingleEvent(of: .value, with: { snapshots in
+            
+            if  snapshots.exists() {
+                guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {
+                    self.stopSpinnerAndResumeInteraction(check: false)
+                    return
+                }
+                
+                for s in snap{
+                    if s.key == "CourseList"{
+                        for innervalue in s.children.allObjects as! [DataSnapshot] {
+                            
+                            var dict = Dictionary<String,String>()
+                            for (k,v) in innervalue.value as! Dictionary<String,String>{
+                                dict[k] = v
+                            }
+                            self.wishListArray.append(dict)
+                        }
+                    }
+                }
+                
+                self.stopSpinnerAndResumeInteraction(check: true)
+            }
+            else{
+                // No data in Firebase
+                print("No Wishlist Data Found in Firebase")
                 self.stopSpinnerAndResumeInteraction(check: false)
             }
         })
@@ -151,7 +202,11 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         cell.wishListBtn.tag = indexPath.row
         
         // wishlist selection work
-        if wishListArray.contains(cell.programName.text!){
+        let check = wishListArray.first { element in
+            return element["Program Name"] == cell.programName.text! && element["Uni Name"] == uniName && element["Department Name"] == departmentName
+        }
+        
+        if check != nil {
             cell.wishListBtn.setImage(UIImage (named: "wishlist_icon_selected"), for: .normal)
         }
         else{
@@ -159,7 +214,6 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         }
         
         cell.wishListBtn.addTarget(self, action: #selector(self.wishlistBtnPressed(sender:)), for: .touchUpInside)
-        
         
         return cell
     }
@@ -183,12 +237,19 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         let compareString = listofPrograms[sender.tag].programName!
         let indexpath = IndexPath (row: sender.tag, section: 0)
         
-        if wishListArray.contains(compareString){
-            // Uni is in Array remove it
-            if let getIndex = wishListArray.index(of: compareString){
-                wishListArray.remove(at: getIndex)
+        
+        
+        let check = wishListArray.first { element in
+            return element["Program Name"] == compareString && element["Uni Name"] == uniName && element["Department Name"] == departmentName
             }
+        
+        let ind = wishListArray.index { element -> Bool in
+            return element["Program Name"] == compareString && element["Uni Name"] == uniName && element["Department Name"] == departmentName
+        }
+
+        if check != nil {
             
+            wishListArray.remove(at: ind!)
             // chnage accessory type
             if let cell = tableView.cellForRow(at: indexpath) as? StudentProgramsTableViewCell{
                 cell.wishListBtn.setImage(UIImage (named: "wishlist_icon"), for: .normal)
@@ -199,16 +260,18 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
             if let cell = tableView.cellForRow(at: indexpath) as? StudentProgramsTableViewCell{
                 cell.wishListBtn.setImage(UIImage (named: "wishlist_icon_selected"), for: .normal)
             }
-            wishListArray.append(listofPrograms[sender.tag].programName!)
+            
+            let dict = ["Program Name":listofPrograms[sender.tag].programName!,"Uni Name":uniName!,"Department Name":departmentName!]
+            wishListArray.append(dict)
         }
         
         // save seleted data in Firebase
-        saveSelectedUNIWishListInFirebase(courseWishList: wishListArray)
+        saveSelectedBranchWishListInFirebase(courseWishList: wishListArray)
     }
     
     
     // MARK:-  Save selected Filter in Firebase under user
-    func saveSelectedUNIWishListInFirebase(courseWishList:Array<String>){
+    func saveSelectedBranchWishListInFirebase(courseWishList:Array<Dictionary<String,String>>){
         
         var ref: DatabaseReference!
         ref = Database.database().reference()
@@ -217,7 +280,6 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         let userID = Auth.auth().currentUser!.uid
         
         // To check whether to save or to set nil
-        //        let childUpdates = ["/users/\(userID)/UniWishList": uniWishList]
         let childUpdates = ["/UniWishList/\(userID)/CourseList":courseWishList]
         ref.updateChildValues(childUpdates)
     }
