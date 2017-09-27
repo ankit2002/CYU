@@ -19,6 +19,8 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
     var imagePicker = UIImagePickerController()
     var imageData : NSData?
     var dataForUpdation : CourseStructure!
+    var isVerifiable = false
+    var keyForUpdation = String()
     
     //MARK: Outlet Properties
     @IBOutlet weak var courseNameTxt: UITextField!
@@ -28,12 +30,20 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
     @IBOutlet weak var addDegreeBtn: CustomRoundButton!
     @IBOutlet weak var addDegreeImageBtn: CustomRoundButton!
     @IBOutlet weak var doneBarItemBtn: UIBarButtonItem!
+    @IBOutlet weak var askForVerificationBtn: CustomRoundButton!
+    @IBOutlet weak var uniNameTxt: UITextField!
+    @IBOutlet weak var verifiableSwitch: UISwitch!    
+    @IBOutlet weak var placeHolderLbl: UILabel!
     
     
     //MARK: System Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.askForVerificationBtn.isEnabled = false
+        askForVerificationBtn.backgroundColor = UIColor.lightGray
+        placeHolderLbl.isHidden = false
+        
         
         // set Delegate
         imagePicker.delegate = self
@@ -69,13 +79,28 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
                     //Set Data
                     courseNameTxt.text = data.courseName
                     completionDateTxt.text = data.courseCompletionDate
+                    uniNameTxt.text = data.uniName
+                    
+                    if data.isVerifiable{
+                        verifiableSwitch.isOn = true
+                        self.askForVerificationBtn.isEnabled = true
+                        self.askForVerificationBtn.backgroundColor = UIColor (red: 44, green: 166, blue: 255)
+                    }
+                    else{
+                        verifiableSwitch.isOn = false
+                        askForVerificationBtn.isEnabled = false
+                        askForVerificationBtn.backgroundColor = UIColor.lightGray
+                    }
+
                     addDegreeBtn.setTitle("Update Data", for: .normal)
                     
-                    if data.isVerified {
+                    
+                    if data.isVerified || data.AskForVerification {
                         disableAllInputFields()
                     }
                     else{
                         addDegreeBtn.backgroundColor = UIColor (red: 44, green: 166, blue: 255)
+                        
                     }
                 }
             }
@@ -91,38 +116,22 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
         
         courseNameTxt.isEnabled = false
         completionDateTxt.isEnabled = false
+        uniNameTxt.isEnabled = false
         addDegreeImageBtn.isEnabled = false
         addDegreeImageBtn.backgroundColor = UIColor.lightGray
         addDegreeBtn.isEnabled = false
         addDegreeBtn.backgroundColor = UIColor.lightGray
+        askForVerificationBtn.isEnabled = false
+        askForVerificationBtn.backgroundColor = UIColor.lightGray
+        verifiableSwitch.isEnabled = false
     }
     
     //MARK: Method to Fetch Image from Server
     func fetchImageFromFirebaseStorage(urlString:String){
         
-        print(urlString)
-        
         startSpinnerAndStopInteraction()
         
         let storageRef = Storage.storage().reference(forURL: urlString)
-        
-        
-        // Download the data, assuming a max size of 1MB (you can change this as necessary)
-//        storageRef.getData(maxSize: (1*1024*1024), completion: { (data, error) in
-//            
-//            
-//            if error != nil{
-//                print(error?.localizedDescription as Any)
-//            }
-//            else{
-//                let pic = UIImage (data: data!)
-//                self.degreeImagePreview.image = pic
-//            }
-//            
-//            self.stopSpinnerAndResumeInteraction()
-//        })
-        
-        
         
         storageRef.downloadURL(completion: { (url, error) in
             
@@ -133,14 +142,12 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
                 let data = NSData(contentsOf: url!)
                 let image = UIImage(data: data! as Data)
                 self.degreeImagePreview.image = image
+                self.imageData = data
+                self.placeHolderLbl.isHidden = true
             }
             
             self.stopSpinnerAndResumeInteraction()
-            
         })
-        
-        
-        
     }
     
     
@@ -167,26 +174,51 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
     }
     
     
-    //MARK: Save Data in Firebase
+    //MARK:- Save Data in User AccountFirebase
     func saveDataInFirebase(imageUrl:String, userID:String) {
         
         var ref: DatabaseReference!
-        ref = Database.database().reference()
+        ref = Database.database().reference().child("/users/\(userID)/DegreeImage/")
         
-        let dict = ["Course Name": courseNameTxt.text!, "Completion Year": completionDateTxt.text!,"isVerified":false,"AskForVerification":false, "degreeImageURL":imageUrl] as [String:Any]
-        let childUpdates = ["/users/\(userID)/DegreeImage/\(courseNameTxt.text!)": dict]
-        ref.updateChildValues(childUpdates)
-        ref.updateChildValues(childUpdates) { (error, dbref) in
-            if error == nil{
-                self.clearAllFields()
-                self.alert(message: "Data Saved Successfully")
-            }
-            else{
+        let dict = ["Course Name": courseNameTxt.text!, "Completion Year": completionDateTxt.text!,"isVerified":false,"AskForVerification":false, "degreeImageURL":imageUrl,"University Name":uniNameTxt.text!, "isVerifiable":isVerifiable] as [String:Any]
+        
+        
+//        let updateData = ["\(key)":dict,"/StudentVerificationFromUni/\(key)":dict]
+
+        ref.childByAutoId().setValue(dict, withCompletionBlock: { (error, ref) in
+            if error == nil {
+                if self.isVerifiable{
+                    self.saveInUniVerificationList(data:dict,iD:userID,keyData:ref.key)
+                }
+                else{
+                    self.clearAllFields()
+                    self.alert(message: "Data Saved Successfully")
+                }
+            }else{
                 print(error?.localizedDescription as Any)
                 self.alert(message: "OOps Something went wrong")
             }
             self.stopSpinnerAndResumeInteraction()
-        }
+        })
+    }
+    
+    //MARK:- Save Data in Uni Account Firebase
+    func saveInUniVerificationList(data:[String:Any],iD:String,keyData:String){
+
+        var ref: DatabaseReference!
+        ref = Database.database().reference().child("StudentVerificationFromUni/\(keyData)")
+        
+        let dict = ["Course Name": data["Course Name"] as! String , "Completion Year": data["Completion Year"] as! String,"isVerified":data["isVerified"] as! Bool,"AskForVerification":data["AskForVerification"] as! Bool, "degreeImageURL":data["degreeImageURL"] as! String,"University Name":data["University Name"] as! String, "StudentID":iD ] as [String:Any]
+        
+        ref.setValue(dict, withCompletionBlock: { (error, ref) in
+            if error == nil {
+                self.clearAllFields()
+                self.alert(message: "Data Saved Successfully")
+            }else{
+                print(error?.localizedDescription as Any)
+                self.alert(message: "OOps Something went wrong")
+            }
+        })
     }
     
     //MARK: Method to upload Image in Firebase Storage using data
@@ -227,8 +259,12 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
         
         courseNameTxt.text = nil
         completionDateTxt.text = nil
-        degreeImagePreview.image = UIImage (named: "degreeimage")
-        
+        uniNameTxt.text = nil
+        degreeImagePreview.image = nil
+        placeHolderLbl.isHidden = false
+        verifiableSwitch.isOn = false
+        askForVerificationBtn.isEnabled = false
+        askForVerificationBtn.backgroundColor = UIColor.lightGray
     }
     
     
@@ -236,14 +272,14 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
     func validateData() -> Bool {
         
         if (courseNameTxt.text?.isEmpty)! {
-            alert(message: "Have you Entered Degree Name", title: "OOPs")
             courseNameTxt.becomeFirstResponder()
+            alert(message: "Have you Entered Degree Name", title: "OOPs")
             return false
         }
         
         if (completionDateTxt.text?.isEmpty)! {
-            alert(message: "Have you Entered Degree Completion Date?", title: "OOPs")
             completionDateTxt.becomeFirstResponder()
+            alert(message: "Have you Entered Degree Completion Date?", title: "OOPs")
             return false
         }
         
@@ -252,6 +288,11 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
             return false
         }
         
+        if (uniNameTxt.text?.isEmpty)!{
+            alert(message: "Have you Entered UniVersity Name", title: "OOPs")
+            courseNameTxt.becomeFirstResponder()
+            return false
+        }
         
         return true
     }
@@ -315,7 +356,7 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
     }
     
     
-    //MARK: UIImagePickerDelegate Methods
+    //MARK:- UIImagePickerDelegate Methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -325,6 +366,9 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
         imageData = UIImagePNGRepresentation(chosenImage)! as NSData
         
         degreeImagePreview.image = chosenImage
+        placeHolderLbl.isHidden = true
+        
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -405,6 +449,62 @@ class AddCertificateVC: UIViewController,UITextFieldDelegate,UIImagePickerContro
         }
     }
 
+    //MARK:- Is 
+    @IBAction func switchChanged(_ sender: Any) {
+        
+        if verifiableSwitch.isOn{
+            
+            isVerifiable = true
+        }
+        else{
+            
+            isVerifiable = false
+        }
+        
+    }
+    
+    
+    // MARK: Ask for Verification of Degree
+    @IBAction func askForVerificationBtnPressed(_ sender: Any) {
+        showAlert(message: "Are you sure for verification? This Cannot be Revert!!")
+    }
+    
+    private func showAlert(message:String, title:String = "") {
+        let alertController = UIAlertController (title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction (title: "OK", style: .default, handler: { action in
+            self.updateDataForVerificationInFirebase()
+        })
+        let cancelAction = UIAlertAction (title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // Update Field and ask for verification
+    func updateDataForVerificationInFirebase()  {
+        disableAllInputFields()
+        
+        let userID = Auth.auth().currentUser!.uid
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        let key = keyForUpdation
+        print(key)
+
+        let dict = ["Course Name": dataForUpdation.courseName, "Completion Year": dataForUpdation.courseCompletionDate,"isVerified":dataForUpdation.isVerified,"AskForVerification":true ,  "degreeImageURL":dataForUpdation.courseUrl,"University Name":dataForUpdation.uniName, "isVerifiable":dataForUpdation.isVerifiable] as [String:Any]
+        
+        let unidict = ["Course Name": dataForUpdation.courseName, "Completion Year": dataForUpdation.courseCompletionDate,"isVerified":dataForUpdation.isVerified,"AskForVerification":true ,  "degreeImageURL":dataForUpdation.courseUrl,"University Name":dataForUpdation.uniName, "StudentID":userID] as [String:Any]
+        
+        let updateData = ["/users/\(userID)/DegreeImage/\(key)":dict,"/StudentVerificationFromUni/\(key)":unidict]
+        ref.updateChildValues(updateData) { (error, inref) in
+            if error == nil {
+                self.alert(message: "Request Send For Verification")
+            }
+            else{
+                print(error?.localizedDescription as Any)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

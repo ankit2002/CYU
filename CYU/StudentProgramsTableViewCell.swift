@@ -12,6 +12,7 @@ class StudentProgramsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var programName: UILabel!
     @IBOutlet weak var wishListBtn: UIButton!
+    @IBOutlet weak var uniApplyBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

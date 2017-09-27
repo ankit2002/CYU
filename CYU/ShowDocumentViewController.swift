@@ -17,6 +17,8 @@ struct CourseStructure {
     let courseUrl : String!
     let AskForVerification : Bool!
     let isVerified : Bool!
+    let uniName : String!
+    let isVerifiable : Bool!
 }
 
 
@@ -24,6 +26,7 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
 
     // variables
     var listofCourses = [CourseStructure]()
+    var keyArray = [String]()
     var ref: DatabaseReference!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -58,6 +61,7 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
     func fetchDataFromFirebase(){
         
         self.listofCourses.removeAll()
+        self.keyArray.removeAll()
         
         // start the spinnerxx
         self.startSpinnerAndStopInteraction()
@@ -68,16 +72,7 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
         
         ref = Database.database().reference().child("users").child(userID).child("DegreeImage")
         
-        var check = false
-        
-        ref.observe(.childAdded, with: { snapshots in
-            
-            
-            // BY pass to supress warning
-            if !check{
-                check = true
-                self.stopSpinnerAndResumeInteraction(check: false)
-            }
+        ref.observe(.value, with: { snapshots in
             
             if  snapshots.exists() {
                 guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {
@@ -85,15 +80,24 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
                     return
                 }
                 
-                var dict = Dictionary<String,Any>()
                 for s in snap{
-                    dict[s.key] = s.value
-               }
+                    
+                    let key = s.key
+                    
+                    guard let eachEntry = s.value as? Dictionary<String,Any> else {
+                        print( " no data")
+                        self.stopSpinnerAndResumeInteraction(check: false)
+                        return
+                    }
                 
-                // Parse Data and save Department
-                self.listofCourses.append(self.parseDataToStruct(eachEntry: dict))
+                    self.keyArray.append(key)
+                    // Parse Data and save Department
+                    self.listofCourses.append(self.parseDataToStruct(eachEntry: eachEntry))
+                }
+                
                 
                 self.stopSpinnerAndResumeInteraction(check: true)
+                
             }
             else{
                 // No data in Firebase
@@ -108,8 +112,7 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
     //MARK: Parse data as Struct
     func parseDataToStruct(eachEntry : Dictionary<String,Any>) -> CourseStructure {
 
-        let data = CourseStructure (courseName: eachEntry[keyPath: "Course Name"] as? String, courseCompletionDate: eachEntry[keyPath: "Completion Year"] as? String, courseUrl: eachEntry[keyPath: "degreeImageURL"] as? String, AskForVerification: eachEntry[keyPath: "AskForVerification"] as? Bool, isVerified: eachEntry[keyPath: "isVerified"] as? Bool)
-        
+        let data = CourseStructure (courseName: eachEntry[keyPath: "Course Name"] as? String, courseCompletionDate: eachEntry[keyPath: "Completion Year"] as? String, courseUrl: eachEntry[keyPath: "degreeImageURL"] as? String, AskForVerification: eachEntry[keyPath: "AskForVerification"] as? Bool, isVerified: eachEntry[keyPath: "isVerified"] as? Bool, uniName: eachEntry[keyPath: "University Name"] as? String, isVerifiable: eachEntry[keyPath: "isVerifiable"] as? Bool)
         return data
     }
     
@@ -130,10 +133,8 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
             if check{
                 self.tableView.reloadData()
             }
-            else{
-                UIApplication.shared.endIgnoringInteractionEvents()
-                self.activityIndicator.stopAnimating()
-            }
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
             self.activityIndicator.stopAnimating()
         }
     }
@@ -156,24 +157,23 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let keyToPass = keyArray[indexPath.row]
         let dataToPass = listofCourses[indexPath.row]
-        openAddViewController(data: dataToPass)
+        openAddViewController(data: dataToPass,keyForUpdation:keyToPass)
     }
     
     
     // MARK: Open Add FOr updation of data
-    func openAddViewController(data:CourseStructure){
+    func openAddViewController(data:CourseStructure,keyForUpdation:String){
         
         let addViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddCertificateVC") as! AddCertificateVC
         addViewController.dataForUpdation = data
+        addViewController.keyForUpdation = keyForUpdation
         self.navigationController?.pushViewController(addViewController, animated: true)
     }
     
     
-    
-    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

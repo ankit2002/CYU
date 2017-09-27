@@ -20,11 +20,16 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
 
     //MARK:- Variables
     var listofPrograms = Array<ProgramStruct>()
+    // data to pass
     var uniName : String!
     var departmentName : String!
     var programNameForNextView : String!
+    // wishList
     var wishListArray = [Dictionary<String,String>]()
     var wishListRef: DatabaseReference!
+    // uni apply
+    var uniAppliedArray = [Dictionary<String,String>]()
+    
     
     
     //MARK:- IB variables
@@ -46,6 +51,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     
     override func viewWillAppear(_ animated: Bool) {
         fetchWIshlistDataFromFirebase()
+        fetchUniAppliedDataDataFromFirebase()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,6 +83,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     //MARK:- Fetch data from Firebase
     private func fetchDataFromFirebaseDatabase(){
         
+        self.listofPrograms.removeAll()
         // Get String
         let queryString = getStringForQuery()
         
@@ -155,6 +162,14 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         })
     }
     
+    //MARK:- Fetch Uni Appled Data from Firebase
+    func fetchUniAppliedDataDataFromFirebase(){
+        
+        
+        
+        
+    }
+    
     
     
     //MARK:- Start & Stop Spinner and disable interactions
@@ -200,6 +215,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         
         cell.programName.text = self.listofPrograms[indexPath.row].programName
         cell.wishListBtn.tag = indexPath.row
+        cell.uniApplyBtn.tag = indexPath.row
         
         // wishlist selection work
         let check = wishListArray.first { element in
@@ -214,6 +230,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         }
         
         cell.wishListBtn.addTarget(self, action: #selector(self.wishlistBtnPressed(sender:)), for: .touchUpInside)
+        cell.uniApplyBtn.addTarget(self, action: #selector(self.uniApplyBtnPressed(sender:)), for: .touchUpInside)
         
         return cell
     }
@@ -236,9 +253,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         
         let compareString = listofPrograms[sender.tag].programName!
         let indexpath = IndexPath (row: sender.tag, section: 0)
-        
-        
-        
+
         let check = wishListArray.first { element in
             return element["Program Name"] == compareString && element["Uni Name"] == uniName && element["Department Name"] == departmentName
             }
@@ -283,6 +298,75 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         let childUpdates = ["/UniWishList/\(userID)/CourseList":courseWishList]
         ref.updateChildValues(childUpdates)
     }
+    
+    //MARK:- Uni Apply Btn Clicked
+    @objc func uniApplyBtnPressed(sender:UIButton) {
+        
+        alert(message: "You can only apply for 5 Universities", title: "Info")
+
+        let compareString = listofPrograms[sender.tag].programName!
+        let indexpath = IndexPath (row: sender.tag, section: 0)
+        
+        let check = uniAppliedArray.first { element in
+            return element["Program Name"] == compareString && element["Uni Name"] == uniName && element["Department Name"] == departmentName
+        }
+        
+//        let ind = uniAppliedArray.index { element -> Bool in
+//            return element["Program Name"] == compareString && element["Uni Name"] == uniName && element["Department Name"] == departmentName
+//        }
+        
+        if check != nil {
+            // Dont Change anyThing
+            // already applied
+            // lock for 10 days
+            if let cell = tableView.cellForRow(at: indexpath) as? StudentProgramsTableViewCell{
+                cell.wishListBtn.setImage(UIImage (named: "applied"), for: .normal)
+            }
+            
+        }else{
+            
+            // Data not in array
+            // check for verified Doc
+            // and then apply
+            
+            if dataVerified(){
+                // save Data
+                saveSelectedUniApplyInFirebase(courseName:compareString)
+            }
+            else{
+                alert(message: "Please Upload and ask for Verification of your Data", title: "Info")
+            }
+        }
+    }
+    
+    
+    // Method to check if user data is Verified or not
+    func dataVerified()->Bool{
+     return false
+    }
+    
+    // Method to save data in Firebase
+    func saveSelectedUniApplyInFirebase(courseName:String){
+        
+        // DB Structure
+     //StudentApplication
+        // uniName
+            // department Name
+                // student ID
+                // Program Name
+                // admissionApproved
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        // get user ID
+        let userID = Auth.auth().currentUser!.uid
+        
+        let dict :[String:Any] = ["studentID":userID,"ProgramName":courseName,"AdmissionApproved":false]
+        
+        ref.child("/StudentApplication/\(uniName)/\(departmentName)").childByAutoId().setValue(dict)
+    }
+    
     
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
