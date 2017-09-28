@@ -170,8 +170,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
 //            password.text = "abcabc"
             
             Auth.auth().createUser(withEmail: emailAddress.text! , password: password.text!) { (user, error) in
-                
-                self.activityIndicator.stopAnimating()
+
                 if let error = error{
                     self.alert(message: error.localizedDescription)
                     return
@@ -202,6 +201,7 @@ class RegisterStudentViewController: UIViewController,UITextFieldDelegate {
                     }else{
                         print(error!.localizedDescription)
                     }
+                    self.activityIndicator.stopAnimating()
                 })
             }
         }

@@ -26,9 +26,9 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     var programNameForNextView : String!
     // wishList
     var wishListArray = [Dictionary<String,String>]()
-    var wishListRef: DatabaseReference!
+    
     // uni apply
-    var uniAppliedArray = [Dictionary<String,String>]()
+    var uniAppliedArray = [Dictionary<String,Any>]()
     
     
     
@@ -41,7 +41,6 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.title = "Branches"
-        fetchDataFromFirebaseDatabase()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,12 +49,13 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        fetchDataFromFirebaseDatabase()
         fetchWIshlistDataFromFirebase()
         fetchUniAppliedDataDataFromFirebase()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        wishListRef.removeAllObservers()
+        
     }
     
     
@@ -129,7 +129,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         let userID = Auth.auth().currentUser!.uid
         
         // Data Query
-        wishListRef = Database.database().reference().child("UniWishList").child(userID)
+        let wishListRef = Database.database().reference().child("UniWishList").child(userID)
         
         wishListRef.observeSingleEvent(of: .value, with: { snapshots in
             
@@ -165,6 +165,42 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     //MARK:- Fetch Uni Appled Data from Firebase
     func fetchUniAppliedDataDataFromFirebase(){
         
+        uniAppliedArray.removeAll()
+        
+        startSpinner()
+        
+        let userID = Auth.auth().currentUser!.uid
+        
+        // Data Query
+        let wishListRef = Database.database().reference().child("StudentApplication").child(userID)
+        
+        wishListRef.observeSingleEvent(of: .value, with: { snapshots in
+           
+            if  snapshots.exists() {
+                guard let snap = snapshots.children.allObjects as? [DataSnapshot] else {
+                    self.stopSpinnerAndResumeInteraction(check: false)
+                    return
+                }
+                
+                for s in snap{
+                    
+                    guard let eachEntry = s.value as? Dictionary<String,Any> else {
+                        print( " no data")
+                        self.stopSpinnerAndResumeInteraction(check: false)
+                        return
+                    }
+                    
+                    self.uniAppliedArray.append(eachEntry)
+                }
+                
+                self.stopSpinnerAndResumeInteraction(check: true)
+            }
+            else{
+                // No data in Firebase
+                print("No Application Data Found in Firebase")
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        })
         
         
         
@@ -219,7 +255,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         
         // wishlist selection work
         let check = wishListArray.first { element in
-            return element["Program Name"] == cell.programName.text! && element["Uni Name"] == uniName && element["Department Name"] == departmentName
+            return element["Program Name"] == self.listofPrograms[indexPath.row].programName && element["Uni Name"] == uniName && element["Department Name"] == departmentName
         }
         
         if check != nil {
@@ -228,6 +264,24 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         else{
             cell.wishListBtn.setImage(UIImage (named: "wishlist_icon"), for: .normal)
         }
+        
+        let applyCheck = uniAppliedArray.first { element in
+            return element["ProgramName"] as? String == cell.programName.text && element["UniversityName"] as! String == uniName && element["DepartmentName"] as! String == departmentName
+        }
+        
+        if applyCheck != nil {
+            
+            if (applyCheck!["AdmissionApproved"] as? Bool)!{
+                cell.uniApplyBtn.setImage(UIImage (named: "admission_approved"), for: .normal)
+            }
+            else{
+                cell.uniApplyBtn.setImage(UIImage (named: "applied"), for: .normal)
+            }
+        }
+        else{
+            cell.uniApplyBtn.setImage(UIImage (named: "not_applied"), for: .normal)
+        }
+        
         
         cell.wishListBtn.addTarget(self, action: #selector(self.wishlistBtnPressed(sender:)), for: .touchUpInside)
         cell.uniApplyBtn.addTarget(self, action: #selector(self.uniApplyBtnPressed(sender:)), for: .touchUpInside)
@@ -300,72 +354,156 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     //MARK:- Uni Apply Btn Clicked
-    @objc func uniApplyBtnPressed(sender:UIButton) {
-        
-        alert(message: "You can only apply for 5 Universities", title: "Info")
-
+    fileprivate func applyInUniversity(_ sender: UIButton) {
+        /*
         let compareString = listofPrograms[sender.tag].programName!
         let indexpath = IndexPath (row: sender.tag, section: 0)
         
         let check = uniAppliedArray.first { element in
-            return element["Program Name"] == compareString && element["Uni Name"] == uniName && element["Department Name"] == departmentName
+            return element["ProgramName"] as! String == compareString && element["UniversityName"] as! String == uniName && element["DepartmentName"] as! String == departmentName
         }
-        
-//        let ind = uniAppliedArray.index { element -> Bool in
-//            return element["Program Name"] == compareString && element["Uni Name"] == uniName && element["Department Name"] == departmentName
-//        }
         
         if check != nil {
             // Dont Change anyThing
             // already applied
             // lock for 10 days
+            alert(message: "You already applied for this course!! Please wait for the responce", title: "Info")
             if let cell = tableView.cellForRow(at: indexpath) as? StudentProgramsTableViewCell{
                 cell.wishListBtn.setImage(UIImage (named: "applied"), for: .normal)
             }
-            
         }else{
             
             // Data not in array
             // check for verified Doc
             // and then apply
             
-            if dataVerified(){
+            if checkDataVerfiedFromFirebase(){
+                
+                
+                
                 // save Data
-                saveSelectedUniApplyInFirebase(courseName:compareString)
+                saveAppliedUniForStudentInFirebase(courseName:compareString)
             }
             else{
-                alert(message: "Please Upload and ask for Verification of your Data", title: "Info")
+                alert(message: "Please Upload your Data And ask for Verification of It", title: "Info")
             }
         }
+        */
+        
+        if checkDataVerfiedFromFirebase(){
+            // save Data
+            saveAppliedUniForStudentInFirebase(courseName:listofPrograms[sender.tag].programName!)
+        }
+        else{
+            alert(message: "Please Upload your Data And ask for Verification of It", title: "Info")
+        }
+        
+        
+    }
+    
+    // MARK:- Apply Btn Pressed
+    @objc func uniApplyBtnPressed(sender:UIButton) {
+        
+        let applyCheck = uniAppliedArray.first { element in
+            return element["ProgramName"] as? String == listofPrograms[sender.tag].programName && element["UniversityName"] as! String == uniName && element["DepartmentName"] as! String == departmentName
+        }
+        
+        if applyCheck != nil {
+            
+            if (applyCheck!["AdmissionApproved"] as? Bool)!{
+                alert(message: "Your admission is approved")
+            }
+            else{
+                alert(message: "You have already applied to this course!!! Please wait for the responce")
+            }
+        }
+        else{
+            showAlert(message: "You can only apply for 5 Universities!! Do you want to Proceed?", sender: sender)
+        }
+        
     }
     
     
-    // Method to check if user data is Verified or not
-    func dataVerified()->Bool{
-     return false
+    //MARK:- Method to check if user data is Verified or not
+    func checkDataVerfiedFromFirebase()->Bool{
+     return true
     }
     
     // Method to save data in Firebase
-    func saveSelectedUniApplyInFirebase(courseName:String){
+    func saveAppliedUniForStudentInFirebase(courseName:String){
         
         // DB Structure
      //StudentApplication
-        // uniName
-            // department Name
+        // userid
+            //  childByAutoID
+                // uniName
+                // department Name
                 // student ID
                 // Program Name
                 // admissionApproved
         
+        startSpinner()
+        
         var ref: DatabaseReference!
-        ref = Database.database().reference()
+        ref = Database.database().reference().child("StudentApplication")
         
         // get user ID
         let userID = Auth.auth().currentUser!.uid
         
-        let dict :[String:Any] = ["studentID":userID,"ProgramName":courseName,"AdmissionApproved":false]
+        let dict :[String:Any] = ["StudentID":userID,"ProgramName":courseName,"AdmissionApproved":false, "DepartmentName":departmentName,"UniversityName":uniName]
         
-        ref.child("/StudentApplication/\(uniName)/\(departmentName)").childByAutoId().setValue(dict)
+        ref.child("/\(userID)").childByAutoId().setValue(dict) { (error, inref) in
+            if error == nil{
+                self.saveAppliedUniForUniversitiesInFirebase(key:inref.key,data:dict)
+            }
+            else{
+                print(error?.localizedDescription as Any)
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        }
     }
+    
+    // Method to save data in Firebase
+    func saveAppliedUniForUniversitiesInFirebase(key:String,data:Dictionary<String,Any>){
+        
+        // StudentApplicationINUniversities
+            // UniName
+                //childByAutoId
+                    // uniName
+                    // department Name
+                    // student ID
+                    // Program Name
+                    // admissionApproved
+        
+        var ref: DatabaseReference!
+        ref = Database.database().reference().child("StudentApplicationINUniversities").child("\(data["UniversityName"] as! String)")
+        
+        ref.child("/\(key)").setValue(data) { (error, inref) in
+            if error == nil{
+                self.alert(message: "Applied Successfully")
+                self.uniAppliedArray.append(data)
+                self.stopSpinnerAndResumeInteraction(check: true)
+            }
+            else{
+                print(error?.localizedDescription as Any)
+                self.stopSpinnerAndResumeInteraction(check: false)
+            }
+        }
+    }
+
+    
+    //MARK:- Alert Message
+    private func showAlert(message:String, title:String = "", sender:UIButton) {
+        let alertController = UIAlertController (title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction (title: "OK", style: .default, handler: { action in
+            self.applyInUniversity(sender)
+        })
+        let cancelAction = UIAlertAction (title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     
     // MARK: - Navigation
