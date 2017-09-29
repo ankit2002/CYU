@@ -47,7 +47,7 @@ class ShowAppliedUniversitiesViewController: UIViewController,UITableViewDelegat
         
         listOfUni.removeAll()
         
-//        startSpinner()
+        startSpinner()
         
         let userID = Auth.auth().currentUser!.uid
         
@@ -121,8 +121,7 @@ class ShowAppliedUniversitiesViewController: UIViewController,UITableViewDelegat
         else{
             cell.imagePreview.image = UIImage (named: "applied")
         }
-        
-        
+
         return cell
         
     }
@@ -130,6 +129,7 @@ class ShowAppliedUniversitiesViewController: UIViewController,UITableViewDelegat
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfUni.count
     }
+    
     
     
 

@@ -208,7 +208,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     
     
 
-    //MARK: Table View Datasource and Delegate
+    //MARK:- Table View Datasource and Delegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell") as? SearchTableViewCell else {
