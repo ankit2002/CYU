@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1300C50F1F1233A600FE8C3E /* OfferedUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5051F1233A600FE8C3E /* OfferedUniversityViewController.swift */; };
 		1300C5101F1233A600FE8C3E /* SearchUniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5061F1233A600FE8C3E /* SearchUniversityViewController.swift */; };
 		1300C5111F1233A600FE8C3E /* ShowDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5071F1233A600FE8C3E /* ShowDocumentViewController.swift */; };
 		1300C5121F1233A600FE8C3E /* SignInOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1300C5081F1233A600FE8C3E /* SignInOptionViewController.swift */; };
@@ -30,6 +29,8 @@
 		1307BD351F6C7C4100F04F7E /* UIImageSizeExten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307BD341F6C7C4100F04F7E /* UIImageSizeExten.swift */; };
 		1312A2ED1F3B2BF3005320AC /* DictionaryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */; };
 		1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1312A2EE1F3B4A44005320AC /* StudentUniInfoViewController.swift */; };
+		131418A41F7D64A3006F60BB /* ShowAppliedUniversitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131418A31F7D64A3006F60BB /* ShowAppliedUniversitiesViewController.swift */; };
+		131418A61F7D64EE006F60BB /* ShowAppliedUniTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131418A51F7D64EE006F60BB /* ShowAppliedUniTableViewCell.swift */; };
 		1320FAB51F6438B60009A830 /* InitialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1320FAB41F6438B60009A830 /* InitialVC.swift */; };
 		1324C8211F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C8201F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift */; };
 		1324C8231F3E188E004DC9E6 /* StudentProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C8221F3E188E004DC9E6 /* StudentProgramViewController.swift */; };
@@ -83,7 +84,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1300C5051F1233A600FE8C3E /* OfferedUniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfferedUniversityViewController.swift; sourceTree = "<group>"; };
 		1300C5061F1233A600FE8C3E /* SearchUniversityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUniversityViewController.swift; sourceTree = "<group>"; };
 		1300C5071F1233A600FE8C3E /* ShowDocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDocumentViewController.swift; sourceTree = "<group>"; };
 		1300C5081F1233A600FE8C3E /* SignInOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInOptionViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +106,8 @@
 		1307BD341F6C7C4100F04F7E /* UIImageSizeExten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageSizeExten.swift; sourceTree = "<group>"; };
 		1312A2EC1F3B2BF3005320AC /* DictionaryUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryUtil.swift; sourceTree = "<group>"; };
 		1312A2EE1F3B4A44005320AC /* StudentUniInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentUniInfoViewController.swift; sourceTree = "<group>"; };
+		131418A31F7D64A3006F60BB /* ShowAppliedUniversitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAppliedUniversitiesViewController.swift; sourceTree = "<group>"; };
+		131418A51F7D64EE006F60BB /* ShowAppliedUniTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAppliedUniTableViewCell.swift; sourceTree = "<group>"; };
 		1320FAB41F6438B60009A830 /* InitialVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialVC.swift; sourceTree = "<group>"; };
 		1324C8201F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentProgramsTableViewCell.swift; sourceTree = "<group>"; };
 		1324C8221F3E188E004DC9E6 /* StudentProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentProgramViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +188,6 @@
 			children = (
 				1300C51F1F1233E000FE8C3E /* AddCertificateVC.swift */,
 				1300C5201F1233E000FE8C3E /* LoginViewController.swift */,
-				1300C5051F1233A600FE8C3E /* OfferedUniversityViewController.swift */,
 				1300C5061F1233A600FE8C3E /* SearchUniversityViewController.swift */,
 				1300C5071F1233A600FE8C3E /* ShowDocumentViewController.swift */,
 				1300C5081F1233A600FE8C3E /* SignInOptionViewController.swift */,
@@ -205,6 +206,7 @@
 				1324C8281F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift */,
 				13B5FA8C1F5DB1BF00069425 /* CommonFilterViewController.swift */,
 				1320FAB41F6438B60009A830 /* InitialVC.swift */,
+				131418A31F7D64A3006F60BB /* ShowAppliedUniversitiesViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -221,6 +223,7 @@
 				1324C82A1F3E38C6004DC9E6 /* StudentSubjectListTableViewCell.swift */,
 				132B2D4E1F3F239900B7312A /* StudentSubjectInfoTableViewCell.swift */,
 				1361DE4C1F724B52003192F3 /* WishListTableViewCell.swift */,
+				131418A51F7D64EE006F60BB /* ShowAppliedUniTableViewCell.swift */,
 			);
 			name = "Custom Cells";
 			sourceTree = "<group>";
@@ -660,7 +663,6 @@
 				1307BD351F6C7C4100F04F7E /* UIImageSizeExten.swift in Sources */,
 				1300C5181F1233A600FE8C3E /* WishlistViewController.swift in Sources */,
 				1300C5151F1233A600FE8C3E /* StudentHomeViewController.swift in Sources */,
-				1300C50F1F1233A600FE8C3E /* OfferedUniversityViewController.swift in Sources */,
 				1300C5161F1233A600FE8C3E /* UpdateProfileViewController.swift in Sources */,
 				1300C51C1F1233C100FE8C3E /* String.swift in Sources */,
 				134AA8DB1F1E6A3D00242301 /* CountryViewController.swift in Sources */,
@@ -670,6 +672,7 @@
 				1300C5101F1233A600FE8C3E /* SearchUniversityViewController.swift in Sources */,
 				1300C51D1F1233C100FE8C3E /* UIColor.swift in Sources */,
 				1312A2ED1F3B2BF3005320AC /* DictionaryUtil.swift in Sources */,
+				131418A61F7D64EE006F60BB /* ShowAppliedUniTableViewCell.swift in Sources */,
 				1300C5131F1233A600FE8C3E /* SlideMenuController.swift in Sources */,
 				1300C5221F1233E000FE8C3E /* LoginViewController.swift in Sources */,
 				1324C8271F3E37D1004DC9E6 /* StudentSubjectListViewController.swift in Sources */,
@@ -686,6 +689,7 @@
 				1361DE4D1F724B52003192F3 /* WishListTableViewCell.swift in Sources */,
 				13BE8A7A1F433B220079B3F8 /* UniversitiesModel.swift in Sources */,
 				1300C5141F1233A600FE8C3E /* SlideMenuLeftViewController.swift in Sources */,
+				131418A41F7D64A3006F60BB /* ShowAppliedUniversitiesViewController.swift in Sources */,
 				1312A2EF1F3B4A44005320AC /* StudentUniInfoViewController.swift in Sources */,
 				138CF57F1F3DF17700B07315 /* DepartmentTableViewCell.swift in Sources */,
 				1300C52C1F123B0000FE8C3E /* RegisterStudentViewController.swift in Sources */,

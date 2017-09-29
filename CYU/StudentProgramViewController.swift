@@ -201,9 +201,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
                 self.stopSpinnerAndResumeInteraction(check: false)
             }
         })
-        
-        
-        
+
     }
     
     
@@ -432,16 +430,6 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     // Method to save data in Firebase
     func saveAppliedUniForStudentInFirebase(courseName:String){
         
-        // DB Structure
-     //StudentApplication
-        // userid
-            //  childByAutoID
-                // uniName
-                // department Name
-                // student ID
-                // Program Name
-                // admissionApproved
-        
         startSpinner()
         
         var ref: DatabaseReference!
@@ -465,15 +453,6 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
     
     // Method to save data in Firebase
     func saveAppliedUniForUniversitiesInFirebase(key:String,data:Dictionary<String,Any>){
-        
-        // StudentApplicationINUniversities
-            // UniName
-                //childByAutoId
-                    // uniName
-                    // department Name
-                    // student ID
-                    // Program Name
-                    // admissionApproved
         
         var ref: DatabaseReference!
         ref = Database.database().reference().child("StudentApplicationINUniversities").child("\(data["UniversityName"] as! String)")

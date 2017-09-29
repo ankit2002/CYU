@@ -30,9 +30,9 @@ class SlideMenuLeftViewController: UIViewController,UITableViewDelegate,UITableV
     var showDocumentViewController : UIViewController!
     var wishlistViewController : UIViewController!
     var updateProfileViewController : UIViewController!
-    var offeredUniversityViewController : UIViewController!
+    var showAppliedUniversitiesViewController : UIViewController!
     
-    var slideMenuOptions = ["Home","Search University","Show Documents","Wishlist","Update Profile","Offered University","Logout"]
+    var slideMenuOptions = ["Home","Search University","Show Documents","Wishlist","Update Profile","Applied University","Logout"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +52,9 @@ class SlideMenuLeftViewController: UIViewController,UITableViewDelegate,UITableV
         let updateProfileViewController = storyboard.instantiateViewController(withIdentifier: "UpdateProfileViewController") as! UpdateProfileViewController
         self.updateProfileViewController = UINavigationController(rootViewController: updateProfileViewController)
         
-        let offeredUniversityViewController = storyboard.instantiateViewController(withIdentifier: "OfferedUniversityViewController") as! OfferedUniversityViewController
-        self.offeredUniversityViewController = UINavigationController(rootViewController: offeredUniversityViewController)
-        
+        let showAppliedUniversitiesViewController = storyboard.instantiateViewController(withIdentifier: "ShowAppliedUniversitiesViewController") as! ShowAppliedUniversitiesViewController
+        self.showAppliedUniversitiesViewController = UINavigationController(rootViewController: showAppliedUniversitiesViewController)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,7 +99,7 @@ class SlideMenuLeftViewController: UIViewController,UITableViewDelegate,UITableV
         case .update_profile:
             self.slideMenuController()?.changeMainViewController(self.updateProfileViewController, close: true)
         case .offered_universities:
-            self.slideMenuController()?.changeMainViewController(self.offeredUniversityViewController, close: true)
+            self.slideMenuController()?.changeMainViewController(self.showAppliedUniversitiesViewController, close: true)
         case .logout:
             self.logoutMethod()
             
