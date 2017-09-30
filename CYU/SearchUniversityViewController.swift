@@ -237,6 +237,7 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
         // fetching class name and performing segue
         uniNameToPass = self.listofUniversities[indexPath.row].uni_Name
         performSegue(withIdentifier: "StudentUniInfoSegue", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

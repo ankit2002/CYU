@@ -83,6 +83,7 @@ class SlideMenuLeftViewController: UIViewController,UITableViewDelegate,UITableV
         if let menu = LeftMenu(rawValue: indexPath.row){
                 self.changeViewController(menu)
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

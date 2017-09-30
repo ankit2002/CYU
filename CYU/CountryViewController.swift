@@ -245,6 +245,7 @@ class CountryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         else{
             doneBtn.isEnabled = false
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Save Data when done is pressed

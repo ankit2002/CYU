@@ -211,9 +211,6 @@ class CommonFilterViewController: UIViewController,UITableViewDataSource,UITable
             
         }
         
-        
-        
-        
         // WORK END
         
         // Enable and disable done btn
@@ -224,7 +221,7 @@ class CommonFilterViewController: UIViewController,UITableViewDataSource,UITable
             doneBtn.isEnabled = false
         }
         
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

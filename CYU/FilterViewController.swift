@@ -186,7 +186,7 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
         default:
             print("Default is called")
         }
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     

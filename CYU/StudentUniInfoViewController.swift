@@ -148,7 +148,7 @@ class StudentUniInfoViewController: UIViewController,UITableViewDelegate,UITable
         // SHow options provided by Department
         departmentName = self.listofUniDepartment[indexPath.row].departmentName
         performSegue(withIdentifier: "FacultyProgramInfo", sender: self)
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

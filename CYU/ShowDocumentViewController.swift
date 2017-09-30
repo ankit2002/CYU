@@ -160,6 +160,7 @@ class ShowDocumentViewController: UIViewController,UITableViewDataSource,UITable
         let keyToPass = keyArray[indexPath.row]
         let dataToPass = listofCourses[indexPath.row]
         openAddViewController(data: dataToPass,keyForUpdation:keyToPass)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

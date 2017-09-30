@@ -8,12 +8,21 @@
 
 import UIKit
 
-class UpdateProfileViewController: UIViewController {
+class UpdateProfileViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
+    // MARK:- Properties Variables
+    var candidateProfile = [Dictionary<String,String>]()
+    
+    // MARK:- Outlet Properties
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
+    // MARK:- System Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        self.title = "Candidate Profile"
     }
 
     
@@ -26,6 +35,21 @@ class UpdateProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK:- TableView Datasource and Delegates
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      //  return nil
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
+        
+    }
 
     /*
     // MARK: - Navigation

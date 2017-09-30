@@ -163,7 +163,7 @@ class StudentSubjectListViewController: UIViewController,UITableViewDelegate,UIT
         
         passSubjectDetails = listofSubjects[indexPath.row]
         performSegue(withIdentifier: "StudentSubjectInfo", sender: self)
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

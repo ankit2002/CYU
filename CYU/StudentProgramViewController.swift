@@ -292,7 +292,7 @@ class StudentProgramViewController: UIViewController,UITableViewDataSource,UITab
         // SHow options provided by Department
         programNameForNextView = self.listofPrograms[indexPath.row].programName
         performSegue(withIdentifier: "StudentSubjectList", sender: self)
-        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -177,6 +177,7 @@ class WishlistViewController: UIViewController,UITableViewDelegate,UITableViewDa
         default:
             print("nothing")
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
