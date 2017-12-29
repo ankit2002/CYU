@@ -10,6 +10,8 @@ import UIKit
 
 class GenderTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var genderLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +22,25 @@ class GenderTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    var item : ProfileModelItem? {
+        didSet{
+            guard let item = item as? ProfileViewModelGender else{
+                return
+            }
+            
+            self.genderLbl.text = item.gender
+            
+        }
+    }
+    
+    static var identifier : String{
+        return String (describing: self)
+    }
+    
+    static var nib : UINib {
+        return UINib (nibName: identifier, bundle: nil)
+    }
+    
     
 }

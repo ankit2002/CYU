@@ -91,6 +91,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UIApplication.shared.beginIgnoringInteractionEvents()
         
         if let error = error {
+            // start user interactions
+            self.activityIndicatorView?.stopAnimating()
+            UIApplication.shared.endIgnoringInteractionEvents()
+            self.activityIndicatorView?.removeFromSuperview()
+            
             print(error.localizedDescription)
             return
         }

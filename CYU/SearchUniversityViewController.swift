@@ -540,3 +540,23 @@ class SearchUniversityViewController: UIViewController,UITableViewDelegate,UITab
     
     
 }
+
+
+/*
+ func fetchSearchedUniFromDB(uniName:String) {
+ 
+ var ref : DatabaseReference!
+ ref = Database.database().reference().child("universities")
+ 
+ ref.queryOrdered(byChild: "basic_info/name").queryEqual(toValue:
+ uniName).observeSingleEvent(of: .value, with: { snapshot in
+ 
+ if snapshot.exists(){
+ guard let snap = snapshot.children.allObjects as?
+ [DataSnapshot] else {return}
+ // data found
+ }
+ else{
+ // no data found
+ 
+ */

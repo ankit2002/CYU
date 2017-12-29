@@ -37,6 +37,16 @@
 		1324C8271F3E37D1004DC9E6 /* StudentSubjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C8261F3E37D1004DC9E6 /* StudentSubjectListViewController.swift */; };
 		1324C8291F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C8281F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift */; };
 		1324C82B1F3E38C6004DC9E6 /* StudentSubjectListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1324C82A1F3E38C6004DC9E6 /* StudentSubjectListTableViewCell.swift */; };
+		132B0FF51F82B2D800936FFD /* NamePictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B0FF31F82B2D800936FFD /* NamePictureTableViewCell.swift */; };
+		132B0FF61F82B2D800936FFD /* NamePictureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132B0FF41F82B2D800936FFD /* NamePictureTableViewCell.xib */; };
+		132B0FFA1F82B6AF00936FFD /* EmailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B0FF81F82B6AF00936FFD /* EmailTableViewCell.swift */; };
+		132B0FFB1F82B6AF00936FFD /* EmailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132B0FF91F82B6AF00936FFD /* EmailTableViewCell.xib */; };
+		132B0FFE1F82B78A00936FFD /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B0FFC1F82B78A00936FFD /* AboutTableViewCell.swift */; };
+		132B0FFF1F82B78A00936FFD /* AboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132B0FFD1F82B78A00936FFD /* AboutTableViewCell.xib */; };
+		132B10021F82B80E00936FFD /* AttributesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B10001F82B80E00936FFD /* AttributesTableViewCell.swift */; };
+		132B10031F82B80E00936FFD /* AttributesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 132B10011F82B80E00936FFD /* AttributesTableViewCell.xib */; };
+		132B10051F82BB6400936FFD /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B10041F82BB6400936FFD /* ProfileModel.swift */; };
+		132B10071F82C03A00936FFD /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B10061F82C03A00936FFD /* ProfileViewModel.swift */; };
 		132B2D4F1F3F239900B7312A /* StudentSubjectInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 132B2D4E1F3F239900B7312A /* StudentSubjectInfoTableViewCell.swift */; };
 		134AA8D71F1E641200242301 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AA8D61F1E641200242301 /* FilterTableViewCell.swift */; };
 		134AA8D91F1E672F00242301 /* CountryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 134AA8D81F1E672F00242301 /* CountryList.plist */; };
@@ -55,6 +65,10 @@
 		13B5FA971F5DCF1B00069425 /* Courses List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B5FA961F5DCF1B00069425 /* Courses List.plist */; };
 		13BE8A7A1F433B220079B3F8 /* UniversitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE8A791F433B220079B3F8 /* UniversitiesModel.swift */; };
 		13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */; };
+		13D20C701FDAC0A40017E7E9 /* GenderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D20C6E1FDAC0A40017E7E9 /* GenderTableViewCell.swift */; };
+		13D20C711FDAC0A40017E7E9 /* GenderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D20C6F1FDAC0A40017E7E9 /* GenderTableViewCell.xib */; };
+		13D20C741FDAC0B30017E7E9 /* BirthdayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D20C721FDAC0B30017E7E9 /* BirthdayTableViewCell.swift */; };
+		13D20C751FDAC0B30017E7E9 /* BirthdayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D20C731FDAC0B30017E7E9 /* BirthdayTableViewCell.xib */; };
 		13F675F11F0BF4E900646EFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F675F01F0BF4E900646EFE /* AppDelegate.swift */; };
 		13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F41F0BF4E900646EFE /* Main.storyboard */; };
 		13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F675F71F0BF4E900646EFE /* Assets.xcassets */; };
@@ -114,6 +128,16 @@
 		1324C8261F3E37D1004DC9E6 /* StudentSubjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentSubjectListViewController.swift; sourceTree = "<group>"; };
 		1324C8281F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentSubjectInfoViewController.swift; sourceTree = "<group>"; };
 		1324C82A1F3E38C6004DC9E6 /* StudentSubjectListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentSubjectListTableViewCell.swift; sourceTree = "<group>"; };
+		132B0FF31F82B2D800936FFD /* NamePictureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamePictureTableViewCell.swift; sourceTree = "<group>"; };
+		132B0FF41F82B2D800936FFD /* NamePictureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NamePictureTableViewCell.xib; sourceTree = "<group>"; };
+		132B0FF81F82B6AF00936FFD /* EmailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTableViewCell.swift; sourceTree = "<group>"; };
+		132B0FF91F82B6AF00936FFD /* EmailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailTableViewCell.xib; sourceTree = "<group>"; };
+		132B0FFC1F82B78A00936FFD /* AboutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewCell.swift; sourceTree = "<group>"; };
+		132B0FFD1F82B78A00936FFD /* AboutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutTableViewCell.xib; sourceTree = "<group>"; };
+		132B10001F82B80E00936FFD /* AttributesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesTableViewCell.swift; sourceTree = "<group>"; };
+		132B10011F82B80E00936FFD /* AttributesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttributesTableViewCell.xib; sourceTree = "<group>"; };
+		132B10041F82BB6400936FFD /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		132B10061F82C03A00936FFD /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		132B2D4E1F3F239900B7312A /* StudentSubjectInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentSubjectInfoTableViewCell.swift; sourceTree = "<group>"; };
 		134AA8D61F1E641200242301 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		134AA8D81F1E672F00242301 /* CountryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CountryList.plist; sourceTree = "<group>"; };
@@ -132,6 +156,10 @@
 		13B5FA961F5DCF1B00069425 /* Courses List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Courses List.plist"; sourceTree = "<group>"; };
 		13BE8A791F433B220079B3F8 /* UniversitiesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversitiesModel.swift; sourceTree = "<group>"; };
 		13C8C8AA1F1A54890091C8B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		13D20C6E1FDAC0A40017E7E9 /* GenderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTableViewCell.swift; sourceTree = "<group>"; };
+		13D20C6F1FDAC0A40017E7E9 /* GenderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenderTableViewCell.xib; sourceTree = "<group>"; };
+		13D20C721FDAC0B30017E7E9 /* BirthdayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayTableViewCell.swift; sourceTree = "<group>"; };
+		13D20C731FDAC0B30017E7E9 /* BirthdayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BirthdayTableViewCell.xib; sourceTree = "<group>"; };
 		13F675ED1F0BF4E900646EFE /* CYU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CYU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F675F01F0BF4E900646EFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F675F51F0BF4E900646EFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -214,6 +242,7 @@
 		1300C5231F1233F400FE8C3E /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				132B0FF71F82B68400936FFD /* UserView */,
 				1300C5241F1233FE00FE8C3E /* UploadDocTableViewCell.swift */,
 				1373F36E1F17DE560037D928 /* SearchTableViewCell.swift */,
 				1373F3701F17ED050037D928 /* SearchExpansionTableViewCell.swift */,
@@ -246,6 +275,25 @@
 			name = "Util Classes";
 			sourceTree = "<group>";
 		};
+		132B0FF71F82B68400936FFD /* UserView */ = {
+			isa = PBXGroup;
+			children = (
+				132B0FF31F82B2D800936FFD /* NamePictureTableViewCell.swift */,
+				132B0FF41F82B2D800936FFD /* NamePictureTableViewCell.xib */,
+				132B0FF81F82B6AF00936FFD /* EmailTableViewCell.swift */,
+				132B0FF91F82B6AF00936FFD /* EmailTableViewCell.xib */,
+				132B0FFC1F82B78A00936FFD /* AboutTableViewCell.swift */,
+				132B0FFD1F82B78A00936FFD /* AboutTableViewCell.xib */,
+				132B10001F82B80E00936FFD /* AttributesTableViewCell.swift */,
+				132B10011F82B80E00936FFD /* AttributesTableViewCell.xib */,
+				13D20C6E1FDAC0A40017E7E9 /* GenderTableViewCell.swift */,
+				13D20C6F1FDAC0A40017E7E9 /* GenderTableViewCell.xib */,
+				13D20C721FDAC0B30017E7E9 /* BirthdayTableViewCell.swift */,
+				13D20C731FDAC0B30017E7E9 /* BirthdayTableViewCell.xib */,
+			);
+			name = UserView;
+			sourceTree = "<group>";
+		};
 		1373F3721F17EE250037D928 /* Data Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +312,8 @@
 			children = (
 				13BE8A791F433B220079B3F8 /* UniversitiesModel.swift */,
 				13A112D81F4865DB00F584C3 /* CountriesModel.swift */,
+				132B10041F82BB6400936FFD /* ProfileModel.swift */,
+				132B10061F82C03A00936FFD /* ProfileViewModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -481,8 +531,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13D20C711FDAC0A40017E7E9 /* GenderTableViewCell.xib in Resources */,
 				1300C52A1F12369000FE8C3E /* .gitignore in Resources */,
 				13F675FB1F0BF4E900646EFE /* LaunchScreen.storyboard in Resources */,
+				13D20C751FDAC0B30017E7E9 /* BirthdayTableViewCell.xib in Resources */,
+				132B10031F82B80E00936FFD /* AttributesTableViewCell.xib in Resources */,
 				1373F3741F17EE480037D928 /* FilterList.plist in Resources */,
 				13B5FA931F5DBE5400069425 /* Semester List.plist in Resources */,
 				13B5FA971F5DCF1B00069425 /* Courses List.plist in Resources */,
@@ -490,6 +543,9 @@
 				13F675F81F0BF4E900646EFE /* Assets.xcassets in Resources */,
 				13F675F61F0BF4E900646EFE /* Main.storyboard in Resources */,
 				134AA8D91F1E672F00242301 /* CountryList.plist in Resources */,
+				132B0FF61F82B2D800936FFD /* NamePictureTableViewCell.xib in Resources */,
+				132B0FFB1F82B6AF00936FFD /* EmailTableViewCell.xib in Resources */,
+				132B0FFF1F82B78A00936FFD /* AboutTableViewCell.xib in Resources */,
 				13C8C8AB1F1A54890091C8B7 /* GoogleService-Info.plist in Resources */,
 				13B5FA951F5DC7EE00069425 /* Language List.plist in Resources */,
 			);
@@ -659,8 +715,10 @@
 				1307BD331F6C76F800F04F7E /* UIColorExten.swift in Sources */,
 				1300C51E1F1233C100FE8C3E /* UIViewController.swift in Sources */,
 				1300C5111F1233A600FE8C3E /* ShowDocumentViewController.swift in Sources */,
+				132B0FFE1F82B78A00936FFD /* AboutTableViewCell.swift in Sources */,
 				1300C5171F1233A600FE8C3E /* WelcomeViewController.swift in Sources */,
 				1307BD351F6C7C4100F04F7E /* UIImageSizeExten.swift in Sources */,
+				132B0FF51F82B2D800936FFD /* NamePictureTableViewCell.swift in Sources */,
 				1300C5181F1233A600FE8C3E /* WishlistViewController.swift in Sources */,
 				1300C5151F1233A600FE8C3E /* StudentHomeViewController.swift in Sources */,
 				1300C5161F1233A600FE8C3E /* UpdateProfileViewController.swift in Sources */,
@@ -671,17 +729,23 @@
 				1373F36F1F17DE560037D928 /* SearchTableViewCell.swift in Sources */,
 				1300C5101F1233A600FE8C3E /* SearchUniversityViewController.swift in Sources */,
 				1300C51D1F1233C100FE8C3E /* UIColor.swift in Sources */,
+				132B10051F82BB6400936FFD /* ProfileModel.swift in Sources */,
 				1312A2ED1F3B2BF3005320AC /* DictionaryUtil.swift in Sources */,
 				131418A61F7D64EE006F60BB /* ShowAppliedUniTableViewCell.swift in Sources */,
+				13D20C741FDAC0B30017E7E9 /* BirthdayTableViewCell.swift in Sources */,
+				132B10071F82C03A00936FFD /* ProfileViewModel.swift in Sources */,
 				1300C5131F1233A600FE8C3E /* SlideMenuController.swift in Sources */,
 				1300C5221F1233E000FE8C3E /* LoginViewController.swift in Sources */,
 				1324C8271F3E37D1004DC9E6 /* StudentSubjectListViewController.swift in Sources */,
 				1300C5121F1233A600FE8C3E /* SignInOptionViewController.swift in Sources */,
+				132B0FFA1F82B6AF00936FFD /* EmailTableViewCell.swift in Sources */,
+				13D20C701FDAC0A40017E7E9 /* GenderTableViewCell.swift in Sources */,
 				13569CA71F1A84F600DC059C /* FilterViewController.swift in Sources */,
 				13B5FA8D1F5DB1BF00069425 /* CommonFilterViewController.swift in Sources */,
 				1324C82B1F3E38C6004DC9E6 /* StudentSubjectListTableViewCell.swift in Sources */,
 				13A112D91F4865DB00F584C3 /* CountriesModel.swift in Sources */,
 				1300C5211F1233E000FE8C3E /* AddCertificateVC.swift in Sources */,
+				132B10021F82B80E00936FFD /* AttributesTableViewCell.swift in Sources */,
 				1300C5281F12341800FE8C3E /* CustomRoundButton.swift in Sources */,
 				1324C8211F3E185B004DC9E6 /* StudentProgramsTableViewCell.swift in Sources */,
 				1324C8291F3E37E0004DC9E6 /* StudentSubjectInfoViewController.swift in Sources */,

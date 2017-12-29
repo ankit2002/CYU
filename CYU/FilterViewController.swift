@@ -51,6 +51,9 @@ class FilterViewController: UIViewController,UITableViewDataSource,UITableViewDe
     //MARK: Load Data from DB
     func fetchFiltersFromDB(){
         
+        
+        filterSelectedParameter.removeAll()
+        
         startSpinnerAndResumeInteraction()
         
         let userID = Auth.auth().currentUser!.uid

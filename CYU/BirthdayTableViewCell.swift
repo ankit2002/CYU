@@ -10,6 +10,7 @@ import UIKit
 
 class BirthdayTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var birthdayLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +20,26 @@ class BirthdayTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    var item : ProfileModelItem? {
+        didSet{
+            guard let item = item as? ProfileViewModelBirthday else{
+                return
+            }
+            
+            self.birthdayLbl.text = item.bday
+            
+        }
+    }
+    
+    static var identifier : String{
+        return String (describing: self)
+    }
+    
+    static var nib : UINib {
+        return UINib (nibName: identifier, bundle: nil)
     }
     
 }

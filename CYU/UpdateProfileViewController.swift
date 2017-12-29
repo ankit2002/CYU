@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
-class UpdateProfileViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
-    // MARK:- Properties Variables
-    var candidateProfile = [Dictionary<String,String>]()
+enum ProfileSection :Int {
+    case Profile = 0,Info
+}
+
+class UpdateProfileViewController: UIViewController {
+
+    var datamodel: ProfileModel!
     
     // MARK:- Outlet Properties
     @IBOutlet weak var tableView: UITableView!
@@ -20,14 +26,29 @@ class UpdateProfileViewController: UIViewController,UITableViewDataSource,UITabl
     
     // MARK:- System Methods
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.title = "Candidate Profile"
+        
+        tableView?.estimatedRowHeight = 100
+        tableView?.rowHeight = UITableViewAutomaticDimension
+        
+        tableView?.register(AboutTableViewCell.nib, forCellReuseIdentifier: AboutTableViewCell.identifier)
+        tableView?.register(NamePictureTableViewCell.nib, forCellReuseIdentifier: NamePictureTableViewCell.identifier)
+        tableView?.register(EmailTableViewCell.nib, forCellReuseIdentifier: EmailTableViewCell.identifier)
+        tableView?.register(AttributesTableViewCell.nib, forCellReuseIdentifier: AttributesTableViewCell.identifier)
+        tableView?.register(BirthdayTableViewCell.nib, forCellReuseIdentifier: BirthdayTableViewCell.identifier)
+        tableView?.register(GenderTableViewCell.nib, forCellReuseIdentifier: GenderTableViewCell.identifier)
+        
+        tableView.tableFooterView = UIView()
+        
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
         self.setNavigationBarItem()
+        self.fetchUserData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,22 +56,42 @@ class UpdateProfileViewController: UIViewController,UITableViewDataSource,UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    
-    // MARK:- TableView Datasource and Delegates
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      //  return nil
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // Method to Fetch User Data From Firebase
+    func fetchUserData() {
+        
+        let currentUser = Auth.auth().currentUser!
+        var ref : DatabaseReference!
+        ref = Database.database().reference().child("users").child(currentUser.uid)
+        
+        var dict =  Dictionary<String,Any>()
         
         
-        
+        ref.observeSingleEvent(of: .value, with: {snaps in
+            
+            if snaps.exists(){
+                
+                guard let snapValue = snaps.children.allObjects as? [DataSnapshot] else {return}
+                
+                for s in snapValue{
+                    
+                    let filkey = s.key
+                    let filvalue = s.value
+                    
+                    dict[filkey] = filvalue
+                }
+                
+                // data collected
+                self.datamodel = ProfileModel(userData:dict)
+                self.tableView.dataSource = self.datamodel
+                self.tableView.reloadData()
+            }else{
+                print("no data found")
+            }
+        })
     }
-
+    
+    
+    
     /*
     // MARK: - Navigation
 
